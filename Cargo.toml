@@ -1,6 +1,8 @@
 [package]
 name = "barium"
 authors = [ "Quigly" ]
+description = "Safe vulkan abstraction"
+license = "MIT"
 version = "0.1.0"
 edition = "2021"
 repository = "https://github.com/quigly/barium"

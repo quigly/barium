@@ -343,6 +343,26 @@ impl Device
 		let handle = unsafe { self.handle.get_device_queue(queue_family_index, 0) };
 		Ok(Queue { handle, family_index: queue_family_index })
 	}
+
+	pub fn get_swapchain_details(&self, surface: &Surface) -> Result<SwapchainDetails, ()>
+	{
+		let capabilities: ash::vk::SurfaceCapabilitiesKHR = unsafe
+		{
+			surface.loader.get_physical_device_surface_capabilities(self.physical_device.handle, surface.handle)
+		}.unwrap();
+
+		let formats: Vec<ash::vk::SurfaceFormatKHR> = unsafe
+		{
+			surface.loader.get_physical_device_surface_formats(self.physical_device.handle, surface.handle)
+		}.unwrap();
+
+		let modes: Vec<ash::vk::PresentModeKHR> = unsafe
+		{
+			surface.loader.get_physical_device_surface_present_modes(self.physical_device.handle, surface.handle)
+		}.unwrap();
+
+		Ok(SwapchainDetails { capabilities, formats, modes })
+	} 
 }
 
 #[derive(Clone)]
@@ -354,7 +374,7 @@ pub struct Surface
 }
 
 #[derive(Clone, Debug)]
-struct SwapchainDetails
+pub struct SwapchainDetails
 {
 	pub capabilities: ash::vk::SurfaceCapabilitiesKHR,
 	pub formats: Vec<ash::vk::SurfaceFormatKHR>,
@@ -365,7 +385,9 @@ struct SwapchainDetails
 pub struct Swapchain
 {
 	handle: ash::extensions::khr::Swapchain,
-	loader: ash::vk::SwapchainKHR
+	loader: ash::vk::SwapchainKHR,
+	images: Vec<Image>,
+	views: Vec<ImageView>
 }
 
 #[derive(Clone)]
@@ -399,8 +421,40 @@ pub struct DeviceCreateInfo<'a>
 	pub enabled_features: ash::vk::PhysicalDeviceFeatures
 }
 
+#[derive(Clone)]
 pub struct Queue
 {
 	handle: ash::vk::Queue,
 	family_index: u32
+}
+
+#[derive(Clone)]
+pub struct Image
+{
+	handle: ash::vk::Image
+}
+
+#[derive(Clone)]
+pub struct ImageView
+{
+	handle: ash::vk::ImageView
+}
+
+#[derive(Clone)]
+pub struct SwapchainCreateInfoKHR<'a>
+{
+	pub surface: &'a Surface,
+	pub min_image_count: u32,
+	pub image_format: ash::vk::Format,
+	pub image_color_space: ash::vk::ColorSpaceKHR,
+	pub image_extent: ash::vk::Extent2D,
+	pub image_array_layers: u32,
+	pub image_usage: ash::vk::ImageUsageFlags,
+	pub image_sharing_mode: ash::vk::SharingMode,
+	pub queue_family_indices: &'a [u32],
+	pub pre_transform: ash::vk::SurfaceTransformFlagsKHR,
+	pub composite_alpha: ash::vk::CompositeAlphaFlagsKHR,
+	pub present_mode: ash::vk::PresentModeKHR,
+	pub clipped: bool,
+	pub old_swapchain: Option<&'a Swapchain>
 }

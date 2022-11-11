@@ -117,7 +117,7 @@ pub struct Instance
 
 impl Instance
 {
-	pub fn new(create_info: &InstanceCreateInfo) -> Result<Self, InstanceCreateError>
+	pub fn new(create_info: &InstanceCreateInfo) -> Result<Arc<Self>, InstanceCreateError>
 	{
 		let entry = unsafe { ash::Entry::load() };
 		if entry.is_err()
@@ -179,14 +179,14 @@ impl Instance
         let utils_messenger =
         unsafe { debug_utils.create_debug_utils_messenger(&debug_create_info, None).unwrap() };
 
-		Ok(Self
+		Ok(Arc::new(Self
 		{
 			entry,
 			handle,
 			debug_utils,
 			utils_messenger,
 			api_version: create_info.app_info.api_version
-		})
+		}))
 	}
 
 	pub fn enumerate_physical_devices(&self) -> Result<Vec<Arc<PhysicalDevice>>, ()>
@@ -201,66 +201,6 @@ impl Instance
 		}
 
 		Ok(devices)
-	}
-
-	pub fn create_surface(&self, physical_device: &PhysicalDevice, window: &qpl::Window) -> Result<Surface, ()>
-	{
-		let handle = window.vk_create_surface(&self.entry, &self.handle, None);
-		let loader = ash::extensions::khr::Surface::new(&self.entry, &self.handle);
-
-		Ok(Surface { handle, loader, instance: Arc::new(self.handle.clone()) })
-	}
-
-	pub fn create_device(&self, physical_device: Arc<PhysicalDevice>, create_info: &DeviceCreateInfo) -> Result<Device, ()>
-	{
-		let layer_names: Vec<std::ffi::CString> =
-			create_info.layers
-			.iter()
-			.map(|layer_name| std::ffi::CString::new(layer_name.as_str()).unwrap())
-			.collect();
-		let layer_name_pointers: Vec<*const i8> = layer_names
-            .iter()
-            .map(|layer_name| layer_name.as_ptr())
-            .collect();
-
-		let extension_names: Vec<std::ffi::CString> =
-		create_info.extensions
-			.iter()
-			.map(|extension_name| std::ffi::CString::new(extension_name.as_str()).unwrap())
-			.collect();
-		let extension_name_pointers: Vec<*const i8> = extension_names
-            .iter()
-            .map(|extension_name| extension_name.as_ptr())
-            .collect();
-
-		let mut queue_create_infos: Vec<ash::vk::DeviceQueueCreateInfo> = Vec::with_capacity(create_info.queue_create_infos.len());
-		for info in &create_info.queue_create_infos
-		{
-			queue_create_infos.push(info.to_ash_type());
-		}
-
-		let device_create_info = ash::vk::DeviceCreateInfo::builder()
-			.queue_create_infos(&queue_create_infos)
-			.enabled_layer_names(&layer_name_pointers)
-			.enabled_layer_names(&layer_name_pointers)
-			.enabled_features(&create_info.enabled_features)
-			.build();
-
-		let handle = unsafe { self.handle.create_device(physical_device.handle, &device_create_info, None) }.unwrap();
-
-		Ok(Device
-		{
-			handle,
-			physical_device: physical_device.clone(),
-			api_version: physical_device.api_version
-		})
-	}
-
-	//pub fn create_device(&self, )
-
-	pub fn create_swapchain(&self, physical_device: &PhysicalDevice, surface: &Surface) -> Result<Swapchain, ()>
-	{
-		todo!()
 	}
 }
 
@@ -338,10 +278,53 @@ pub struct Device
 
 impl Device
 {
-	pub fn get_queue(&self, queue_family_index: u32) -> Result<Queue, ()>
+	pub fn new(physical_device: Arc<PhysicalDevice>, create_info: &DeviceCreateInfo) -> Result<Arc<Self>, ()>
 	{
-		let handle = unsafe { self.handle.get_device_queue(queue_family_index, 0) };
-		Ok(Queue { handle, family_index: queue_family_index })
+		let layer_names: Vec<std::ffi::CString> = create_info.layers
+			.iter()
+			.map(|layer_name| std::ffi::CString::new(layer_name.as_str()).unwrap())
+			.collect();
+		let layer_name_pointers: Vec<*const i8> = layer_names
+            .iter()
+            .map(|layer_name| layer_name.as_ptr())
+            .collect();
+
+		let extension_names: Vec<std::ffi::CString> = create_info.extensions
+			.iter()
+			.map(|extension_name| std::ffi::CString::new(extension_name.as_str()).unwrap())
+			.collect();
+		let extension_name_pointers: Vec<*const i8> = extension_names
+            .iter()
+            .map(|extension_name| extension_name.as_ptr())
+            .collect();
+
+		let mut queue_create_infos: Vec<ash::vk::DeviceQueueCreateInfo> = Vec::with_capacity(create_info.queue_create_infos.len());
+		for info in &create_info.queue_create_infos
+		{
+			queue_create_infos.push(info.to_ash_type());
+		}
+
+		let device_create_info = ash::vk::DeviceCreateInfo::builder()
+			.queue_create_infos(&queue_create_infos)
+			.enabled_layer_names(&layer_name_pointers)
+			.enabled_extension_names(&extension_name_pointers)
+			.enabled_features(&create_info.enabled_features)
+			.build();
+
+		let handle = unsafe { physical_device.instance.create_device(physical_device.handle, &device_create_info, None) }.unwrap();
+
+		Ok(Arc::new(Self
+		{
+			handle,
+			physical_device: physical_device.clone(),
+			api_version: physical_device.api_version
+		}))
+	}
+
+	pub fn get_queue(&self, queue_family_index: u32, queue_index: u32) -> Result<Arc<Queue>, ()>
+	{
+		let handle = unsafe { self.handle.get_device_queue(queue_family_index, queue_index) };
+		Queue::from_handle(handle, queue_family_index, queue_index)
 	}
 
 	pub fn get_swapchain_details(&self, surface: &Surface) -> Result<SwapchainDetails, ()>
@@ -362,7 +345,7 @@ impl Device
 		}.unwrap();
 
 		Ok(SwapchainDetails { capabilities, formats, modes })
-	} 
+	}
 }
 
 #[derive(Clone)]
@@ -371,6 +354,17 @@ pub struct Surface
 	handle: ash::vk::SurfaceKHR,
     loader: ash::extensions::khr::Surface,
 	instance: Arc<ash::Instance>
+}
+
+impl Surface
+{
+	pub fn new(instance: &Instance, window: &qpl::Window) -> Result<Arc<Self>, ()>
+	{
+		let handle = window.vk_create_surface(&instance.entry, &instance.handle, None);
+		let loader = ash::extensions::khr::Surface::new(&instance.entry, &instance.handle);
+
+		Ok(Arc::new(Surface { handle, loader, instance: Arc::new(instance.handle.clone()) }))
+	}
 }
 
 #[derive(Clone, Debug)]
@@ -382,12 +376,69 @@ pub struct SwapchainDetails
 }
 
 #[derive(Clone)]
+pub struct SwapchainCreateInfoKHR
+{
+	pub min_image_count: u32,
+	pub image_format: ash::vk::Format,
+	pub image_color_space: ash::vk::ColorSpaceKHR,
+	pub image_extent: ash::vk::Extent2D,
+	pub image_array_layers: u32,
+	pub image_usage: ash::vk::ImageUsageFlags,
+	pub image_sharing_mode: ash::vk::SharingMode,
+	pub queue_family_indices: Vec<u32>,
+	pub pre_transform: ash::vk::SurfaceTransformFlagsKHR,
+	pub composite_alpha: ash::vk::CompositeAlphaFlagsKHR,
+	pub present_mode: ash::vk::PresentModeKHR,
+	pub clipped: bool,
+	pub old_swapchain: Option<Arc<Swapchain>>
+}
+
+#[derive(Clone)]
 pub struct Swapchain
 {
-	handle: ash::extensions::khr::Swapchain,
-	loader: ash::vk::SwapchainKHR,
-	images: Vec<Image>,
-	views: Vec<ImageView>
+	handle: ash::vk::SwapchainKHR,
+	loader: ash::extensions::khr::Swapchain,
+	surface: Arc<Surface>
+}
+
+impl Swapchain
+{
+	pub fn new(device: &Arc<Device>, surface: &Arc<Surface>, create_info: &SwapchainCreateInfoKHR) -> Result<Arc<Self>, ()>
+	{
+		let swapchain_create_info = ash::vk::SwapchainCreateInfoKHR::builder()
+			.surface(surface.handle)
+			.min_image_count(create_info.min_image_count)
+			.image_format(create_info.image_format)
+			.image_color_space(create_info.image_color_space)
+			.image_extent(create_info.image_extent)
+			.image_array_layers(create_info.image_array_layers)
+			.image_usage(create_info.image_usage)
+			.image_sharing_mode(create_info.image_sharing_mode)
+			.queue_family_indices(&create_info.queue_family_indices)
+			.pre_transform(create_info.pre_transform)
+			.composite_alpha(create_info.composite_alpha)
+			.present_mode(create_info.present_mode);
+		let loader = ash::extensions::khr::Swapchain::new(&surface.instance, &device.handle);
+		let handle = unsafe { loader.create_swapchain(&swapchain_create_info, None).unwrap() };
+
+		Self::from_handle(handle, loader, surface.clone())
+	}
+
+	pub fn from_handle(handle: ash::vk::SwapchainKHR, loader: ash::extensions::khr::Swapchain, surface: Arc<Surface>) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle, loader, surface }))
+	}
+
+	pub fn get_images(&self) -> Result<Vec<Arc<Image>>, ()>
+	{
+		let handles = unsafe { self.loader.get_swapchain_images(self.handle) }.unwrap();
+		let mut images: Vec<Arc<Image>> = Vec::with_capacity(handles.len());
+		for handle in handles.iter()
+		{
+			images.push(Arc::new(Image { handle: *handle }));
+		}
+		Ok(images)
+	}
 }
 
 #[derive(Clone)]
@@ -425,7 +476,20 @@ pub struct DeviceCreateInfo<'a>
 pub struct Queue
 {
 	handle: ash::vk::Queue,
-	family_index: u32
+	family_index: u32,
+	index: u32
+}
+
+impl Queue
+{
+	pub fn from_handle(handle: ash::vk::Queue, family_index: u32, index: u32) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle, family_index, index }))
+	}
+
+	pub fn family_index(&self) -> u32 { self.family_index }
+
+	pub fn index(&self) -> u32 { self.index }
 }
 
 #[derive(Clone)]
@@ -434,27 +498,48 @@ pub struct Image
 	handle: ash::vk::Image
 }
 
+impl Image
+{
+	pub fn from_handle(handle: ash::vk::Image) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle }))
+	}
+}
+
+#[derive(Clone)]
+pub struct ImageViewCreateInfo<'a>
+{
+	pub image: &'a Arc<Image>,
+	pub view_type: ash::vk::ImageViewType,
+	pub format: ash::vk::Format,
+	pub components: ash::vk::ComponentMapping,
+	pub subresource_range: ash::vk::ImageSubresourceRange
+}
+
 #[derive(Clone)]
 pub struct ImageView
 {
 	handle: ash::vk::ImageView
 }
 
-#[derive(Clone)]
-pub struct SwapchainCreateInfoKHR<'a>
+impl ImageView
 {
-	pub surface: &'a Surface,
-	pub min_image_count: u32,
-	pub image_format: ash::vk::Format,
-	pub image_color_space: ash::vk::ColorSpaceKHR,
-	pub image_extent: ash::vk::Extent2D,
-	pub image_array_layers: u32,
-	pub image_usage: ash::vk::ImageUsageFlags,
-	pub image_sharing_mode: ash::vk::SharingMode,
-	pub queue_family_indices: &'a [u32],
-	pub pre_transform: ash::vk::SurfaceTransformFlagsKHR,
-	pub composite_alpha: ash::vk::CompositeAlphaFlagsKHR,
-	pub present_mode: ash::vk::PresentModeKHR,
-	pub clipped: bool,
-	pub old_swapchain: Option<&'a Swapchain>
+	pub fn new(device: &Arc<Device>, create_info: &ImageViewCreateInfo) -> Result<Arc<Self>, ()>
+	{
+		let image_view_create_info = ash::vk::ImageViewCreateInfo::builder()
+			.image(create_info.image.handle)
+			.view_type(create_info.view_type)
+			.format(create_info.format)
+			.components(create_info.components)
+			.subresource_range(create_info.subresource_range);
+
+		let handle = unsafe { device.handle.create_image_view(&image_view_create_info, None) }.unwrap();
+
+		Ok(Arc::new(ImageView { handle }))
+	}
+
+	pub fn from_handle(handle: ash::vk::ImageView) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle }))
+	}
 }

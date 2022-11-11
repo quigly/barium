@@ -441,7 +441,7 @@ impl Swapchain
 	}
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct DeviceQueueCreateInfo<'a>
 {
 	pub queue_family_index: u32,
@@ -472,7 +472,7 @@ pub struct DeviceCreateInfo<'a>
 	pub enabled_features: ash::vk::PhysicalDeviceFeatures
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Queue
 {
 	handle: ash::vk::Queue,
@@ -492,7 +492,7 @@ impl Queue
 	pub fn index(&self) -> u32 { self.index }
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Image
 {
 	handle: ash::vk::Image
@@ -516,7 +516,7 @@ pub struct ImageViewCreateInfo<'a>
 	pub subresource_range: ash::vk::ImageSubresourceRange
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct ImageView
 {
 	handle: ash::vk::ImageView
@@ -543,3 +543,294 @@ impl ImageView
 		Ok(Arc::new(Self { handle }))
 	}
 }
+
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum LoadOp
+{
+	Load,
+	Clear,
+	DontCare
+}
+
+impl LoadOp
+{
+	fn to_ash_type(&self) -> ash::vk::AttachmentLoadOp
+	{
+		match *self
+		{
+			Self::Load => ash::vk::AttachmentLoadOp::LOAD,
+			Self::Clear => ash::vk::AttachmentLoadOp::CLEAR,
+			Self::DontCare => ash::vk::AttachmentLoadOp::DONT_CARE
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum StoreOp
+{
+	Store,
+	DontCare
+}
+
+impl StoreOp
+{
+	fn to_ash_type(&self) -> ash::vk::AttachmentStoreOp
+	{
+		match *self
+		{
+			Self::Store => ash::vk::AttachmentStoreOp::STORE,
+			Self::DontCare => ash::vk::AttachmentStoreOp::DONT_CARE
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct AttachmentDescription
+{
+	pub format: ash::vk::Format,
+	pub samples: u32,
+	pub load_op: LoadOp,
+	pub store_op: StoreOp,
+	pub stencil_load_op: LoadOp,
+	pub stencil_store_op: StoreOp,
+	pub initial_layout: ash::vk::ImageLayout,
+	pub final_layout: ash::vk::ImageLayout
+}
+
+impl AttachmentDescription
+{
+	fn to_ash_type(&self) -> ash::vk::AttachmentDescription
+	{
+		ash::vk::AttachmentDescription::builder()
+			.format(self.format)
+			.samples(self.sample_count_flags().unwrap())
+			.load_op(self.load_op.to_ash_type())
+			.store_op(self.store_op.to_ash_type())
+			.stencil_load_op(self.stencil_load_op.to_ash_type())
+			.stencil_store_op(self.stencil_store_op.to_ash_type())
+			.initial_layout(self.initial_layout)
+			.final_layout(self.final_layout)
+			.build()
+	}
+
+	fn sample_count_flags(&self) -> Result<ash::vk::SampleCountFlags, ()>
+	{
+		match self.samples
+		{
+			1 => Ok(ash::vk::SampleCountFlags::TYPE_1),
+			2 => Ok(ash::vk::SampleCountFlags::TYPE_2),
+			4 => Ok(ash::vk::SampleCountFlags::TYPE_4),
+			8 => Ok(ash::vk::SampleCountFlags::TYPE_8),
+			16 => Ok(ash::vk::SampleCountFlags::TYPE_16),
+			32 => Ok(ash::vk::SampleCountFlags::TYPE_32),
+			64 => Ok(ash::vk::SampleCountFlags::TYPE_64),
+			_ => Err(())
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
+pub enum PipelineBindPoint
+{
+	Graphics,
+	Compute,
+	RayTracingKhr
+}
+
+impl PipelineBindPoint
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineBindPoint
+	{
+		match *self
+		{
+			Self::Graphics => ash::vk::PipelineBindPoint::GRAPHICS,
+			Self::Compute => ash::vk::PipelineBindPoint::COMPUTE,
+			Self::RayTracingKhr => ash::vk::PipelineBindPoint::RAY_TRACING_KHR
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct AttachmentReference
+{
+	pub attachment: u32,
+	pub layout: ash::vk::ImageLayout
+}
+
+impl AttachmentReference
+{
+	fn to_ash_type(&self) -> ash::vk::AttachmentReference
+	{
+		ash::vk::AttachmentReference
+		{
+			attachment: self.attachment,
+			layout: self.layout
+		}
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct SubpassDescription
+{
+	pub pipeline_bind_point: PipelineBindPoint,
+	pub input_attachments: Vec<AttachmentReference>,
+	pub color_attachments: Vec<AttachmentReference>,
+	pub resolve_attachments: Vec<AttachmentReference>,
+	pub depth_stencil_attachment: Option<AttachmentReference>,
+	pub preserve_attachments: Vec<u32>
+}
+
+impl Default for SubpassDescription
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			pipeline_bind_point: PipelineBindPoint::Graphics,
+			input_attachments: Vec::new(),
+			color_attachments: Vec::new(),
+			resolve_attachments: Vec::new(),
+			depth_stencil_attachment: None,
+			preserve_attachments: Vec::new()
+		}	
+	}
+}
+
+impl SubpassDescription
+{
+	fn to_vk_subpass_description(&self) -> VkSubpassDescription
+	{
+		VkSubpassDescription
+		{
+			pipeline_bind_point: self.pipeline_bind_point.to_ash_type(),
+			input_attachments: self.input_attachments.iter().map(|attachment| attachment.to_ash_type()).collect(),
+			color_attachments: self.color_attachments.iter().map(|attachment| attachment.to_ash_type()).collect(),
+			resolve_attachments: self.resolve_attachments.iter().map(|attachment| attachment.to_ash_type()).collect(),
+			depth_stencil_attachment: match self.depth_stencil_attachment
+			{
+				Some(depth_stencil_attachment) =>
+				{
+					Some(depth_stencil_attachment.to_ash_type())
+				},
+				None => None
+			},
+			preserve_attachments: self.preserve_attachments.clone(),
+		}
+	}
+}
+
+struct VkSubpassDescription
+{
+	pub pipeline_bind_point: ash::vk::PipelineBindPoint,
+	pub input_attachments: Vec<ash::vk::AttachmentReference>,
+	pub color_attachments: Vec<ash::vk::AttachmentReference>,
+	pub resolve_attachments: Vec<ash::vk::AttachmentReference>,
+	pub depth_stencil_attachment: Option<ash::vk::AttachmentReference>,
+	pub preserve_attachments: Vec<u32>
+}
+
+impl VkSubpassDescription
+{
+	fn to_ash_type(&self) -> ash::vk::SubpassDescription
+	{
+		let mut result = ash::vk::SubpassDescription::builder()
+			.pipeline_bind_point(self.pipeline_bind_point)
+			.input_attachments(&self.input_attachments)
+			.color_attachments(&self.color_attachments)
+			.resolve_attachments(&self.resolve_attachments)
+			.preserve_attachments(&self.preserve_attachments)
+			.build();
+		
+		match self.depth_stencil_attachment
+		{
+			Some(depth_stencil_attachment) =>
+			{
+				result.p_depth_stencil_attachment = &depth_stencil_attachment;
+			}
+			None => {}
+		};
+
+		result
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct SubpassDependency
+{
+	pub src_subpass: u32,
+	pub dst_subpass: u32,
+	pub src_stage_mask: ash::vk::PipelineStageFlags,
+	pub dst_stage_mask: ash::vk::PipelineStageFlags,
+	pub src_access_mask: ash::vk::AccessFlags,
+	pub dst_access_mask: ash::vk::AccessFlags
+}
+
+impl Default for SubpassDependency
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			src_subpass: u32::default(),
+			dst_subpass: u32::default(),
+			src_stage_mask: ash::vk::PipelineStageFlags::empty(),
+			dst_stage_mask: ash::vk::PipelineStageFlags::empty(),
+			src_access_mask: ash::vk::AccessFlags::empty(),
+			dst_access_mask: ash::vk::AccessFlags::empty()
+		}	
+	}
+}
+
+impl SubpassDependency
+{
+	fn to_ash_type(&self) -> ash::vk::SubpassDependency
+	{
+		ash::vk::SubpassDependency::builder()
+			.src_subpass(self.src_subpass)
+			.dst_subpass(self.dst_subpass)
+			.src_stage_mask(self.src_stage_mask)
+			.dst_stage_mask(self.dst_stage_mask)
+			.src_access_mask(self.src_access_mask)
+			.dst_access_mask(self.dst_access_mask)
+			.build()
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct RenderPassCreateInfo
+{
+	pub attachments: Vec<AttachmentDescription>,
+	pub subpasses: Vec<SubpassDescription>,
+	pub dependencies: Vec<SubpassDependency>
+}
+
+#[derive(Clone, Debug)]
+pub struct RenderPass
+{
+	handle: ash::vk::RenderPass
+}
+
+impl RenderPass
+{
+	pub fn new(device: &Arc<Device>, create_info: &RenderPassCreateInfo) -> Result<Arc<RenderPass>, ()>
+	{
+		let attachments: Vec<ash::vk::AttachmentDescription> = create_info.attachments.iter().map(|attachment| attachment.to_ash_type()).collect();
+		
+		let vk_subpasses: Vec<VkSubpassDescription> = create_info.subpasses.iter().map(|subpass| subpass.to_vk_subpass_description()).collect();
+		let subpasses: Vec<ash::vk::SubpassDescription> = vk_subpasses.iter().map(|subpass| subpass.to_ash_type()).collect();
+
+		let dependencies: Vec<ash::vk::SubpassDependency> = create_info.dependencies.iter().map(|dependency| dependency.to_ash_type()).collect();
+
+		let renderpass_create_info = ash::vk::RenderPassCreateInfo::builder()
+			.attachments(&attachments)
+			.subpasses(&subpasses)
+			.dependencies(&dependencies);
+		let handle = unsafe { device.handle.create_render_pass(&renderpass_create_info, None) }.unwrap();
+
+		Ok(Arc::new(RenderPass { handle }))
+	}
+}
+
+/*
+
+*/

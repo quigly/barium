@@ -866,6 +866,40 @@ impl Framebuffer
 	}
 }
 
+#[derive(Clone, Copy, Debug)]
+pub struct ShaderModuleCreateInfo<'a>
+{
+	pub code: &'a [u8]
+}
+
+#[derive(Clone, Debug)]
+pub struct ShaderModule
+{
+	handle: ash::vk::ShaderModule
+}
+
+impl ShaderModule
+{
+	pub fn from_handle(handle: ash::vk::ShaderModule) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle }))
+	}
+
+	pub fn new(device: &Arc<Device>, create_info: &ShaderModuleCreateInfo) -> Result<Arc<Self>, ()>
+	{
+		assert!((create_info.code.len() % 4) == 0);
+
+		let code: &[u32] = unsafe { std::slice::from_raw_parts(create_info.code.as_ptr() as *const _, create_info.code.len() / std::mem::size_of::<u32>()) };
+
+		let shader_module_create_info = ash::vk::ShaderModuleCreateInfo::builder()
+			.code(code);
+
+		let handle = unsafe { device.handle.create_shader_module(&shader_module_create_info, None) }.unwrap();
+
+		Self::from_handle(handle)
+	}
+}
+
 /*
 
 */

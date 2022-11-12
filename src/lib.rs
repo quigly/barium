@@ -831,6 +831,41 @@ impl RenderPass
 	}
 }
 
+#[derive(Clone, Debug)]
+pub struct FramebufferCreateInfo<'a>
+{
+	pub renderpass: &'a RenderPass,
+	pub attachments: Vec<&'a Arc<ImageView>>,
+	pub width: u32,
+	pub height: u32,
+	pub layers: u32
+}
+
+#[derive(Clone, Debug)]
+pub struct Framebuffer
+{
+	handle: ash::vk::Framebuffer
+}
+
+impl Framebuffer
+{
+	pub fn new(device: &Arc<Device>, create_info: &FramebufferCreateInfo) -> Result<Arc<Self>, ()>
+	{
+		let attachments: Vec<ash::vk::ImageView> = create_info.attachments.iter().map(|attachment| attachment.handle.clone()).collect();
+
+		let framebuffer_create_info = ash::vk::FramebufferCreateInfo::builder()
+			.attachments(&attachments)
+			.render_pass(create_info.renderpass.handle)
+			.width(create_info.width)
+			.height(create_info.height)
+			.layers(create_info.layers);
+		
+		let handle = unsafe { device.handle.create_framebuffer(&framebuffer_create_info, None) }.unwrap();
+	
+		Ok(Arc::new(Framebuffer { handle }))
+	}
+}
+
 /*
 
 */

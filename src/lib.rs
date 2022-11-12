@@ -900,6 +900,856 @@ impl ShaderModule
 	}
 }
 
-/*
+#[derive(Clone, Copy, Debug)]
+pub enum PrimitiveTopology
+{
+	PointList,
+	LineList,
+	LineStrip,
+	TriangleList,
+	TriangleStrip,
+	TriangleFan,
+	LineListWithAdjacency,
+	LineStripWithAdjacency,
+	TriangleListWithAdjacency,
+	TriangleStripWithAdjacency,
+	PatchList
+}
 
-*/
+impl PrimitiveTopology
+{
+	fn to_ash_type(&self) -> ash::vk::PrimitiveTopology
+	{
+		match *self
+		{
+			Self::PointList => ash::vk::PrimitiveTopology::POINT_LIST,
+			Self::LineList => ash::vk::PrimitiveTopology::LINE_LIST,
+			Self::LineStrip => ash::vk::PrimitiveTopology::LINE_STRIP,
+			Self::TriangleList => ash::vk::PrimitiveTopology::TRIANGLE_LIST,
+			Self::TriangleStrip => ash::vk::PrimitiveTopology::TRIANGLE_STRIP,
+			Self::TriangleFan => ash::vk::PrimitiveTopology::TRIANGLE_FAN,
+			Self::LineListWithAdjacency => ash::vk::PrimitiveTopology::LINE_LIST_WITH_ADJACENCY,
+			Self::LineStripWithAdjacency => ash::vk::PrimitiveTopology::LINE_STRIP_WITH_ADJACENCY,
+			Self::TriangleListWithAdjacency => ash::vk::PrimitiveTopology::TRIANGLE_LIST_WITH_ADJACENCY,
+			Self::TriangleStripWithAdjacency => ash::vk::PrimitiveTopology::TRIANGLE_STRIP_WITH_ADJACENCY,
+			Self::PatchList => ash::vk::PrimitiveTopology::PATCH_LIST
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct PipelineInputAssemblyStateCreateInfo
+{
+	pub topology: PrimitiveTopology,
+	pub primitive_restart_enable: bool
+}
+
+impl PipelineInputAssemblyStateCreateInfo
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineInputAssemblyStateCreateInfo
+	{
+		ash::vk::PipelineInputAssemblyStateCreateInfo::builder()
+			.topology(self.topology.to_ash_type())
+			.primitive_restart_enable(self.primitive_restart_enable)
+			.build()
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct PipelineShaderStageCreateInfo<'a>
+{
+	pub stage: ash::vk::ShaderStageFlags,
+	pub module: &'a Arc<ShaderModule>,
+	pub name: &'a str,
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct Viewport
+{
+	pub origin: [f32; 2],
+	pub dimensions: [f32; 2],
+	pub depth: [f32; 2]
+}
+
+impl Viewport
+{
+	fn to_ash_type(&self) -> ash::vk::Viewport
+	{
+		ash::vk::Viewport
+		{
+			x: self.origin[0],
+			y: self.origin[1],
+			width: self.dimensions[0],
+			height: self.dimensions[1],
+			min_depth: self.depth[0],
+			max_depth: self.depth[1]
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct Scissor
+{
+	pub origin: [i32; 2],
+	pub dimensions: [u32; 2]
+}
+
+impl Scissor
+{
+	fn to_ash_type(&self) -> ash::vk::Rect2D
+	{
+		ash::vk::Rect2D
+		{
+			offset: ash::vk::Offset2D { x: self.origin[0], y: self.origin[1] },
+			extent: ash::vk::Extent2D { width: self.dimensions[0], height: self.dimensions[1] }
+		}
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct PipelineViewportStateCreateInfo
+{
+	pub viewports: Vec<Viewport>,
+	pub scissors: Vec<Scissor>
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum VertexInputRate
+{
+	Vertex,
+	Instance
+}
+
+impl VertexInputRate
+{
+	fn to_ash_type(&self) -> ash::vk::VertexInputRate
+	{
+		match *self
+		{
+			Self::Vertex => ash::vk::VertexInputRate::VERTEX,
+			Self::Instance => ash::vk::VertexInputRate::INSTANCE
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct VertexInputBindingDescription
+{
+	pub binding: u32,
+	pub stride: u32,
+	pub input_rate: VertexInputRate
+}
+
+impl VertexInputBindingDescription
+{
+	fn to_ash_type(&self) -> ash::vk::VertexInputBindingDescription
+	{
+		ash::vk::VertexInputBindingDescription
+		{
+			binding: self.binding,
+			stride: self.stride,
+			input_rate: self.input_rate.to_ash_type()
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct VertexInputAttributeDescription
+{
+	pub location: u32,
+	pub binding: u32,
+	pub format: ash::vk::Format,
+	pub offset: u32
+}
+
+impl VertexInputAttributeDescription
+{
+	fn to_ash_type(&self) -> ash::vk::VertexInputAttributeDescription
+	{
+		ash::vk::VertexInputAttributeDescription
+		{
+			location: self.location,
+			binding: self.binding,
+			format: self.format,
+			offset: self.offset
+		}
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct PipelineVertexInputStateCreateInfo
+{
+	pub vertex_binding_descriptions: Vec<VertexInputBindingDescription>,
+	pub vertex_attribute_descriptions: Vec<VertexInputAttributeDescription>
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct PipelineTessellationStateCreateInfo
+{
+	pub patch_control_points: u32
+}
+
+impl PipelineTessellationStateCreateInfo
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineTessellationStateCreateInfo
+	{
+		ash::vk::PipelineTessellationStateCreateInfo::builder()
+			.patch_control_points(self.patch_control_points)
+			.build()
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum PolygonMode
+{
+	Fill,
+	Line,
+	Point
+}
+
+impl PolygonMode
+{
+	fn to_ash_type(&self) -> ash::vk::PolygonMode
+	{
+		match *self
+		{
+			Self::Fill => ash::vk::PolygonMode::FILL,
+			Self::Line => ash::vk::PolygonMode::LINE,
+			Self::Point => ash::vk::PolygonMode::POINT
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum CullMode
+{
+	None,
+	Front,
+	Back,
+	FrontAndBack
+}
+
+impl CullMode
+{
+	fn to_ash_type(&self) -> ash::vk::CullModeFlags
+	{
+		match *self
+		{
+			Self::None => ash::vk::CullModeFlags::NONE,
+			Self::Front => ash::vk::CullModeFlags::FRONT,
+			Self::Back => ash::vk::CullModeFlags::BACK,
+			Self::FrontAndBack => ash::vk::CullModeFlags::FRONT_AND_BACK
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum FrontFace
+{
+	CounterClockwise,
+	Clockwise
+}
+
+impl FrontFace
+{
+	fn to_ash_type(&self) -> ash::vk::FrontFace
+	{
+		match *self
+		{
+			Self::CounterClockwise => ash::vk::FrontFace::COUNTER_CLOCKWISE,
+			Self::Clockwise => ash::vk::FrontFace::CLOCKWISE
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct PipelineRasterizationStateCreateInfo
+{
+	pub depth_clamp_enable: bool,
+	pub rasterizer_discard_enable: bool,
+	pub polygon_mode: PolygonMode,
+	pub cull_mode: CullMode,
+	pub front_face: FrontFace,
+	pub depth_bias_enable: bool,
+	pub depth_bias_constant_factor: f32,
+	pub depth_bias_clamp: f32,
+	pub depth_bias_slope_factor: f32,
+	pub line_width: f32
+}
+
+impl PipelineRasterizationStateCreateInfo
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineRasterizationStateCreateInfo
+	{
+		ash::vk::PipelineRasterizationStateCreateInfo::builder()
+			.depth_clamp_enable(self.depth_clamp_enable)
+			.rasterizer_discard_enable(self.rasterizer_discard_enable)
+			.polygon_mode(self.polygon_mode.to_ash_type())
+			.cull_mode(self.cull_mode.to_ash_type())
+			.front_face(self.front_face.to_ash_type())
+			.depth_bias_enable(self.depth_bias_enable)
+			.depth_bias_constant_factor(self.depth_bias_constant_factor)
+			.depth_bias_clamp(self.depth_bias_clamp)
+			.depth_bias_slope_factor(self.depth_bias_slope_factor)
+			.line_width(self.line_width)
+			.build()
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct PipelineMultisampleStateCreateInfo
+{
+	pub rasterization_samples: u32,
+	pub sample_shading_enable: bool,
+	pub min_sample_shading: f32,
+	pub sample_mask: Vec<u32>,
+	pub alpha_to_coverage_enable: bool,
+	pub alpha_to_one_enable: bool
+}
+
+impl PipelineMultisampleStateCreateInfo
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineMultisampleStateCreateInfo
+	{
+		ash::vk::PipelineMultisampleStateCreateInfo::builder()
+			.rasterization_samples(self.get_rasterization_samples())
+			.sample_shading_enable(self.sample_shading_enable)
+			.min_sample_shading(self.min_sample_shading)
+			.sample_mask(&self.sample_mask)
+			.alpha_to_coverage_enable(self.alpha_to_coverage_enable)
+			.alpha_to_one_enable(self.alpha_to_one_enable)
+			.build()
+	}
+
+	fn get_rasterization_samples(&self) -> ash::vk::SampleCountFlags
+	{
+		let mut flags: u32 = 0;
+
+		match self.rasterization_samples
+		{
+			1 =>  { flags |= ash::vk::SampleCountFlags::TYPE_1.as_raw() }
+			2 =>  { flags |= ash::vk::SampleCountFlags::TYPE_2.as_raw() }
+			4 =>  { flags |= ash::vk::SampleCountFlags::TYPE_4.as_raw() }
+			8 =>  { flags |= ash::vk::SampleCountFlags::TYPE_8.as_raw() }
+			16 => { flags |= ash::vk::SampleCountFlags::TYPE_16.as_raw() }
+			32 => { flags |= ash::vk::SampleCountFlags::TYPE_32.as_raw() }
+			64 => { flags |= ash::vk::SampleCountFlags::TYPE_64.as_raw() }
+			_ => { panic!("Invalid sample count! [{}]", self.rasterization_samples) }
+		};
+
+		ash::vk::SampleCountFlags::from_raw(flags)
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum CompareOp
+{
+	Never,
+	Less,
+	Equal,
+	LessOrEqual,
+	Greater,
+	NotEqual,
+	GreaterOrEqual,
+	Always
+}
+
+impl CompareOp
+{
+	fn to_ash_type(&self) -> ash::vk::CompareOp
+	{
+		match *self
+		{
+			Self::Never => ash::vk::CompareOp::NEVER,
+			Self::Less => ash::vk::CompareOp::LESS,
+			Self::Equal => ash::vk::CompareOp::EQUAL,
+			Self::LessOrEqual => ash::vk::CompareOp::LESS_OR_EQUAL,
+			Self::Greater => ash::vk::CompareOp::GREATER,
+			Self::NotEqual => ash::vk::CompareOp::NOT_EQUAL,
+			Self::GreaterOrEqual => ash::vk::CompareOp::GREATER_OR_EQUAL,
+			Self::Always => ash::vk::CompareOp::ALWAYS
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum StencilOp
+{
+	Keep,
+	Zero,
+	Replace,
+	IncrementAndClamp,
+	DecrementAndClamp,
+	Invert,
+	IncrementAndWrap,
+	DecrementAndWrap
+}
+
+impl StencilOp
+{
+	fn to_ash_type(&self) -> ash::vk::StencilOp
+	{
+		match *self
+		{
+			Self::Keep => ash::vk::StencilOp::KEEP,
+			Self::Zero => ash::vk::StencilOp::ZERO,
+			Self::Replace => ash::vk::StencilOp::REPLACE,
+			Self::IncrementAndClamp => ash::vk::StencilOp::INCREMENT_AND_CLAMP,
+			Self::DecrementAndClamp => ash::vk::StencilOp::DECREMENT_AND_CLAMP,
+			Self::Invert => ash::vk::StencilOp::INVERT,
+			Self::IncrementAndWrap => ash::vk::StencilOp::INCREMENT_AND_WRAP,
+			Self::DecrementAndWrap => ash::vk::StencilOp::DECREMENT_AND_WRAP
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct StencilOpState
+{
+	pub fail_op: StencilOp,
+	pub pass_op: StencilOp,
+	pub depth_fail_op: StencilOp,
+	pub compare_op: CompareOp,
+	pub compare_mask: u32,
+	pub write_mask: u32,
+	pub reference: u32
+}
+
+impl StencilOpState
+{
+	fn to_ash_type(&self) -> ash::vk::StencilOpState
+	{
+		ash::vk::StencilOpState
+		{
+			fail_op: self.fail_op.to_ash_type(),
+			pass_op: self.pass_op.to_ash_type(),
+			depth_fail_op: self.depth_fail_op.to_ash_type(),
+			compare_op: self.compare_op.to_ash_type(),
+			compare_mask: self.compare_mask,
+			write_mask: self.write_mask,
+			reference: self.reference
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct PipelineDepthStencilStateCreateInfo
+{
+	pub depth_test_enable: bool,
+	pub depth_write_enable: bool,
+	pub depth_compare_op: CompareOp,
+	pub depth_bounds_test_enable: bool,
+	pub stencil_test_enable: bool,
+	pub front: StencilOpState,
+	pub back: StencilOpState,
+	pub min_depth_bounds: f32,
+	pub max_depth_bounds: f32
+}
+
+impl PipelineDepthStencilStateCreateInfo
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineDepthStencilStateCreateInfo
+	{
+		ash::vk::PipelineDepthStencilStateCreateInfo::builder()
+			.depth_test_enable(self.depth_test_enable)	
+			.depth_write_enable(self.depth_write_enable)
+			.depth_compare_op(self.depth_compare_op.to_ash_type())
+			.depth_bounds_test_enable(self.depth_bounds_test_enable)
+			.stencil_test_enable(self.stencil_test_enable)
+			.front(self.front.to_ash_type())
+			.back(self.back.to_ash_type())
+			.min_depth_bounds(self.min_depth_bounds)
+			.max_depth_bounds(self.max_depth_bounds)
+			.build()
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum LogicOp
+{
+	Clear,
+	And,
+	AndReverse,
+	Copy,
+	AndInverted,
+	NoOp,
+	Xor,
+	Or,
+	Nor,
+	Equivalent,
+	Invert,
+	OrReverse,
+	CopyInverted,
+	OrInverted,
+	Nand,
+	Set
+}
+
+impl LogicOp
+{
+	fn to_ash_type(&self) -> ash::vk::LogicOp
+	{
+		match *self
+		{
+			Self::Clear => ash::vk::LogicOp::CLEAR,
+			Self::And => ash::vk::LogicOp::AND,
+			Self::AndReverse => ash::vk::LogicOp::AND_REVERSE,
+			Self::Copy => ash::vk::LogicOp::COPY,
+			Self::AndInverted => ash::vk::LogicOp::AND_INVERTED,
+			Self::NoOp => ash::vk::LogicOp::NO_OP,
+			Self::Xor => ash::vk::LogicOp::XOR,
+			Self::Or => ash::vk::LogicOp::OR,
+			Self::Nor => ash::vk::LogicOp::NOR,
+			Self::Equivalent => ash::vk::LogicOp::EQUIVALENT,
+			Self::Invert => ash::vk::LogicOp::INVERT,
+			Self::OrReverse => ash::vk::LogicOp::OR_REVERSE,
+			Self::CopyInverted => ash::vk::LogicOp::COPY_INVERTED,
+			Self::OrInverted => ash::vk::LogicOp::OR_INVERTED,
+			Self::Nand => ash::vk::LogicOp::NAND,
+			Self::Set => ash::vk::LogicOp::SET,
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum BlendFactor
+{
+	Zero,
+	One,
+	SrcColor,
+	OneMinusSrcColor,
+	DstColor,
+	OneMinusDstColor,
+	SrcAlpha,
+	OneMinusSrcAlpha,
+	DstAlpha,
+	OneMinusDstAlpha,
+	ConstantColor,
+	OneMinusConstantColor,
+	ConstantAlpha,
+	OneMinusConstantAlpha,
+	SrcAlphaSaturate,
+	Src1Color,
+	OneMinusSrc1Color,
+	Src1Alpha,
+	OneMinusSrc1Alpha
+}
+
+impl BlendFactor
+{
+	fn to_ash_type(&self) -> ash::vk::BlendFactor
+	{
+		match *self
+		{
+			Self::Zero => ash::vk::BlendFactor::ZERO,
+			Self::One => ash::vk::BlendFactor::ONE,
+			Self::SrcColor => ash::vk::BlendFactor::SRC_COLOR,
+			Self::OneMinusSrcColor => ash::vk::BlendFactor::ONE_MINUS_SRC_COLOR,
+			Self::DstColor => ash::vk::BlendFactor::DST_COLOR,
+			Self::OneMinusDstColor => ash::vk::BlendFactor::ONE_MINUS_DST_COLOR,
+			Self::SrcAlpha => ash::vk::BlendFactor::SRC_ALPHA,
+			Self::OneMinusSrcAlpha => ash::vk::BlendFactor::ONE_MINUS_SRC_ALPHA,
+			Self::DstAlpha => ash::vk::BlendFactor::DST_ALPHA,
+			Self::OneMinusDstAlpha => ash::vk::BlendFactor::ONE_MINUS_DST_ALPHA,
+			Self::ConstantColor => ash::vk::BlendFactor::CONSTANT_COLOR,
+			Self::OneMinusConstantColor => ash::vk::BlendFactor::ONE_MINUS_CONSTANT_COLOR,
+			Self::ConstantAlpha => ash::vk::BlendFactor::CONSTANT_ALPHA,
+			Self::OneMinusConstantAlpha => ash::vk::BlendFactor::ONE_MINUS_CONSTANT_ALPHA,
+			Self::SrcAlphaSaturate => ash::vk::BlendFactor::SRC_ALPHA_SATURATE,
+			Self::Src1Color => ash::vk::BlendFactor::SRC1_COLOR,
+			Self::OneMinusSrc1Color => ash::vk::BlendFactor::ONE_MINUS_SRC1_COLOR,
+			Self::Src1Alpha => ash::vk::BlendFactor::SRC1_ALPHA,
+			Self::OneMinusSrc1Alpha => ash::vk::BlendFactor::ONE_MINUS_SRC1_ALPHA
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum BlendOp
+{
+	Add,
+	Subtract,
+	ReverseSubtract,
+	Min,
+	Max
+}
+
+impl BlendOp
+{
+	fn to_ash_type(&self) -> ash::vk::BlendOp
+	{
+		match *self
+		{
+			Self::Add => ash::vk::BlendOp::ADD,
+			Self::Subtract => ash::vk::BlendOp::SUBTRACT,
+			Self::ReverseSubtract => ash::vk::BlendOp::REVERSE_SUBTRACT,
+			Self::Min => ash::vk::BlendOp::MIN,
+			Self::Max => ash::vk::BlendOp::MAX
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct ColorComponents
+{
+	pub r: bool,
+	pub g: bool,
+	pub b: bool,
+	pub a: bool
+}
+
+impl Default for ColorComponents
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			r: true, g: true, b: true, a: true
+		}
+	}
+}
+
+impl ColorComponents
+{
+	pub fn empty() -> Self
+	{
+		Self
+		{
+			r: false, g: false, b: false, a: false
+		}
+	}
+
+	fn to_ash_type(&self) -> ash::vk::ColorComponentFlags
+	{
+		let mut flags: u32 = 0;
+
+		if self.r { flags |= ash::vk::ColorComponentFlags::R.as_raw(); }
+		if self.g { flags |= ash::vk::ColorComponentFlags::G.as_raw(); }
+		if self.b { flags |= ash::vk::ColorComponentFlags::B.as_raw(); }
+		if self.a { flags |= ash::vk::ColorComponentFlags::A.as_raw(); }
+
+		ash::vk::ColorComponentFlags::from_raw(flags)
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct PipelineColorBlendAttachmentState
+{
+	pub blend_enable: bool,
+	pub src_color_blend_factor: BlendFactor,
+	pub dst_color_blend_factor: BlendFactor,
+	pub color_blend_op: BlendOp,
+	pub src_alpha_blend_factor: BlendFactor,
+	pub dst_alpha_blend_factor: BlendFactor,
+	pub alpha_blend_op: BlendOp,
+	pub color_write_mask: ColorComponents
+}
+
+impl PipelineColorBlendAttachmentState
+{
+	fn to_ash_type(&self) -> ash::vk::PipelineColorBlendAttachmentState
+	{
+		ash::vk::PipelineColorBlendAttachmentState
+		{
+			blend_enable: self.blend_enable as u32,
+			src_color_blend_factor: self.src_color_blend_factor.to_ash_type(),
+			dst_color_blend_factor: self.dst_color_blend_factor.to_ash_type(),
+			color_blend_op: self.color_blend_op.to_ash_type(),
+			src_alpha_blend_factor: self.src_alpha_blend_factor.to_ash_type(),
+			dst_alpha_blend_factor: self.dst_alpha_blend_factor.to_ash_type(),
+			alpha_blend_op: self.alpha_blend_op.to_ash_type(),
+			color_write_mask: self.color_write_mask.to_ash_type()
+		}
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct PipelineColorBlendStateCreateInfo
+{
+	pub logic_op_enable: bool,
+	pub logic_op: LogicOp,
+	pub attachment_count: u32,
+	pub attachments: Vec<PipelineColorBlendAttachmentState>,
+	pub blend_constants: [f32; 4]
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum DynamicState
+{
+	Viewport,
+	Scissor,
+	LineWidth,
+	DepthBias,
+	BlendConstants,
+	DepthBounds,
+	StencilCompareMask,
+	StencilWriteMask,
+	StencilReference
+}
+
+impl DynamicState
+{
+	fn to_ash_type(&self) -> ash::vk::DynamicState
+	{
+		match *self
+		{
+			Self::Viewport => ash::vk::DynamicState::VIEWPORT,
+			Self::Scissor => ash::vk::DynamicState::SCISSOR,
+			Self::LineWidth => ash::vk::DynamicState::LINE_WIDTH,
+			Self::DepthBias => ash::vk::DynamicState::DEPTH_BIAS,
+			Self::BlendConstants => ash::vk::DynamicState::BLEND_CONSTANTS,
+			Self::DepthBounds => ash::vk::DynamicState::DEPTH_BOUNDS,
+			Self::StencilCompareMask => ash::vk::DynamicState::STENCIL_COMPARE_MASK,
+			Self::StencilWriteMask => ash::vk::DynamicState::STENCIL_WRITE_MASK,
+			Self::StencilReference => ash::vk::DynamicState::STENCIL_REFERENCE
+		}
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct PipelineDynamicStateCreateInfo
+{
+	pub dynamic_states: Vec<DynamicState>
+}
+
+impl PipelineDynamicStateCreateInfo
+{
+	fn fill_ash_types(&self, dynamic_states: &mut Vec<ash::vk::DynamicState>)
+	{
+		for state in &self.dynamic_states
+		{
+			dynamic_states.push(state.to_ash_type());
+		}
+	}
+}
+
+pub struct GraphicsPipelineCreateInfo<'a>
+{
+	pub stages: &'a [PipelineShaderStageCreateInfo<'a>],
+	pub vertex_input_state: &'a PipelineVertexInputStateCreateInfo,
+	pub input_assembly_state: &'a PipelineInputAssemblyStateCreateInfo,
+	pub tessellation_state: &'a PipelineTessellationStateCreateInfo,
+	pub viewport_state: &'a PipelineViewportStateCreateInfo,
+	pub rasterization_state: &'a PipelineRasterizationStateCreateInfo,
+	pub multisample_state: &'a PipelineMultisampleStateCreateInfo,
+	pub depth_stencil_state: &'a PipelineDepthStencilStateCreateInfo,
+	pub color_blend_state: &'a PipelineColorBlendStateCreateInfo,
+	pub dynamic_state: &'a PipelineDynamicStateCreateInfo,
+	pub layout: &'a PipelineLayout,
+	pub renderpass: &'a RenderPass,
+	pub subpass: u32,
+	pub base_pipeline: Option<&'a Pipeline>,
+	pub base_pipeline_index: Option<i32>
+}
+
+pub struct PipelineLayout
+{
+	handle: ash::vk::PipelineLayout
+}
+
+impl PipelineLayout
+{
+	
+}
+
+pub struct Pipeline
+{
+	handle: ash::vk::Pipeline
+}
+
+impl Pipeline
+{
+	pub fn from_handle(handle: ash::vk::Pipeline) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle }))
+	}
+
+	pub fn new(device: &Arc<Device>, create_info: &GraphicsPipelineCreateInfo) -> Result<Arc<Self>, ()>
+	{
+		/* VkPipelineShaderStageCreateInfo */
+		let mut stages: Vec<ash::vk::PipelineShaderStageCreateInfo> = Vec::with_capacity(create_info.stages.len());
+		let mut stage_names: Vec<std::ffi::CString> = Vec::with_capacity(create_info.stages.len());
+		for barium_stage in create_info.stages
+		{
+			stage_names.push(std::ffi::CString::new(barium_stage.name).unwrap());
+
+			stages.push(ash::vk::PipelineShaderStageCreateInfo::builder()
+				.stage(barium_stage.stage)
+				.module(barium_stage.module.handle)
+				.name(stage_names.last().unwrap().as_c_str())
+				.build());
+		}
+
+		/* VkPipelineVertexInputStateCreateInfo */
+		let vertex_binding_descriptions: Vec<ash::vk::VertexInputBindingDescription> = create_info.vertex_input_state.vertex_binding_descriptions.iter().map(|state| state.to_ash_type()).collect();
+		let vertex_attribute_descriptions: Vec<ash::vk::VertexInputAttributeDescription> = create_info.vertex_input_state.vertex_attribute_descriptions.iter().map(|state| state.to_ash_type()).collect();
+		let vertex_input_state = ash::vk::PipelineVertexInputStateCreateInfo::builder()
+			.vertex_binding_descriptions(&vertex_binding_descriptions)
+			.vertex_attribute_descriptions(&vertex_attribute_descriptions)
+			.build();
+
+		/* VkPipelineInputAssemblyStateCreateInfo */
+		let input_assembly_state = create_info.input_assembly_state.to_ash_type();
+
+		/* VkPipelineTessellationStateCreateInfo */
+		let tessellation_state = create_info.tessellation_state.to_ash_type();
+
+		/* VkPipelineViewportStateCreateInfo */
+		let viewports: Vec<ash::vk::Viewport> = create_info.viewport_state.viewports.iter().map(|state| state.to_ash_type()).collect();
+		let scissors: Vec<ash::vk::Rect2D> = create_info.viewport_state.scissors.iter().map(|state| state.to_ash_type()).collect();
+		let viewport_state = ash::vk::PipelineViewportStateCreateInfo::builder()
+			.viewports(&viewports)
+			.scissors(&scissors)
+			.build();
+
+		/* VkPipelineRasterizationStateCreateInfo */
+		let rasterization_state = create_info.rasterization_state.to_ash_type();
+
+		/* VkPipelineMultisampleStateCreateInfo */
+		let multisample_state = create_info.multisample_state.to_ash_type();
+
+		/* VkPipelineDepthStencilStateCreateInfo */
+		let depth_stencil_state = create_info.depth_stencil_state.to_ash_type();
+
+		/* VkPipelineColorBlendStateCreateInfo */
+		let color_blend_state_attachments: Vec<ash::vk::PipelineColorBlendAttachmentState> = create_info.color_blend_state.attachments.iter().map(|state| state.to_ash_type()).collect();
+		let color_blend_state = ash::vk::PipelineColorBlendStateCreateInfo::builder()
+			.logic_op_enable(create_info.color_blend_state.logic_op_enable)
+			.logic_op(create_info.color_blend_state.logic_op.to_ash_type())
+			.attachments(&color_blend_state_attachments)
+			.blend_constants(create_info.color_blend_state.blend_constants)
+			.build();
+
+		/* VkPipelineDynamicStateCreateInfo */
+		let dynamic_state_states: Vec<ash::vk::DynamicState> = create_info.dynamic_state.dynamic_states.iter().map(|state| state.to_ash_type()).collect();
+		let dynamic_state = ash::vk::PipelineDynamicStateCreateInfo::builder()
+			.dynamic_states(&dynamic_state_states)
+			.build();
+
+		let graphics_pipeline_create_info = ash::vk::GraphicsPipelineCreateInfo::builder()
+			.stages(&stages)	
+			.stages(&stages).vertex_input_state(&vertex_input_state)
+			.input_assembly_state(&input_assembly_state)
+			.tessellation_state(&tessellation_state)
+			.viewport_state(&viewport_state)
+			.rasterization_state(&rasterization_state)
+			.multisample_state(&multisample_state)
+			.depth_stencil_state(&depth_stencil_state)
+			.depth_stencil_state(&depth_stencil_state)
+			.color_blend_state(&color_blend_state)
+			.dynamic_state(&dynamic_state)
+			.layout(create_info.layout.handle)
+			.render_pass(create_info.renderpass.handle)
+			.subpass(create_info.subpass)
+			.base_pipeline_handle(match create_info.base_pipeline
+			{
+				Some(base_pipeline) => { base_pipeline.handle },
+				None => { ash::vk::Pipeline::null() }
+			})
+			.base_pipeline_index(create_info.base_pipeline_index.unwrap_or(-1));
+
+		let handle = unsafe { device.handle.create_graphics_pipelines(ash::vk::PipelineCache::null(), &[graphics_pipeline_create_info.build()], None) }.unwrap();
+
+		Self::from_handle(handle[0])
+	}
+}

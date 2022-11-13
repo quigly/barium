@@ -1889,3 +1889,37 @@ impl Pipeline
 		Self::from_handle(handle[0])
 	}
 }
+
+#[derive(Clone, Copy, Debug)]
+pub struct CommandPoolCreateInfo
+{
+	pub queue_family_index: u32
+}
+
+impl CommandPoolCreateInfo
+{
+	fn to_ash_type(&self) -> ash::vk::CommandPoolCreateInfo
+	{
+		ash::vk::CommandPoolCreateInfo::builder()
+			.queue_family_index(self.queue_family_index)
+			.flags(ash::vk::CommandPoolCreateFlags::RESET_COMMAND_BUFFER)
+			.build()
+	}
+}
+
+#[derive(Clone, Debug)]
+pub struct CommandPool
+{
+	handle: ash::vk::CommandPool,
+	queue_family_index: u32
+}
+
+impl CommandPool
+{
+	pub fn new(device: &Arc<Device>, create_info: &CommandPoolCreateInfo) -> Result<Arc<Self>, ()>
+	{
+		let command_buffer_create_info = create_info.to_ash_type();
+		let handle = unsafe { device.handle.create_command_pool(&command_buffer_create_info, None) }.unwrap();
+		Ok(Arc::new(Self { handle, queue_family_index: create_info.queue_family_index }))
+	}
+}

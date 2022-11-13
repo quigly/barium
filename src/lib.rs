@@ -1893,7 +1893,8 @@ impl Pipeline
 #[derive(Clone, Copy, Debug)]
 pub struct CommandPoolCreateInfo
 {
-	pub queue_family_index: u32
+	pub queue_family_index: u32,
+	pub transient: bool
 }
 
 impl CommandPoolCreateInfo
@@ -1902,7 +1903,14 @@ impl CommandPoolCreateInfo
 	{
 		ash::vk::CommandPoolCreateInfo::builder()
 			.queue_family_index(self.queue_family_index)
-			.flags(ash::vk::CommandPoolCreateFlags::RESET_COMMAND_BUFFER)
+			.flags(if self.transient
+			{
+				ash::vk::CommandPoolCreateFlags::TRANSIENT
+			}
+			else
+			{
+				ash::vk::CommandPoolCreateFlags::RESET_COMMAND_BUFFER
+			})
 			.build()
 	}
 }
@@ -1921,5 +1929,46 @@ impl CommandPool
 		let command_buffer_create_info = create_info.to_ash_type();
 		let handle = unsafe { device.handle.create_command_pool(&command_buffer_create_info, None) }.unwrap();
 		Ok(Arc::new(Self { handle, queue_family_index: create_info.queue_family_index }))
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct CommandBufferAllocateInfo<'a>
+{
+	pub command_pool: &'a Arc<CommandPool>,
+	pub primary: bool,
+	pub count: u32
+}
+
+impl CommandBufferAllocateInfo<'_>
+{
+	fn to_ash_type(&self) -> ash::vk::CommandBufferAllocateInfo
+	{
+		ash::vk::CommandBufferAllocateInfo::builder()
+			.command_pool(self.command_pool.handle)
+			.level(if self.primary { ash::vk::CommandBufferLevel::PRIMARY } else { ash::vk::CommandBufferLevel::SECONDARY })
+			.command_buffer_count(self.count)
+			.build()
+	}
+}
+
+pub struct CommandBuffer
+{
+	handle: ash::vk::CommandBuffer
+}
+
+impl CommandBuffer
+{
+	pub fn from_handle(handle: ash::vk::CommandBuffer) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle }))
+	}
+
+	pub fn allocate_buffers(device: &Arc<Device>, allocate_info: &CommandBufferAllocateInfo) -> Result<Vec<Arc<CommandBuffer>>, ()>
+	{
+		let command_buffer_allocate_info = allocate_info.to_ash_type();
+		let handles = unsafe { device.handle.allocate_command_buffers(&command_buffer_allocate_info) }.unwrap();
+		let command_buffers: Vec<Arc<CommandBuffer>> = handles.iter().map(|handle| Arc::new(Self { handle: *handle })).collect();
+		Ok(command_buffers)
 	}
 }

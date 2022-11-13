@@ -346,6 +346,11 @@ impl Device
 
 		Ok(SwapchainDetails { capabilities, formats, modes })
 	}
+
+	pub fn handle(&self) -> ash::Device
+	{
+		self.handle.clone()
+	}
 }
 
 #[derive(Clone)]
@@ -659,6 +664,12 @@ pub struct AttachmentReference
 
 impl AttachmentReference
 {
+	const DEFAULT_ATTACHMENT: Self = AttachmentReference
+	{
+		attachment: 0,
+		layout: ash::vk::ImageLayout::COLOR_ATTACHMENT_OPTIMAL
+	};
+
 	fn to_ash_type(&self) -> ash::vk::AttachmentReference
 	{
 		ash::vk::AttachmentReference
@@ -670,42 +681,56 @@ impl AttachmentReference
 }
 
 #[derive(Clone, Debug)]
-pub struct SubpassDescription
+pub struct SubpassDescription<'a>
 {
 	pub pipeline_bind_point: PipelineBindPoint,
-	pub input_attachments: Vec<AttachmentReference>,
-	pub color_attachments: Vec<AttachmentReference>,
-	pub resolve_attachments: Vec<AttachmentReference>,
+	pub input_attachments: Option<&'a [AttachmentReference]>,
+	pub color_attachments: &'a [AttachmentReference],
+	pub resolve_attachments: Option<&'a [AttachmentReference]>,
 	pub depth_stencil_attachment: Option<AttachmentReference>,
-	pub preserve_attachments: Vec<u32>
+	pub preserve_attachments: Option<&'a [u32]>
 }
 
-impl Default for SubpassDescription
+impl Default for SubpassDescription<'_>
 {
 	fn default() -> Self
 	{
 		Self
 		{
 			pipeline_bind_point: PipelineBindPoint::Graphics,
-			input_attachments: Vec::new(),
-			color_attachments: Vec::new(),
-			resolve_attachments: Vec::new(),
+			input_attachments: None,
+			color_attachments: &[AttachmentReference::DEFAULT_ATTACHMENT],
+			resolve_attachments: None,
 			depth_stencil_attachment: None,
-			preserve_attachments: Vec::new()
+			preserve_attachments: None
 		}	
 	}
 }
 
-impl SubpassDescription
+impl SubpassDescription<'_>
 {
 	fn to_vk_subpass_description(&self) -> VkSubpassDescription
 	{
 		VkSubpassDescription
 		{
 			pipeline_bind_point: self.pipeline_bind_point.to_ash_type(),
-			input_attachments: self.input_attachments.iter().map(|attachment| attachment.to_ash_type()).collect(),
+			input_attachments: match self.input_attachments
+			{
+				Some(input_attachments) =>
+				{
+					Some(input_attachments.iter().map(|attachment| attachment.to_ash_type()).collect())
+				},
+				None => { None }
+			},
 			color_attachments: self.color_attachments.iter().map(|attachment| attachment.to_ash_type()).collect(),
-			resolve_attachments: self.resolve_attachments.iter().map(|attachment| attachment.to_ash_type()).collect(),
+			resolve_attachments: match self.resolve_attachments
+			{
+				Some(resolve_attachments) =>
+				{
+					Some(resolve_attachments.iter().map(|attachment| attachment.to_ash_type()).collect())
+				},
+				None => { None }
+			},
 			depth_stencil_attachment: match self.depth_stencil_attachment
 			{
 				Some(depth_stencil_attachment) =>
@@ -714,7 +739,14 @@ impl SubpassDescription
 				},
 				None => None
 			},
-			preserve_attachments: self.preserve_attachments.clone(),
+			preserve_attachments: match self.preserve_attachments
+			{
+				Some(preserve_attachments) =>
+				{
+					Some(preserve_attachments.to_vec())
+				},
+				None => { None }
+			},
 		}
 	}
 }
@@ -722,11 +754,11 @@ impl SubpassDescription
 struct VkSubpassDescription
 {
 	pub pipeline_bind_point: ash::vk::PipelineBindPoint,
-	pub input_attachments: Vec<ash::vk::AttachmentReference>,
+	pub input_attachments: Option<Vec<ash::vk::AttachmentReference>>,
 	pub color_attachments: Vec<ash::vk::AttachmentReference>,
-	pub resolve_attachments: Vec<ash::vk::AttachmentReference>,
+	pub resolve_attachments: Option<Vec<ash::vk::AttachmentReference>>,
 	pub depth_stencil_attachment: Option<ash::vk::AttachmentReference>,
-	pub preserve_attachments: Vec<u32>
+	pub preserve_attachments: Option<Vec<u32>>
 }
 
 impl VkSubpassDescription
@@ -735,22 +767,29 @@ impl VkSubpassDescription
 	{
 		let mut result = ash::vk::SubpassDescription::builder()
 			.pipeline_bind_point(self.pipeline_bind_point)
-			.input_attachments(&self.input_attachments)
-			.color_attachments(&self.color_attachments)
-			.resolve_attachments(&self.resolve_attachments)
-			.preserve_attachments(&self.preserve_attachments)
-			.build();
+			.color_attachments(&self.color_attachments);
 		
-		match self.depth_stencil_attachment
+		if let Some(input_attachments) = &self.input_attachments
 		{
-			Some(depth_stencil_attachment) =>
-			{
-				result.p_depth_stencil_attachment = &depth_stencil_attachment;
-			}
-			None => {}
-		};
+			result = result.input_attachments(&input_attachments);
+		}
 
-		result
+		if let Some(resolve_attachments) = &self.resolve_attachments
+		{
+			result = result.resolve_attachments(&resolve_attachments);
+		}
+
+		if let Some(depth_stencil_attachment) = &self.depth_stencil_attachment
+		{
+			result = result.depth_stencil_attachment(&depth_stencil_attachment);
+		}
+
+		if let Some(preserve_attachments) = &self.preserve_attachments
+		{
+			result = result.preserve_attachments(&preserve_attachments);
+		}
+
+		result.build()
 	}
 }
 
@@ -797,11 +836,11 @@ impl SubpassDependency
 }
 
 #[derive(Clone, Debug)]
-pub struct RenderPassCreateInfo
+pub struct RenderPassCreateInfo<'a>
 {
-	pub attachments: Vec<AttachmentDescription>,
-	pub subpasses: Vec<SubpassDescription>,
-	pub dependencies: Vec<SubpassDependency>
+	pub attachments: &'a [AttachmentDescription],
+	pub subpasses: &'a [SubpassDescription<'a>],
+	pub dependencies: &'a [SubpassDependency]
 }
 
 #[derive(Clone, Debug)]
@@ -1201,6 +1240,26 @@ pub struct PipelineRasterizationStateCreateInfo
 	pub line_width: f32
 }
 
+impl Default for PipelineRasterizationStateCreateInfo
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			depth_clamp_enable: false,
+			rasterizer_discard_enable: false,
+			polygon_mode: PolygonMode::Fill,
+			cull_mode: CullMode::None,
+			front_face: FrontFace::CounterClockwise,
+			depth_bias_enable: false,
+			depth_bias_constant_factor: 0.0,
+			depth_bias_clamp: 0.0,
+			depth_bias_slope_factor: 0.0,
+			line_width: 1.0,
+		}
+	}
+}
+
 impl PipelineRasterizationStateCreateInfo
 {
 	fn to_ash_type(&self) -> ash::vk::PipelineRasterizationStateCreateInfo
@@ -1229,6 +1288,22 @@ pub struct PipelineMultisampleStateCreateInfo
 	pub sample_mask: Vec<u32>,
 	pub alpha_to_coverage_enable: bool,
 	pub alpha_to_one_enable: bool
+}
+
+impl Default for PipelineMultisampleStateCreateInfo
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			rasterization_samples: 1,
+			sample_shading_enable: false,
+			min_sample_shading: 1.0,
+			sample_mask: Vec::new(),
+			alpha_to_coverage_enable: false,
+			alpha_to_one_enable: false
+		}
+	}
 }
 
 impl PipelineMultisampleStateCreateInfo
@@ -1339,6 +1414,23 @@ pub struct StencilOpState
 	pub reference: u32
 }
 
+impl Default for StencilOpState
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			fail_op: StencilOp::Zero,
+			pass_op: StencilOp::Zero,
+			depth_fail_op: StencilOp::Zero,
+			compare_op: CompareOp::Never,
+			compare_mask: 0,
+			write_mask: 0,
+			reference: 0
+		}
+	}
+}
+
 impl StencilOpState
 {
 	fn to_ash_type(&self) -> ash::vk::StencilOpState
@@ -1368,6 +1460,25 @@ pub struct PipelineDepthStencilStateCreateInfo
 	pub back: StencilOpState,
 	pub min_depth_bounds: f32,
 	pub max_depth_bounds: f32
+}
+
+impl Default for PipelineDepthStencilStateCreateInfo
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			depth_test_enable: false,
+			depth_write_enable: false,
+			depth_compare_op: CompareOp::Less,
+			depth_bounds_test_enable: false,
+			stencil_test_enable: false,
+			front: StencilOpState::default(),
+			back: StencilOpState::default(),
+			min_depth_bounds: 0.0,
+			max_depth_bounds: 1.0
+		}
+	}
 }
 
 impl PipelineDepthStencilStateCreateInfo
@@ -1588,12 +1699,11 @@ impl PipelineColorBlendAttachmentState
 }
 
 #[derive(Clone, Debug)]
-pub struct PipelineColorBlendStateCreateInfo
+pub struct PipelineColorBlendStateCreateInfo<'a>
 {
 	pub logic_op_enable: bool,
 	pub logic_op: LogicOp,
-	pub attachment_count: u32,
-	pub attachments: Vec<PipelineColorBlendAttachmentState>,
+	pub attachments: &'a [PipelineColorBlendAttachmentState],
 	pub blend_constants: [f32; 4]
 }
 
@@ -1631,16 +1741,16 @@ impl DynamicState
 }
 
 #[derive(Clone, Debug)]
-pub struct PipelineDynamicStateCreateInfo
+pub struct PipelineDynamicStateCreateInfo<'a>
 {
-	pub dynamic_states: Vec<DynamicState>
+	pub dynamic_states: &'a [DynamicState]
 }
 
-impl PipelineDynamicStateCreateInfo
+impl PipelineDynamicStateCreateInfo<'_>
 {
 	fn fill_ash_types(&self, dynamic_states: &mut Vec<ash::vk::DynamicState>)
 	{
-		for state in &self.dynamic_states
+		for state in self.dynamic_states
 		{
 			dynamic_states.push(state.to_ash_type());
 		}
@@ -1657,8 +1767,8 @@ pub struct GraphicsPipelineCreateInfo<'a>
 	pub rasterization_state: &'a PipelineRasterizationStateCreateInfo,
 	pub multisample_state: &'a PipelineMultisampleStateCreateInfo,
 	pub depth_stencil_state: &'a PipelineDepthStencilStateCreateInfo,
-	pub color_blend_state: &'a PipelineColorBlendStateCreateInfo,
-	pub dynamic_state: &'a PipelineDynamicStateCreateInfo,
+	pub color_blend_state: &'a PipelineColorBlendStateCreateInfo<'a>,
+	pub dynamic_state: &'a PipelineDynamicStateCreateInfo<'a>,
 	pub layout: &'a PipelineLayout,
 	pub renderpass: &'a RenderPass,
 	pub subpass: u32,
@@ -1673,7 +1783,10 @@ pub struct PipelineLayout
 
 impl PipelineLayout
 {
-	
+	pub fn from_handle(handle: ash::vk::PipelineLayout) -> Result<Arc<Self>, ()>
+	{
+		Ok(Arc::new(Self { handle }))
+	}
 }
 
 pub struct Pipeline
@@ -1758,7 +1871,6 @@ impl Pipeline
 			.viewport_state(&viewport_state)
 			.rasterization_state(&rasterization_state)
 			.multisample_state(&multisample_state)
-			.depth_stencil_state(&depth_stencil_state)
 			.depth_stencil_state(&depth_stencil_state)
 			.color_blend_state(&color_blend_state)
 			.dynamic_state(&dynamic_state)

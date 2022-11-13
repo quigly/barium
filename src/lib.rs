@@ -944,6 +944,18 @@ pub struct PipelineInputAssemblyStateCreateInfo
 	pub primitive_restart_enable: bool
 }
 
+impl Default for PipelineInputAssemblyStateCreateInfo
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			topology: PrimitiveTopology::TriangleList,
+			primitive_restart_enable: false
+		}	
+	}
+}
+
 impl PipelineInputAssemblyStateCreateInfo
 {
 	fn to_ash_type(&self) -> ash::vk::PipelineInputAssemblyStateCreateInfo
@@ -1007,10 +1019,10 @@ impl Scissor
 }
 
 #[derive(Clone, Debug)]
-pub struct PipelineViewportStateCreateInfo
+pub struct PipelineViewportStateCreateInfo<'a>
 {
-	pub viewports: Vec<Viewport>,
-	pub scissors: Vec<Scissor>
+	pub viewports: &'a [Viewport],
+	pub scissors: &'a [Scissor]
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -1081,6 +1093,18 @@ pub struct PipelineVertexInputStateCreateInfo
 {
 	pub vertex_binding_descriptions: Vec<VertexInputBindingDescription>,
 	pub vertex_attribute_descriptions: Vec<VertexInputAttributeDescription>
+}
+
+impl Default for PipelineVertexInputStateCreateInfo
+{
+	fn default() -> Self
+	{
+		Self
+		{
+			vertex_binding_descriptions: Vec::new(),
+			vertex_attribute_descriptions: Vec::new()
+		}	
+	}
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -1629,7 +1653,7 @@ pub struct GraphicsPipelineCreateInfo<'a>
 	pub vertex_input_state: &'a PipelineVertexInputStateCreateInfo,
 	pub input_assembly_state: &'a PipelineInputAssemblyStateCreateInfo,
 	pub tessellation_state: &'a PipelineTessellationStateCreateInfo,
-	pub viewport_state: &'a PipelineViewportStateCreateInfo,
+	pub viewport_state: &'a PipelineViewportStateCreateInfo<'a>,
 	pub rasterization_state: &'a PipelineRasterizationStateCreateInfo,
 	pub multisample_state: &'a PipelineMultisampleStateCreateInfo,
 	pub depth_stencil_state: &'a PipelineDepthStencilStateCreateInfo,

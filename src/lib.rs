@@ -351,6 +351,25 @@ impl Device
 	{
 		self.handle.clone()
 	}
+
+	pub fn begin_command_buffer(&self, command_buffer: &Arc<CommandBuffer>, begin_info: &CommandBufferBeginInfo)
+	{
+		unsafe { self.handle.begin_command_buffer(command_buffer.handle, &begin_info.to_ash_type()) }.unwrap()
+	}
+
+	pub fn begin_render_pass(&self, command_buffer: &Arc<CommandBuffer>, begin_info: &RenderPassBeginInfo, contents: SubpassContents)
+	{
+		let clear_values: Vec<ash::vk::ClearValue> = begin_info.clear_values.iter().map(|clear_value| clear_value.to_ash_type()).collect();
+
+		let render_pass_begin_info = ash::vk::RenderPassBeginInfo::builder()
+			.render_pass(begin_info.renderpass.handle)
+			.framebuffer(begin_info.framebuffer.handle)
+			.render_area(begin_info.render_area.to_ash_type())
+			.clear_values(&clear_values)
+			.build();
+		
+		unsafe { self.handle.cmd_begin_render_pass(command_buffer.handle, &render_pass_begin_info, contents.to_ash_type()) };
+	}
 }
 
 #[derive(Clone)]
@@ -1952,6 +1971,7 @@ impl CommandBufferAllocateInfo<'_>
 	}
 }
 
+#[derive(Clone, Debug)]
 pub struct CommandBuffer
 {
 	handle: ash::vk::CommandBuffer
@@ -1970,5 +1990,146 @@ impl CommandBuffer
 		let handles = unsafe { device.handle.allocate_command_buffers(&command_buffer_allocate_info) }.unwrap();
 		let command_buffers: Vec<Arc<CommandBuffer>> = handles.iter().map(|handle| Arc::new(Self { handle: *handle })).collect();
 		Ok(command_buffers)
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum CommandBufferUsage
+{
+	MultipleSubmit,
+	OneTimeSubmit,
+	RenderPassContinue,
+	SimultaneousUse
+}
+
+impl CommandBufferUsage
+{
+	fn to_ash_type(&self) -> ash::vk::CommandBufferUsageFlags
+	{
+		match *self
+		{
+			Self::MultipleSubmit => ash::vk::CommandBufferUsageFlags::empty(),
+			Self::OneTimeSubmit => ash::vk::CommandBufferUsageFlags::ONE_TIME_SUBMIT,
+			Self::RenderPassContinue => ash::vk::CommandBufferUsageFlags::RENDER_PASS_CONTINUE,
+			Self::SimultaneousUse => ash::vk::CommandBufferUsageFlags::SIMULTANEOUS_USE
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct CommandBufferBeginInfo 
+{
+	pub usage: CommandBufferUsage
+}
+
+impl CommandBufferBeginInfo
+{
+	fn to_ash_type(&self) -> ash::vk::CommandBufferBeginInfo
+	{
+		ash::vk::CommandBufferBeginInfo::builder()
+			.flags(self.usage.to_ash_type())
+			.build()
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum ClearColorValue
+{
+	Float(f32, f32, f32, f32),
+	Int32(i32, i32, i32, i32),
+	Uint32(u32, u32, u32, u32)
+}
+
+impl ClearColorValue
+{
+	fn to_ash_type(&self) -> ash::vk::ClearColorValue
+	{
+		match *self
+		{
+			Self::Float(x, y, z, w) =>
+			{
+				ash::vk::ClearColorValue { float32: [ x, y, z, w ] }
+			},
+			Self::Int32(x, y, z, w) =>
+			{
+				ash::vk::ClearColorValue { int32: [ x, y, z, w ] }
+			},
+			Self::Uint32(x, y, z, w) =>
+			{
+				ash::vk::ClearColorValue { uint32: [ x, y, z, w ] }
+			}
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct ClearDepthStencilValue
+{
+	pub depth: f32,
+	pub stencil: u32
+}
+
+impl ClearDepthStencilValue
+{
+	fn to_ash_type(&self) -> ash::vk::ClearDepthStencilValue
+	{
+		ash::vk::ClearDepthStencilValue
+		{
+			depth: self.depth,
+			stencil: self.stencil
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum ClearValue
+{
+	Color(ClearColorValue),
+	DepthStencil(ClearDepthStencilValue)
+}
+
+impl ClearValue
+{
+	fn to_ash_type(&self) -> ash::vk::ClearValue
+	{
+		match *self
+		{
+			Self::Color(color) =>
+			{
+				ash::vk::ClearValue { color: color.to_ash_type() }
+			},
+			Self::DepthStencil(depth_stencil) =>
+			{
+				ash::vk::ClearValue { depth_stencil: depth_stencil.to_ash_type() }
+			}
+		}
+	}
+}
+
+#[derive(Clone, Copy, Debug)]
+pub struct RenderPassBeginInfo<'a>
+{
+	pub renderpass: &'a Arc<RenderPass>,
+	pub framebuffer: &'a Arc<Framebuffer>,
+	pub render_area: Scissor,
+	pub clear_values: &'a [ClearValue]
+}
+
+#[derive(Clone, Copy, Debug)]
+pub enum SubpassContents
+{
+	Inline,
+	SecondaryCommandBuffers
+}
+
+impl SubpassContents
+{
+	fn to_ash_type(&self) -> ash::vk::SubpassContents
+	{
+		match *self
+		{
+			Self::Inline => ash::vk::SubpassContents::INLINE,
+			Self::SecondaryCommandBuffers => ash::vk::SubpassContents::SECONDARY_COMMAND_BUFFERS
+		}
 	}
 }

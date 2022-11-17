@@ -15555,3 +15555,1622 @@ pub type PFN_vkCmdOpticalFlowExecuteNV = unsafe extern "system" fn(
 	pExecuteInfo: *mut VkOpticalFlowExecuteInfoNV
 ) -> VkResult;
 
+/* Full list of vulkan commands */
+
+pub struct VulkanCommands
+{
+	vkCreateInstance: PFN_vkCreateInstance,
+	vkDestroyInstance: PFN_vkDestroyInstance,
+	vkEnumeratePhysicalDevices: PFN_vkEnumeratePhysicalDevices,
+	vkGetDeviceProcAddr: PFN_vkGetDeviceProcAddr,
+	vkGetInstanceProcAddr: PFN_vkGetInstanceProcAddr,
+	vkGetPhysicalDeviceProperties: PFN_vkGetPhysicalDeviceProperties,
+	vkGetPhysicalDeviceQueueFamilyProperties: PFN_vkGetPhysicalDeviceQueueFamilyProperties,
+	vkGetPhysicalDeviceMemoryProperties: PFN_vkGetPhysicalDeviceMemoryProperties,
+	vkGetPhysicalDeviceFeatures: PFN_vkGetPhysicalDeviceFeatures,
+	vkGetPhysicalDeviceFormatProperties: PFN_vkGetPhysicalDeviceFormatProperties,
+	vkGetPhysicalDeviceImageFormatProperties: PFN_vkGetPhysicalDeviceImageFormatProperties,
+	vkCreateDevice: PFN_vkCreateDevice,
+	vkDestroyDevice: PFN_vkDestroyDevice,
+	vkEnumerateInstanceVersion: PFN_vkEnumerateInstanceVersion,
+	vkEnumerateInstanceLayerProperties: PFN_vkEnumerateInstanceLayerProperties,
+	vkEnumerateInstanceExtensionProperties: PFN_vkEnumerateInstanceExtensionProperties,
+	vkEnumerateDeviceLayerProperties: PFN_vkEnumerateDeviceLayerProperties,
+	vkEnumerateDeviceExtensionProperties: PFN_vkEnumerateDeviceExtensionProperties,
+	vkGetDeviceQueue: PFN_vkGetDeviceQueue,
+	vkQueueSubmit: PFN_vkQueueSubmit,
+	vkQueueWaitIdle: PFN_vkQueueWaitIdle,
+	vkDeviceWaitIdle: PFN_vkDeviceWaitIdle,
+	vkAllocateMemory: PFN_vkAllocateMemory,
+	vkFreeMemory: PFN_vkFreeMemory,
+	vkMapMemory: PFN_vkMapMemory,
+	vkUnmapMemory: PFN_vkUnmapMemory,
+	vkFlushMappedMemoryRanges: PFN_vkFlushMappedMemoryRanges,
+	vkInvalidateMappedMemoryRanges: PFN_vkInvalidateMappedMemoryRanges,
+	vkGetDeviceMemoryCommitment: PFN_vkGetDeviceMemoryCommitment,
+	vkGetBufferMemoryRequirements: PFN_vkGetBufferMemoryRequirements,
+	vkBindBufferMemory: PFN_vkBindBufferMemory,
+	vkGetImageMemoryRequirements: PFN_vkGetImageMemoryRequirements,
+	vkBindImageMemory: PFN_vkBindImageMemory,
+	vkGetImageSparseMemoryRequirements: PFN_vkGetImageSparseMemoryRequirements,
+	vkGetPhysicalDeviceSparseImageFormatProperties: PFN_vkGetPhysicalDeviceSparseImageFormatProperties,
+	vkQueueBindSparse: PFN_vkQueueBindSparse,
+	vkCreateFence: PFN_vkCreateFence,
+	vkDestroyFence: PFN_vkDestroyFence,
+	vkResetFences: PFN_vkResetFences,
+	vkGetFenceStatus: PFN_vkGetFenceStatus,
+	vkWaitForFences: PFN_vkWaitForFences,
+	vkCreateSemaphore: PFN_vkCreateSemaphore,
+	vkDestroySemaphore: PFN_vkDestroySemaphore,
+	vkCreateEvent: PFN_vkCreateEvent,
+	vkDestroyEvent: PFN_vkDestroyEvent,
+	vkGetEventStatus: PFN_vkGetEventStatus,
+	vkSetEvent: PFN_vkSetEvent,
+	vkResetEvent: PFN_vkResetEvent,
+	vkCreateQueryPool: PFN_vkCreateQueryPool,
+	vkDestroyQueryPool: PFN_vkDestroyQueryPool,
+	vkGetQueryPoolResults: PFN_vkGetQueryPoolResults,
+	vkResetQueryPool: PFN_vkResetQueryPool,
+	vkCreateBuffer: PFN_vkCreateBuffer,
+	vkDestroyBuffer: PFN_vkDestroyBuffer,
+	vkCreateBufferView: PFN_vkCreateBufferView,
+	vkDestroyBufferView: PFN_vkDestroyBufferView,
+	vkCreateImage: PFN_vkCreateImage,
+	vkDestroyImage: PFN_vkDestroyImage,
+	vkGetImageSubresourceLayout: PFN_vkGetImageSubresourceLayout,
+	vkCreateImageView: PFN_vkCreateImageView,
+	vkDestroyImageView: PFN_vkDestroyImageView,
+	vkCreateShaderModule: PFN_vkCreateShaderModule,
+	vkDestroyShaderModule: PFN_vkDestroyShaderModule,
+	vkCreatePipelineCache: PFN_vkCreatePipelineCache,
+	vkDestroyPipelineCache: PFN_vkDestroyPipelineCache,
+	vkGetPipelineCacheData: PFN_vkGetPipelineCacheData,
+	vkMergePipelineCaches: PFN_vkMergePipelineCaches,
+	vkCreateGraphicsPipelines: PFN_vkCreateGraphicsPipelines,
+	vkCreateComputePipelines: PFN_vkCreateComputePipelines,
+	vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI: PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
+	vkDestroyPipeline: PFN_vkDestroyPipeline,
+	vkCreatePipelineLayout: PFN_vkCreatePipelineLayout,
+	vkDestroyPipelineLayout: PFN_vkDestroyPipelineLayout,
+	vkCreateSampler: PFN_vkCreateSampler,
+	vkDestroySampler: PFN_vkDestroySampler,
+	vkCreateDescriptorSetLayout: PFN_vkCreateDescriptorSetLayout,
+	vkDestroyDescriptorSetLayout: PFN_vkDestroyDescriptorSetLayout,
+	vkCreateDescriptorPool: PFN_vkCreateDescriptorPool,
+	vkDestroyDescriptorPool: PFN_vkDestroyDescriptorPool,
+	vkResetDescriptorPool: PFN_vkResetDescriptorPool,
+	vkAllocateDescriptorSets: PFN_vkAllocateDescriptorSets,
+	vkFreeDescriptorSets: PFN_vkFreeDescriptorSets,
+	vkUpdateDescriptorSets: PFN_vkUpdateDescriptorSets,
+	vkCreateFramebuffer: PFN_vkCreateFramebuffer,
+	vkDestroyFramebuffer: PFN_vkDestroyFramebuffer,
+	vkCreateRenderPass: PFN_vkCreateRenderPass,
+	vkDestroyRenderPass: PFN_vkDestroyRenderPass,
+	vkGetRenderAreaGranularity: PFN_vkGetRenderAreaGranularity,
+	vkCreateCommandPool: PFN_vkCreateCommandPool,
+	vkDestroyCommandPool: PFN_vkDestroyCommandPool,
+	vkResetCommandPool: PFN_vkResetCommandPool,
+	vkAllocateCommandBuffers: PFN_vkAllocateCommandBuffers,
+	vkFreeCommandBuffers: PFN_vkFreeCommandBuffers,
+	vkBeginCommandBuffer: PFN_vkBeginCommandBuffer,
+	vkEndCommandBuffer: PFN_vkEndCommandBuffer,
+	vkResetCommandBuffer: PFN_vkResetCommandBuffer,
+	vkCmdBindPipeline: PFN_vkCmdBindPipeline,
+	vkCmdSetViewport: PFN_vkCmdSetViewport,
+	vkCmdSetScissor: PFN_vkCmdSetScissor,
+	vkCmdSetLineWidth: PFN_vkCmdSetLineWidth,
+	vkCmdSetDepthBias: PFN_vkCmdSetDepthBias,
+	vkCmdSetBlendConstants: PFN_vkCmdSetBlendConstants,
+	vkCmdSetDepthBounds: PFN_vkCmdSetDepthBounds,
+	vkCmdSetStencilCompareMask: PFN_vkCmdSetStencilCompareMask,
+	vkCmdSetStencilWriteMask: PFN_vkCmdSetStencilWriteMask,
+	vkCmdSetStencilReference: PFN_vkCmdSetStencilReference,
+	vkCmdBindDescriptorSets: PFN_vkCmdBindDescriptorSets,
+	vkCmdBindIndexBuffer: PFN_vkCmdBindIndexBuffer,
+	vkCmdBindVertexBuffers: PFN_vkCmdBindVertexBuffers,
+	vkCmdDraw: PFN_vkCmdDraw,
+	vkCmdDrawIndexed: PFN_vkCmdDrawIndexed,
+	vkCmdDrawMultiEXT: PFN_vkCmdDrawMultiEXT,
+	vkCmdDrawMultiIndexedEXT: PFN_vkCmdDrawMultiIndexedEXT,
+	vkCmdDrawIndirect: PFN_vkCmdDrawIndirect,
+	vkCmdDrawIndexedIndirect: PFN_vkCmdDrawIndexedIndirect,
+	vkCmdDispatch: PFN_vkCmdDispatch,
+	vkCmdDispatchIndirect: PFN_vkCmdDispatchIndirect,
+	vkCmdSubpassShadingHUAWEI: PFN_vkCmdSubpassShadingHUAWEI,
+	vkCmdCopyBuffer: PFN_vkCmdCopyBuffer,
+	vkCmdCopyImage: PFN_vkCmdCopyImage,
+	vkCmdBlitImage: PFN_vkCmdBlitImage,
+	vkCmdCopyBufferToImage: PFN_vkCmdCopyBufferToImage,
+	vkCmdCopyImageToBuffer: PFN_vkCmdCopyImageToBuffer,
+	vkCmdCopyMemoryIndirectNV: PFN_vkCmdCopyMemoryIndirectNV,
+	vkCmdCopyMemoryToImageIndirectNV: PFN_vkCmdCopyMemoryToImageIndirectNV,
+	vkCmdUpdateBuffer: PFN_vkCmdUpdateBuffer,
+	vkCmdFillBuffer: PFN_vkCmdFillBuffer,
+	vkCmdClearColorImage: PFN_vkCmdClearColorImage,
+	vkCmdClearDepthStencilImage: PFN_vkCmdClearDepthStencilImage,
+	vkCmdClearAttachments: PFN_vkCmdClearAttachments,
+	vkCmdResolveImage: PFN_vkCmdResolveImage,
+	vkCmdSetEvent: PFN_vkCmdSetEvent,
+	vkCmdResetEvent: PFN_vkCmdResetEvent,
+	vkCmdWaitEvents: PFN_vkCmdWaitEvents,
+	vkCmdPipelineBarrier: PFN_vkCmdPipelineBarrier,
+	vkCmdBeginQuery: PFN_vkCmdBeginQuery,
+	vkCmdEndQuery: PFN_vkCmdEndQuery,
+	vkCmdBeginConditionalRenderingEXT: PFN_vkCmdBeginConditionalRenderingEXT,
+	vkCmdEndConditionalRenderingEXT: PFN_vkCmdEndConditionalRenderingEXT,
+	vkCmdResetQueryPool: PFN_vkCmdResetQueryPool,
+	vkCmdWriteTimestamp: PFN_vkCmdWriteTimestamp,
+	vkCmdCopyQueryPoolResults: PFN_vkCmdCopyQueryPoolResults,
+	vkCmdPushConstants: PFN_vkCmdPushConstants,
+	vkCmdBeginRenderPass: PFN_vkCmdBeginRenderPass,
+	vkCmdNextSubpass: PFN_vkCmdNextSubpass,
+	vkCmdEndRenderPass: PFN_vkCmdEndRenderPass,
+	vkCmdExecuteCommands: PFN_vkCmdExecuteCommands,
+	vkCreateAndroidSurfaceKHR: PFN_vkCreateAndroidSurfaceKHR,
+	vkGetPhysicalDeviceDisplayPropertiesKHR: PFN_vkGetPhysicalDeviceDisplayPropertiesKHR,
+	vkGetPhysicalDeviceDisplayPlanePropertiesKHR: PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR,
+	vkGetDisplayPlaneSupportedDisplaysKHR: PFN_vkGetDisplayPlaneSupportedDisplaysKHR,
+	vkGetDisplayModePropertiesKHR: PFN_vkGetDisplayModePropertiesKHR,
+	vkCreateDisplayModeKHR: PFN_vkCreateDisplayModeKHR,
+	vkGetDisplayPlaneCapabilitiesKHR: PFN_vkGetDisplayPlaneCapabilitiesKHR,
+	vkCreateDisplayPlaneSurfaceKHR: PFN_vkCreateDisplayPlaneSurfaceKHR,
+	vkCreateSharedSwapchainsKHR: PFN_vkCreateSharedSwapchainsKHR,
+	vkDestroySurfaceKHR: PFN_vkDestroySurfaceKHR,
+	vkGetPhysicalDeviceSurfaceSupportKHR: PFN_vkGetPhysicalDeviceSurfaceSupportKHR,
+	vkGetPhysicalDeviceSurfaceCapabilitiesKHR: PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
+	vkGetPhysicalDeviceSurfaceFormatsKHR: PFN_vkGetPhysicalDeviceSurfaceFormatsKHR,
+	vkGetPhysicalDeviceSurfacePresentModesKHR: PFN_vkGetPhysicalDeviceSurfacePresentModesKHR,
+	vkCreateSwapchainKHR: PFN_vkCreateSwapchainKHR,
+	vkDestroySwapchainKHR: PFN_vkDestroySwapchainKHR,
+	vkGetSwapchainImagesKHR: PFN_vkGetSwapchainImagesKHR,
+	vkAcquireNextImageKHR: PFN_vkAcquireNextImageKHR,
+	vkQueuePresentKHR: PFN_vkQueuePresentKHR,
+	vkCreateViSurfaceNN: PFN_vkCreateViSurfaceNN,
+	vkCreateWaylandSurfaceKHR: PFN_vkCreateWaylandSurfaceKHR,
+	vkGetPhysicalDeviceWaylandPresentationSupportKHR: PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR,
+	vkCreateWin32SurfaceKHR: PFN_vkCreateWin32SurfaceKHR,
+	vkGetPhysicalDeviceWin32PresentationSupportKHR: PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR,
+	vkCreateXlibSurfaceKHR: PFN_vkCreateXlibSurfaceKHR,
+	vkGetPhysicalDeviceXlibPresentationSupportKHR: PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR,
+	vkCreateXcbSurfaceKHR: PFN_vkCreateXcbSurfaceKHR,
+	vkGetPhysicalDeviceXcbPresentationSupportKHR: PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR,
+	vkCreateDirectFBSurfaceEXT: PFN_vkCreateDirectFBSurfaceEXT,
+	vkGetPhysicalDeviceDirectFBPresentationSupportEXT: PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT,
+	vkCreateImagePipeSurfaceFUCHSIA: PFN_vkCreateImagePipeSurfaceFUCHSIA,
+	vkCreateStreamDescriptorSurfaceGGP: PFN_vkCreateStreamDescriptorSurfaceGGP,
+	vkCreateScreenSurfaceQNX: PFN_vkCreateScreenSurfaceQNX,
+	vkGetPhysicalDeviceScreenPresentationSupportQNX: PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX,
+	vkCreateDebugReportCallbackEXT: PFN_vkCreateDebugReportCallbackEXT,
+	vkDestroyDebugReportCallbackEXT: PFN_vkDestroyDebugReportCallbackEXT,
+	vkDebugReportMessageEXT: PFN_vkDebugReportMessageEXT,
+	vkDebugMarkerSetObjectNameEXT: PFN_vkDebugMarkerSetObjectNameEXT,
+	vkDebugMarkerSetObjectTagEXT: PFN_vkDebugMarkerSetObjectTagEXT,
+	vkCmdDebugMarkerBeginEXT: PFN_vkCmdDebugMarkerBeginEXT,
+	vkCmdDebugMarkerEndEXT: PFN_vkCmdDebugMarkerEndEXT,
+	vkCmdDebugMarkerInsertEXT: PFN_vkCmdDebugMarkerInsertEXT,
+	vkGetPhysicalDeviceExternalImageFormatPropertiesNV: PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
+	vkGetMemoryWin32HandleNV: PFN_vkGetMemoryWin32HandleNV,
+	vkCmdExecuteGeneratedCommandsNV: PFN_vkCmdExecuteGeneratedCommandsNV,
+	vkCmdPreprocessGeneratedCommandsNV: PFN_vkCmdPreprocessGeneratedCommandsNV,
+	vkCmdBindPipelineShaderGroupNV: PFN_vkCmdBindPipelineShaderGroupNV,
+	vkGetGeneratedCommandsMemoryRequirementsNV: PFN_vkGetGeneratedCommandsMemoryRequirementsNV,
+	vkCreateIndirectCommandsLayoutNV: PFN_vkCreateIndirectCommandsLayoutNV,
+	vkDestroyIndirectCommandsLayoutNV: PFN_vkDestroyIndirectCommandsLayoutNV,
+	vkGetPhysicalDeviceFeatures2: PFN_vkGetPhysicalDeviceFeatures2,
+	vkGetPhysicalDeviceProperties2: PFN_vkGetPhysicalDeviceProperties2,
+	vkGetPhysicalDeviceFormatProperties2: PFN_vkGetPhysicalDeviceFormatProperties2,
+	vkGetPhysicalDeviceImageFormatProperties2: PFN_vkGetPhysicalDeviceImageFormatProperties2,
+	vkGetPhysicalDeviceQueueFamilyProperties2: PFN_vkGetPhysicalDeviceQueueFamilyProperties2,
+	vkGetPhysicalDeviceMemoryProperties2: PFN_vkGetPhysicalDeviceMemoryProperties2,
+	vkGetPhysicalDeviceSparseImageFormatProperties2: PFN_vkGetPhysicalDeviceSparseImageFormatProperties2,
+	vkCmdPushDescriptorSetKHR: PFN_vkCmdPushDescriptorSetKHR,
+	vkTrimCommandPool: PFN_vkTrimCommandPool,
+	vkGetPhysicalDeviceExternalBufferProperties: PFN_vkGetPhysicalDeviceExternalBufferProperties,
+	vkGetMemoryWin32HandleKHR: PFN_vkGetMemoryWin32HandleKHR,
+	vkGetMemoryWin32HandlePropertiesKHR: PFN_vkGetMemoryWin32HandlePropertiesKHR,
+	vkGetMemoryFdKHR: PFN_vkGetMemoryFdKHR,
+	vkGetMemoryFdPropertiesKHR: PFN_vkGetMemoryFdPropertiesKHR,
+	vkGetMemoryZirconHandleFUCHSIA: PFN_vkGetMemoryZirconHandleFUCHSIA,
+	vkGetMemoryZirconHandlePropertiesFUCHSIA: PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA,
+	vkGetMemoryRemoteAddressNV: PFN_vkGetMemoryRemoteAddressNV,
+	vkGetPhysicalDeviceExternalSemaphoreProperties: PFN_vkGetPhysicalDeviceExternalSemaphoreProperties,
+	vkGetSemaphoreWin32HandleKHR: PFN_vkGetSemaphoreWin32HandleKHR,
+	vkImportSemaphoreWin32HandleKHR: PFN_vkImportSemaphoreWin32HandleKHR,
+	vkGetSemaphoreFdKHR: PFN_vkGetSemaphoreFdKHR,
+	vkImportSemaphoreFdKHR: PFN_vkImportSemaphoreFdKHR,
+	vkGetSemaphoreZirconHandleFUCHSIA: PFN_vkGetSemaphoreZirconHandleFUCHSIA,
+	vkImportSemaphoreZirconHandleFUCHSIA: PFN_vkImportSemaphoreZirconHandleFUCHSIA,
+	vkGetPhysicalDeviceExternalFenceProperties: PFN_vkGetPhysicalDeviceExternalFenceProperties,
+	vkGetFenceWin32HandleKHR: PFN_vkGetFenceWin32HandleKHR,
+	vkImportFenceWin32HandleKHR: PFN_vkImportFenceWin32HandleKHR,
+	vkGetFenceFdKHR: PFN_vkGetFenceFdKHR,
+	vkImportFenceFdKHR: PFN_vkImportFenceFdKHR,
+	vkReleaseDisplayEXT: PFN_vkReleaseDisplayEXT,
+	vkAcquireXlibDisplayEXT: PFN_vkAcquireXlibDisplayEXT,
+	vkGetRandROutputDisplayEXT: PFN_vkGetRandROutputDisplayEXT,
+	vkAcquireWinrtDisplayNV: PFN_vkAcquireWinrtDisplayNV,
+	vkGetWinrtDisplayNV: PFN_vkGetWinrtDisplayNV,
+	vkDisplayPowerControlEXT: PFN_vkDisplayPowerControlEXT,
+	vkRegisterDeviceEventEXT: PFN_vkRegisterDeviceEventEXT,
+	vkRegisterDisplayEventEXT: PFN_vkRegisterDisplayEventEXT,
+	vkGetSwapchainCounterEXT: PFN_vkGetSwapchainCounterEXT,
+	vkGetPhysicalDeviceSurfaceCapabilities2EXT: PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT,
+	vkEnumeratePhysicalDeviceGroups: PFN_vkEnumeratePhysicalDeviceGroups,
+	vkGetDeviceGroupPeerMemoryFeatures: PFN_vkGetDeviceGroupPeerMemoryFeatures,
+	vkBindBufferMemory2: PFN_vkBindBufferMemory2,
+	vkBindImageMemory2: PFN_vkBindImageMemory2,
+	vkCmdSetDeviceMask: PFN_vkCmdSetDeviceMask,
+	vkGetDeviceGroupPresentCapabilitiesKHR: PFN_vkGetDeviceGroupPresentCapabilitiesKHR,
+	vkGetDeviceGroupSurfacePresentModesKHR: PFN_vkGetDeviceGroupSurfacePresentModesKHR,
+	vkAcquireNextImage2KHR: PFN_vkAcquireNextImage2KHR,
+	vkCmdDispatchBase: PFN_vkCmdDispatchBase,
+	vkGetPhysicalDevicePresentRectanglesKHR: PFN_vkGetPhysicalDevicePresentRectanglesKHR,
+	vkCreateDescriptorUpdateTemplate: PFN_vkCreateDescriptorUpdateTemplate,
+	vkDestroyDescriptorUpdateTemplate: PFN_vkDestroyDescriptorUpdateTemplate,
+	vkUpdateDescriptorSetWithTemplate: PFN_vkUpdateDescriptorSetWithTemplate,
+	vkCmdPushDescriptorSetWithTemplateKHR: PFN_vkCmdPushDescriptorSetWithTemplateKHR,
+	vkSetHdrMetadataEXT: PFN_vkSetHdrMetadataEXT,
+	vkGetSwapchainStatusKHR: PFN_vkGetSwapchainStatusKHR,
+	vkGetRefreshCycleDurationGOOGLE: PFN_vkGetRefreshCycleDurationGOOGLE,
+	vkGetPastPresentationTimingGOOGLE: PFN_vkGetPastPresentationTimingGOOGLE,
+	vkCreateIOSSurfaceMVK: PFN_vkCreateIOSSurfaceMVK,
+	vkCreateMacOSSurfaceMVK: PFN_vkCreateMacOSSurfaceMVK,
+	vkCreateMetalSurfaceEXT: PFN_vkCreateMetalSurfaceEXT,
+	vkCmdSetViewportWScalingNV: PFN_vkCmdSetViewportWScalingNV,
+	vkCmdSetDiscardRectangleEXT: PFN_vkCmdSetDiscardRectangleEXT,
+	vkCmdSetSampleLocationsEXT: PFN_vkCmdSetSampleLocationsEXT,
+	vkGetPhysicalDeviceMultisamplePropertiesEXT: PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT,
+	vkGetPhysicalDeviceSurfaceCapabilities2KHR: PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR,
+	vkGetPhysicalDeviceSurfaceFormats2KHR: PFN_vkGetPhysicalDeviceSurfaceFormats2KHR,
+	vkGetPhysicalDeviceDisplayProperties2KHR: PFN_vkGetPhysicalDeviceDisplayProperties2KHR,
+	vkGetPhysicalDeviceDisplayPlaneProperties2KHR: PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR,
+	vkGetDisplayModeProperties2KHR: PFN_vkGetDisplayModeProperties2KHR,
+	vkGetDisplayPlaneCapabilities2KHR: PFN_vkGetDisplayPlaneCapabilities2KHR,
+	vkGetBufferMemoryRequirements2: PFN_vkGetBufferMemoryRequirements2,
+	vkGetImageMemoryRequirements2: PFN_vkGetImageMemoryRequirements2,
+	vkGetImageSparseMemoryRequirements2: PFN_vkGetImageSparseMemoryRequirements2,
+	vkGetDeviceBufferMemoryRequirements: PFN_vkGetDeviceBufferMemoryRequirements,
+	vkGetDeviceImageMemoryRequirements: PFN_vkGetDeviceImageMemoryRequirements,
+	vkGetDeviceImageSparseMemoryRequirements: PFN_vkGetDeviceImageSparseMemoryRequirements,
+	vkCreateSamplerYcbcrConversion: PFN_vkCreateSamplerYcbcrConversion,
+	vkDestroySamplerYcbcrConversion: PFN_vkDestroySamplerYcbcrConversion,
+	vkGetDeviceQueue2: PFN_vkGetDeviceQueue2,
+	vkCreateValidationCacheEXT: PFN_vkCreateValidationCacheEXT,
+	vkDestroyValidationCacheEXT: PFN_vkDestroyValidationCacheEXT,
+	vkGetValidationCacheDataEXT: PFN_vkGetValidationCacheDataEXT,
+	vkMergeValidationCachesEXT: PFN_vkMergeValidationCachesEXT,
+	vkGetDescriptorSetLayoutSupport: PFN_vkGetDescriptorSetLayoutSupport,
+	vkGetSwapchainGrallocUsageANDROID: PFN_vkGetSwapchainGrallocUsageANDROID,
+	vkGetSwapchainGrallocUsage2ANDROID: PFN_vkGetSwapchainGrallocUsage2ANDROID,
+	vkAcquireImageANDROID: PFN_vkAcquireImageANDROID,
+	vkQueueSignalReleaseImageANDROID: PFN_vkQueueSignalReleaseImageANDROID,
+	vkGetShaderInfoAMD: PFN_vkGetShaderInfoAMD,
+	vkSetLocalDimmingAMD: PFN_vkSetLocalDimmingAMD,
+	vkGetPhysicalDeviceCalibrateableTimeDomainsEXT: PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
+	vkGetCalibratedTimestampsEXT: PFN_vkGetCalibratedTimestampsEXT,
+	vkSetDebugUtilsObjectNameEXT: PFN_vkSetDebugUtilsObjectNameEXT,
+	vkSetDebugUtilsObjectTagEXT: PFN_vkSetDebugUtilsObjectTagEXT,
+	vkQueueBeginDebugUtilsLabelEXT: PFN_vkQueueBeginDebugUtilsLabelEXT,
+	vkQueueEndDebugUtilsLabelEXT: PFN_vkQueueEndDebugUtilsLabelEXT,
+	vkQueueInsertDebugUtilsLabelEXT: PFN_vkQueueInsertDebugUtilsLabelEXT,
+	vkCmdBeginDebugUtilsLabelEXT: PFN_vkCmdBeginDebugUtilsLabelEXT,
+	vkCmdEndDebugUtilsLabelEXT: PFN_vkCmdEndDebugUtilsLabelEXT,
+	vkCmdInsertDebugUtilsLabelEXT: PFN_vkCmdInsertDebugUtilsLabelEXT,
+	vkCreateDebugUtilsMessengerEXT: PFN_vkCreateDebugUtilsMessengerEXT,
+	vkDestroyDebugUtilsMessengerEXT: PFN_vkDestroyDebugUtilsMessengerEXT,
+	vkSubmitDebugUtilsMessageEXT: PFN_vkSubmitDebugUtilsMessageEXT,
+	vkGetMemoryHostPointerPropertiesEXT: PFN_vkGetMemoryHostPointerPropertiesEXT,
+	vkCmdWriteBufferMarkerAMD: PFN_vkCmdWriteBufferMarkerAMD,
+	vkCreateRenderPass2: PFN_vkCreateRenderPass2,
+	vkCmdBeginRenderPass2: PFN_vkCmdBeginRenderPass2,
+	vkCmdNextSubpass2: PFN_vkCmdNextSubpass2,
+	vkCmdEndRenderPass2: PFN_vkCmdEndRenderPass2,
+	vkGetSemaphoreCounterValue: PFN_vkGetSemaphoreCounterValue,
+	vkWaitSemaphores: PFN_vkWaitSemaphores,
+	vkSignalSemaphore: PFN_vkSignalSemaphore,
+	vkGetAndroidHardwareBufferPropertiesANDROID: PFN_vkGetAndroidHardwareBufferPropertiesANDROID,
+	vkGetMemoryAndroidHardwareBufferANDROID: PFN_vkGetMemoryAndroidHardwareBufferANDROID,
+	vkCmdDrawIndirectCount: PFN_vkCmdDrawIndirectCount,
+	vkCmdDrawIndexedIndirectCount: PFN_vkCmdDrawIndexedIndirectCount,
+	vkCmdSetCheckpointNV: PFN_vkCmdSetCheckpointNV,
+	vkGetQueueCheckpointDataNV: PFN_vkGetQueueCheckpointDataNV,
+	vkCmdBindTransformFeedbackBuffersEXT: PFN_vkCmdBindTransformFeedbackBuffersEXT,
+	vkCmdBeginTransformFeedbackEXT: PFN_vkCmdBeginTransformFeedbackEXT,
+	vkCmdEndTransformFeedbackEXT: PFN_vkCmdEndTransformFeedbackEXT,
+	vkCmdBeginQueryIndexedEXT: PFN_vkCmdBeginQueryIndexedEXT,
+	vkCmdEndQueryIndexedEXT: PFN_vkCmdEndQueryIndexedEXT,
+	vkCmdDrawIndirectByteCountEXT: PFN_vkCmdDrawIndirectByteCountEXT,
+	vkCmdSetExclusiveScissorNV: PFN_vkCmdSetExclusiveScissorNV,
+	vkCmdBindShadingRateImageNV: PFN_vkCmdBindShadingRateImageNV,
+	vkCmdSetViewportShadingRatePaletteNV: PFN_vkCmdSetViewportShadingRatePaletteNV,
+	vkCmdSetCoarseSampleOrderNV: PFN_vkCmdSetCoarseSampleOrderNV,
+	vkCmdDrawMeshTasksNV: PFN_vkCmdDrawMeshTasksNV,
+	vkCmdDrawMeshTasksIndirectNV: PFN_vkCmdDrawMeshTasksIndirectNV,
+	vkCmdDrawMeshTasksIndirectCountNV: PFN_vkCmdDrawMeshTasksIndirectCountNV,
+	vkCmdDrawMeshTasksEXT: PFN_vkCmdDrawMeshTasksEXT,
+	vkCmdDrawMeshTasksIndirectEXT: PFN_vkCmdDrawMeshTasksIndirectEXT,
+	vkCmdDrawMeshTasksIndirectCountEXT: PFN_vkCmdDrawMeshTasksIndirectCountEXT,
+	vkCompileDeferredNV: PFN_vkCompileDeferredNV,
+	vkCreateAccelerationStructureNV: PFN_vkCreateAccelerationStructureNV,
+	vkCmdBindInvocationMaskHUAWEI: PFN_vkCmdBindInvocationMaskHUAWEI,
+	vkDestroyAccelerationStructureKHR: PFN_vkDestroyAccelerationStructureKHR,
+	vkDestroyAccelerationStructureNV: PFN_vkDestroyAccelerationStructureNV,
+	vkGetAccelerationStructureMemoryRequirementsNV: PFN_vkGetAccelerationStructureMemoryRequirementsNV,
+	vkBindAccelerationStructureMemoryNV: PFN_vkBindAccelerationStructureMemoryNV,
+	vkCmdCopyAccelerationStructureNV: PFN_vkCmdCopyAccelerationStructureNV,
+	vkCmdCopyAccelerationStructureKHR: PFN_vkCmdCopyAccelerationStructureKHR,
+	vkCopyAccelerationStructureKHR: PFN_vkCopyAccelerationStructureKHR,
+	vkCmdCopyAccelerationStructureToMemoryKHR: PFN_vkCmdCopyAccelerationStructureToMemoryKHR,
+	vkCopyAccelerationStructureToMemoryKHR: PFN_vkCopyAccelerationStructureToMemoryKHR,
+	vkCmdCopyMemoryToAccelerationStructureKHR: PFN_vkCmdCopyMemoryToAccelerationStructureKHR,
+	vkCopyMemoryToAccelerationStructureKHR: PFN_vkCopyMemoryToAccelerationStructureKHR,
+	vkCmdWriteAccelerationStructuresPropertiesKHR: PFN_vkCmdWriteAccelerationStructuresPropertiesKHR,
+	vkCmdWriteAccelerationStructuresPropertiesNV: PFN_vkCmdWriteAccelerationStructuresPropertiesNV,
+	vkCmdBuildAccelerationStructureNV: PFN_vkCmdBuildAccelerationStructureNV,
+	vkWriteAccelerationStructuresPropertiesKHR: PFN_vkWriteAccelerationStructuresPropertiesKHR,
+	vkCmdTraceRaysKHR: PFN_vkCmdTraceRaysKHR,
+	vkCmdTraceRaysNV: PFN_vkCmdTraceRaysNV,
+	vkGetRayTracingShaderGroupHandlesKHR: PFN_vkGetRayTracingShaderGroupHandlesKHR,
+	vkGetRayTracingCaptureReplayShaderGroupHandlesKHR: PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
+	vkGetAccelerationStructureHandleNV: PFN_vkGetAccelerationStructureHandleNV,
+	vkCreateRayTracingPipelinesNV: PFN_vkCreateRayTracingPipelinesNV,
+	vkCreateRayTracingPipelinesKHR: PFN_vkCreateRayTracingPipelinesKHR,
+	vkGetPhysicalDeviceCooperativeMatrixPropertiesNV: PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
+	vkCmdTraceRaysIndirectKHR: PFN_vkCmdTraceRaysIndirectKHR,
+	vkCmdTraceRaysIndirect2KHR: PFN_vkCmdTraceRaysIndirect2KHR,
+	vkGetDeviceAccelerationStructureCompatibilityKHR: PFN_vkGetDeviceAccelerationStructureCompatibilityKHR,
+	vkGetRayTracingShaderGroupStackSizeKHR: PFN_vkGetRayTracingShaderGroupStackSizeKHR,
+	vkCmdSetRayTracingPipelineStackSizeKHR: PFN_vkCmdSetRayTracingPipelineStackSizeKHR,
+	vkGetImageViewHandleNVX: PFN_vkGetImageViewHandleNVX,
+	vkGetImageViewAddressNVX: PFN_vkGetImageViewAddressNVX,
+	vkGetPhysicalDeviceSurfacePresentModes2EXT: PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT,
+	vkGetDeviceGroupSurfacePresentModes2EXT: PFN_vkGetDeviceGroupSurfacePresentModes2EXT,
+	vkAcquireFullScreenExclusiveModeEXT: PFN_vkAcquireFullScreenExclusiveModeEXT,
+	vkReleaseFullScreenExclusiveModeEXT: PFN_vkReleaseFullScreenExclusiveModeEXT,
+	vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR: PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
+	vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR: PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
+	vkAcquireProfilingLockKHR: PFN_vkAcquireProfilingLockKHR,
+	vkReleaseProfilingLockKHR: PFN_vkReleaseProfilingLockKHR,
+	vkGetImageDrmFormatModifierPropertiesEXT: PFN_vkGetImageDrmFormatModifierPropertiesEXT,
+	vkGetBufferOpaqueCaptureAddress: PFN_vkGetBufferOpaqueCaptureAddress,
+	vkGetBufferDeviceAddress: PFN_vkGetBufferDeviceAddress,
+	vkCreateHeadlessSurfaceEXT: PFN_vkCreateHeadlessSurfaceEXT,
+	vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV: PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
+	vkInitializePerformanceApiINTEL: PFN_vkInitializePerformanceApiINTEL,
+	vkUninitializePerformanceApiINTEL: PFN_vkUninitializePerformanceApiINTEL,
+	vkCmdSetPerformanceMarkerINTEL: PFN_vkCmdSetPerformanceMarkerINTEL,
+	vkCmdSetPerformanceStreamMarkerINTEL: PFN_vkCmdSetPerformanceStreamMarkerINTEL,
+	vkCmdSetPerformanceOverrideINTEL: PFN_vkCmdSetPerformanceOverrideINTEL,
+	vkAcquirePerformanceConfigurationINTEL: PFN_vkAcquirePerformanceConfigurationINTEL,
+	vkReleasePerformanceConfigurationINTEL: PFN_vkReleasePerformanceConfigurationINTEL,
+	vkQueueSetPerformanceConfigurationINTEL: PFN_vkQueueSetPerformanceConfigurationINTEL,
+	vkGetPerformanceParameterINTEL: PFN_vkGetPerformanceParameterINTEL,
+	vkGetDeviceMemoryOpaqueCaptureAddress: PFN_vkGetDeviceMemoryOpaqueCaptureAddress,
+	vkGetPipelineExecutablePropertiesKHR: PFN_vkGetPipelineExecutablePropertiesKHR,
+	vkGetPipelineExecutableStatisticsKHR: PFN_vkGetPipelineExecutableStatisticsKHR,
+	vkGetPipelineExecutableInternalRepresentationsKHR: PFN_vkGetPipelineExecutableInternalRepresentationsKHR,
+	vkCmdSetLineStippleEXT: PFN_vkCmdSetLineStippleEXT,
+	vkGetPhysicalDeviceToolProperties: PFN_vkGetPhysicalDeviceToolProperties,
+	vkCreateAccelerationStructureKHR: PFN_vkCreateAccelerationStructureKHR,
+	vkCmdBuildAccelerationStructuresKHR: PFN_vkCmdBuildAccelerationStructuresKHR,
+	vkCmdBuildAccelerationStructuresIndirectKHR: PFN_vkCmdBuildAccelerationStructuresIndirectKHR,
+	vkBuildAccelerationStructuresKHR: PFN_vkBuildAccelerationStructuresKHR,
+	vkGetAccelerationStructureDeviceAddressKHR: PFN_vkGetAccelerationStructureDeviceAddressKHR,
+	vkCreateDeferredOperationKHR: PFN_vkCreateDeferredOperationKHR,
+	vkDestroyDeferredOperationKHR: PFN_vkDestroyDeferredOperationKHR,
+	vkGetDeferredOperationMaxConcurrencyKHR: PFN_vkGetDeferredOperationMaxConcurrencyKHR,
+	vkGetDeferredOperationResultKHR: PFN_vkGetDeferredOperationResultKHR,
+	vkDeferredOperationJoinKHR: PFN_vkDeferredOperationJoinKHR,
+	vkCmdSetCullMode: PFN_vkCmdSetCullMode,
+	vkCmdSetFrontFace: PFN_vkCmdSetFrontFace,
+	vkCmdSetPrimitiveTopology: PFN_vkCmdSetPrimitiveTopology,
+	vkCmdSetViewportWithCount: PFN_vkCmdSetViewportWithCount,
+	vkCmdSetScissorWithCount: PFN_vkCmdSetScissorWithCount,
+	vkCmdBindVertexBuffers2: PFN_vkCmdBindVertexBuffers2,
+	vkCmdSetDepthTestEnable: PFN_vkCmdSetDepthTestEnable,
+	vkCmdSetDepthWriteEnable: PFN_vkCmdSetDepthWriteEnable,
+	vkCmdSetDepthCompareOp: PFN_vkCmdSetDepthCompareOp,
+	vkCmdSetDepthBoundsTestEnable: PFN_vkCmdSetDepthBoundsTestEnable,
+	vkCmdSetStencilTestEnable: PFN_vkCmdSetStencilTestEnable,
+	vkCmdSetStencilOp: PFN_vkCmdSetStencilOp,
+	vkCmdSetPatchControlPointsEXT: PFN_vkCmdSetPatchControlPointsEXT,
+	vkCmdSetRasterizerDiscardEnable: PFN_vkCmdSetRasterizerDiscardEnable,
+	vkCmdSetDepthBiasEnable: PFN_vkCmdSetDepthBiasEnable,
+	vkCmdSetLogicOpEXT: PFN_vkCmdSetLogicOpEXT,
+	vkCmdSetPrimitiveRestartEnable: PFN_vkCmdSetPrimitiveRestartEnable,
+	vkCmdSetTessellationDomainOriginEXT: PFN_vkCmdSetTessellationDomainOriginEXT,
+	vkCmdSetDepthClampEnableEXT: PFN_vkCmdSetDepthClampEnableEXT,
+	vkCmdSetPolygonModeEXT: PFN_vkCmdSetPolygonModeEXT,
+	vkCmdSetRasterizationSamplesEXT: PFN_vkCmdSetRasterizationSamplesEXT,
+	vkCmdSetSampleMaskEXT: PFN_vkCmdSetSampleMaskEXT,
+	vkCmdSetAlphaToCoverageEnableEXT: PFN_vkCmdSetAlphaToCoverageEnableEXT,
+	vkCmdSetAlphaToOneEnableEXT: PFN_vkCmdSetAlphaToOneEnableEXT,
+	vkCmdSetLogicOpEnableEXT: PFN_vkCmdSetLogicOpEnableEXT,
+	vkCmdSetColorBlendEnableEXT: PFN_vkCmdSetColorBlendEnableEXT,
+	vkCmdSetColorBlendEquationEXT: PFN_vkCmdSetColorBlendEquationEXT,
+	vkCmdSetColorWriteMaskEXT: PFN_vkCmdSetColorWriteMaskEXT,
+	vkCmdSetRasterizationStreamEXT: PFN_vkCmdSetRasterizationStreamEXT,
+	vkCmdSetConservativeRasterizationModeEXT: PFN_vkCmdSetConservativeRasterizationModeEXT,
+	vkCmdSetExtraPrimitiveOverestimationSizeEXT: PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT,
+	vkCmdSetDepthClipEnableEXT: PFN_vkCmdSetDepthClipEnableEXT,
+	vkCmdSetSampleLocationsEnableEXT: PFN_vkCmdSetSampleLocationsEnableEXT,
+	vkCmdSetColorBlendAdvancedEXT: PFN_vkCmdSetColorBlendAdvancedEXT,
+	vkCmdSetProvokingVertexModeEXT: PFN_vkCmdSetProvokingVertexModeEXT,
+	vkCmdSetLineRasterizationModeEXT: PFN_vkCmdSetLineRasterizationModeEXT,
+	vkCmdSetLineStippleEnableEXT: PFN_vkCmdSetLineStippleEnableEXT,
+	vkCmdSetDepthClipNegativeOneToOneEXT: PFN_vkCmdSetDepthClipNegativeOneToOneEXT,
+	vkCmdSetViewportWScalingEnableNV: PFN_vkCmdSetViewportWScalingEnableNV,
+	vkCmdSetViewportSwizzleNV: PFN_vkCmdSetViewportSwizzleNV,
+	vkCmdSetCoverageToColorEnableNV: PFN_vkCmdSetCoverageToColorEnableNV,
+	vkCmdSetCoverageToColorLocationNV: PFN_vkCmdSetCoverageToColorLocationNV,
+	vkCmdSetCoverageModulationModeNV: PFN_vkCmdSetCoverageModulationModeNV,
+	vkCmdSetCoverageModulationTableEnableNV: PFN_vkCmdSetCoverageModulationTableEnableNV,
+	vkCmdSetCoverageModulationTableNV: PFN_vkCmdSetCoverageModulationTableNV,
+	vkCmdSetShadingRateImageEnableNV: PFN_vkCmdSetShadingRateImageEnableNV,
+	vkCmdSetCoverageReductionModeNV: PFN_vkCmdSetCoverageReductionModeNV,
+	vkCmdSetRepresentativeFragmentTestEnableNV: PFN_vkCmdSetRepresentativeFragmentTestEnableNV,
+	vkCreatePrivateDataSlot: PFN_vkCreatePrivateDataSlot,
+	vkDestroyPrivateDataSlot: PFN_vkDestroyPrivateDataSlot,
+	vkSetPrivateData: PFN_vkSetPrivateData,
+	vkGetPrivateData: PFN_vkGetPrivateData,
+	vkCmdCopyBuffer2: PFN_vkCmdCopyBuffer2,
+	vkCmdCopyImage2: PFN_vkCmdCopyImage2,
+	vkCmdBlitImage2: PFN_vkCmdBlitImage2,
+	vkCmdCopyBufferToImage2: PFN_vkCmdCopyBufferToImage2,
+	vkCmdCopyImageToBuffer2: PFN_vkCmdCopyImageToBuffer2,
+	vkCmdResolveImage2: PFN_vkCmdResolveImage2,
+	vkCmdSetFragmentShadingRateKHR: PFN_vkCmdSetFragmentShadingRateKHR,
+	vkGetPhysicalDeviceFragmentShadingRatesKHR: PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR,
+	vkCmdSetFragmentShadingRateEnumNV: PFN_vkCmdSetFragmentShadingRateEnumNV,
+	vkGetAccelerationStructureBuildSizesKHR: PFN_vkGetAccelerationStructureBuildSizesKHR,
+	vkCmdSetVertexInputEXT: PFN_vkCmdSetVertexInputEXT,
+	vkCmdSetColorWriteEnableEXT: PFN_vkCmdSetColorWriteEnableEXT,
+	vkCmdSetEvent2: PFN_vkCmdSetEvent2,
+	vkCmdResetEvent2: PFN_vkCmdResetEvent2,
+	vkCmdWaitEvents2: PFN_vkCmdWaitEvents2,
+	vkCmdPipelineBarrier2: PFN_vkCmdPipelineBarrier2,
+	vkQueueSubmit2: PFN_vkQueueSubmit2,
+	vkCmdWriteTimestamp2: PFN_vkCmdWriteTimestamp2,
+	vkCmdWriteBufferMarker2AMD: PFN_vkCmdWriteBufferMarker2AMD,
+	vkGetQueueCheckpointData2NV: PFN_vkGetQueueCheckpointData2NV,
+	vkGetPhysicalDeviceVideoCapabilitiesKHR: PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR,
+	vkGetPhysicalDeviceVideoFormatPropertiesKHR: PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR,
+	vkCreateVideoSessionKHR: PFN_vkCreateVideoSessionKHR,
+	vkDestroyVideoSessionKHR: PFN_vkDestroyVideoSessionKHR,
+	vkCreateVideoSessionParametersKHR: PFN_vkCreateVideoSessionParametersKHR,
+	vkUpdateVideoSessionParametersKHR: PFN_vkUpdateVideoSessionParametersKHR,
+	vkDestroyVideoSessionParametersKHR: PFN_vkDestroyVideoSessionParametersKHR,
+	vkGetVideoSessionMemoryRequirementsKHR: PFN_vkGetVideoSessionMemoryRequirementsKHR,
+	vkBindVideoSessionMemoryKHR: PFN_vkBindVideoSessionMemoryKHR,
+	vkCmdDecodeVideoKHR: PFN_vkCmdDecodeVideoKHR,
+	vkCmdBeginVideoCodingKHR: PFN_vkCmdBeginVideoCodingKHR,
+	vkCmdControlVideoCodingKHR: PFN_vkCmdControlVideoCodingKHR,
+	vkCmdEndVideoCodingKHR: PFN_vkCmdEndVideoCodingKHR,
+	vkCmdEncodeVideoKHR: PFN_vkCmdEncodeVideoKHR,
+	vkCmdDecompressMemoryNV: PFN_vkCmdDecompressMemoryNV,
+	vkCmdDecompressMemoryIndirectCountNV: PFN_vkCmdDecompressMemoryIndirectCountNV,
+	vkCreateCuModuleNVX: PFN_vkCreateCuModuleNVX,
+	vkCreateCuFunctionNVX: PFN_vkCreateCuFunctionNVX,
+	vkDestroyCuModuleNVX: PFN_vkDestroyCuModuleNVX,
+	vkDestroyCuFunctionNVX: PFN_vkDestroyCuFunctionNVX,
+	vkCmdCuLaunchKernelNVX: PFN_vkCmdCuLaunchKernelNVX,
+	vkSetDeviceMemoryPriorityEXT: PFN_vkSetDeviceMemoryPriorityEXT,
+	vkAcquireDrmDisplayEXT: PFN_vkAcquireDrmDisplayEXT,
+	vkGetDrmDisplayEXT: PFN_vkGetDrmDisplayEXT,
+	vkWaitForPresentKHR: PFN_vkWaitForPresentKHR,
+	vkCreateBufferCollectionFUCHSIA: PFN_vkCreateBufferCollectionFUCHSIA,
+	vkSetBufferCollectionBufferConstraintsFUCHSIA: PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA,
+	vkSetBufferCollectionImageConstraintsFUCHSIA: PFN_vkSetBufferCollectionImageConstraintsFUCHSIA,
+	vkDestroyBufferCollectionFUCHSIA: PFN_vkDestroyBufferCollectionFUCHSIA,
+	vkGetBufferCollectionPropertiesFUCHSIA: PFN_vkGetBufferCollectionPropertiesFUCHSIA,
+	vkCmdBeginRendering: PFN_vkCmdBeginRendering,
+	vkCmdEndRendering: PFN_vkCmdEndRendering,
+	vkGetDescriptorSetLayoutHostMappingInfoVALVE: PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE,
+	vkGetDescriptorSetHostMappingVALVE: PFN_vkGetDescriptorSetHostMappingVALVE,
+	vkCreateMicromapEXT: PFN_vkCreateMicromapEXT,
+	vkCmdBuildMicromapsEXT: PFN_vkCmdBuildMicromapsEXT,
+	vkBuildMicromapsEXT: PFN_vkBuildMicromapsEXT,
+	vkDestroyMicromapEXT: PFN_vkDestroyMicromapEXT,
+	vkCmdCopyMicromapEXT: PFN_vkCmdCopyMicromapEXT,
+	vkCopyMicromapEXT: PFN_vkCopyMicromapEXT,
+	vkCmdCopyMicromapToMemoryEXT: PFN_vkCmdCopyMicromapToMemoryEXT,
+	vkCopyMicromapToMemoryEXT: PFN_vkCopyMicromapToMemoryEXT,
+	vkCmdCopyMemoryToMicromapEXT: PFN_vkCmdCopyMemoryToMicromapEXT,
+	vkCopyMemoryToMicromapEXT: PFN_vkCopyMemoryToMicromapEXT,
+	vkCmdWriteMicromapsPropertiesEXT: PFN_vkCmdWriteMicromapsPropertiesEXT,
+	vkWriteMicromapsPropertiesEXT: PFN_vkWriteMicromapsPropertiesEXT,
+	vkGetDeviceMicromapCompatibilityEXT: PFN_vkGetDeviceMicromapCompatibilityEXT,
+	vkGetMicromapBuildSizesEXT: PFN_vkGetMicromapBuildSizesEXT,
+	vkGetShaderModuleIdentifierEXT: PFN_vkGetShaderModuleIdentifierEXT,
+	vkGetShaderModuleCreateInfoIdentifierEXT: PFN_vkGetShaderModuleCreateInfoIdentifierEXT,
+	vkGetImageSubresourceLayout2EXT: PFN_vkGetImageSubresourceLayout2EXT,
+	vkGetPipelinePropertiesEXT: PFN_vkGetPipelinePropertiesEXT,
+	vkExportMetalObjectsEXT: PFN_vkExportMetalObjectsEXT,
+	vkGetFramebufferTilePropertiesQCOM: PFN_vkGetFramebufferTilePropertiesQCOM,
+	vkGetDynamicRenderingTilePropertiesQCOM: PFN_vkGetDynamicRenderingTilePropertiesQCOM,
+	vkGetPhysicalDeviceOpticalFlowImageFormatsNV: PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
+	vkCreateOpticalFlowSessionNV: PFN_vkCreateOpticalFlowSessionNV,
+	vkDestroyOpticalFlowSessionNV: PFN_vkDestroyOpticalFlowSessionNV,
+	vkBindOpticalFlowSessionImageNV: PFN_vkBindOpticalFlowSessionImageNV,
+	vkCmdOpticalFlowExecuteNV: PFN_vkCmdOpticalFlowExecuteNV
+}
+
+static mut VULKAN_COMMANDS: Option<VulkanCommands> = None;
+
+pub fn vk_load_functions(load_func: fn(&str) -> *const c_void) -> bool
+{
+	let vkCreateInstance: PFN_vkCreateInstance = load_func("vkCreateInstance");
+	let vkDestroyInstance: PFN_vkDestroyInstance = load_func("vkDestroyInstance");
+	let vkEnumeratePhysicalDevices: PFN_vkEnumeratePhysicalDevices = load_func("vkEnumeratePhysicalDevices");
+	let vkGetDeviceProcAddr: PFN_vkGetDeviceProcAddr = load_func("vkGetDeviceProcAddr");
+	let vkGetInstanceProcAddr: PFN_vkGetInstanceProcAddr = load_func("vkGetInstanceProcAddr");
+	let vkGetPhysicalDeviceProperties: PFN_vkGetPhysicalDeviceProperties = load_func("vkGetPhysicalDeviceProperties");
+	let vkGetPhysicalDeviceQueueFamilyProperties: PFN_vkGetPhysicalDeviceQueueFamilyProperties = load_func("vkGetPhysicalDeviceQueueFamilyProperties");
+	let vkGetPhysicalDeviceMemoryProperties: PFN_vkGetPhysicalDeviceMemoryProperties = load_func("vkGetPhysicalDeviceMemoryProperties");
+	let vkGetPhysicalDeviceFeatures: PFN_vkGetPhysicalDeviceFeatures = load_func("vkGetPhysicalDeviceFeatures");
+	let vkGetPhysicalDeviceFormatProperties: PFN_vkGetPhysicalDeviceFormatProperties = load_func("vkGetPhysicalDeviceFormatProperties");
+	let vkGetPhysicalDeviceImageFormatProperties: PFN_vkGetPhysicalDeviceImageFormatProperties = load_func("vkGetPhysicalDeviceImageFormatProperties");
+	let vkCreateDevice: PFN_vkCreateDevice = load_func("vkCreateDevice");
+	let vkDestroyDevice: PFN_vkDestroyDevice = load_func("vkDestroyDevice");
+	let vkEnumerateInstanceVersion: PFN_vkEnumerateInstanceVersion = load_func("vkEnumerateInstanceVersion");
+	let vkEnumerateInstanceLayerProperties: PFN_vkEnumerateInstanceLayerProperties = load_func("vkEnumerateInstanceLayerProperties");
+	let vkEnumerateInstanceExtensionProperties: PFN_vkEnumerateInstanceExtensionProperties = load_func("vkEnumerateInstanceExtensionProperties");
+	let vkEnumerateDeviceLayerProperties: PFN_vkEnumerateDeviceLayerProperties = load_func("vkEnumerateDeviceLayerProperties");
+	let vkEnumerateDeviceExtensionProperties: PFN_vkEnumerateDeviceExtensionProperties = load_func("vkEnumerateDeviceExtensionProperties");
+	let vkGetDeviceQueue: PFN_vkGetDeviceQueue = load_func("vkGetDeviceQueue");
+	let vkQueueSubmit: PFN_vkQueueSubmit = load_func("vkQueueSubmit");
+	let vkQueueWaitIdle: PFN_vkQueueWaitIdle = load_func("vkQueueWaitIdle");
+	let vkDeviceWaitIdle: PFN_vkDeviceWaitIdle = load_func("vkDeviceWaitIdle");
+	let vkAllocateMemory: PFN_vkAllocateMemory = load_func("vkAllocateMemory");
+	let vkFreeMemory: PFN_vkFreeMemory = load_func("vkFreeMemory");
+	let vkMapMemory: PFN_vkMapMemory = load_func("vkMapMemory");
+	let vkUnmapMemory: PFN_vkUnmapMemory = load_func("vkUnmapMemory");
+	let vkFlushMappedMemoryRanges: PFN_vkFlushMappedMemoryRanges = load_func("vkFlushMappedMemoryRanges");
+	let vkInvalidateMappedMemoryRanges: PFN_vkInvalidateMappedMemoryRanges = load_func("vkInvalidateMappedMemoryRanges");
+	let vkGetDeviceMemoryCommitment: PFN_vkGetDeviceMemoryCommitment = load_func("vkGetDeviceMemoryCommitment");
+	let vkGetBufferMemoryRequirements: PFN_vkGetBufferMemoryRequirements = load_func("vkGetBufferMemoryRequirements");
+	let vkBindBufferMemory: PFN_vkBindBufferMemory = load_func("vkBindBufferMemory");
+	let vkGetImageMemoryRequirements: PFN_vkGetImageMemoryRequirements = load_func("vkGetImageMemoryRequirements");
+	let vkBindImageMemory: PFN_vkBindImageMemory = load_func("vkBindImageMemory");
+	let vkGetImageSparseMemoryRequirements: PFN_vkGetImageSparseMemoryRequirements = load_func("vkGetImageSparseMemoryRequirements");
+	let vkGetPhysicalDeviceSparseImageFormatProperties: PFN_vkGetPhysicalDeviceSparseImageFormatProperties = load_func("vkGetPhysicalDeviceSparseImageFormatProperties");
+	let vkQueueBindSparse: PFN_vkQueueBindSparse = load_func("vkQueueBindSparse");
+	let vkCreateFence: PFN_vkCreateFence = load_func("vkCreateFence");
+	let vkDestroyFence: PFN_vkDestroyFence = load_func("vkDestroyFence");
+	let vkResetFences: PFN_vkResetFences = load_func("vkResetFences");
+	let vkGetFenceStatus: PFN_vkGetFenceStatus = load_func("vkGetFenceStatus");
+	let vkWaitForFences: PFN_vkWaitForFences = load_func("vkWaitForFences");
+	let vkCreateSemaphore: PFN_vkCreateSemaphore = load_func("vkCreateSemaphore");
+	let vkDestroySemaphore: PFN_vkDestroySemaphore = load_func("vkDestroySemaphore");
+	let vkCreateEvent: PFN_vkCreateEvent = load_func("vkCreateEvent");
+	let vkDestroyEvent: PFN_vkDestroyEvent = load_func("vkDestroyEvent");
+	let vkGetEventStatus: PFN_vkGetEventStatus = load_func("vkGetEventStatus");
+	let vkSetEvent: PFN_vkSetEvent = load_func("vkSetEvent");
+	let vkResetEvent: PFN_vkResetEvent = load_func("vkResetEvent");
+	let vkCreateQueryPool: PFN_vkCreateQueryPool = load_func("vkCreateQueryPool");
+	let vkDestroyQueryPool: PFN_vkDestroyQueryPool = load_func("vkDestroyQueryPool");
+	let vkGetQueryPoolResults: PFN_vkGetQueryPoolResults = load_func("vkGetQueryPoolResults");
+	let vkResetQueryPool: PFN_vkResetQueryPool = load_func("vkResetQueryPool");
+	let vkCreateBuffer: PFN_vkCreateBuffer = load_func("vkCreateBuffer");
+	let vkDestroyBuffer: PFN_vkDestroyBuffer = load_func("vkDestroyBuffer");
+	let vkCreateBufferView: PFN_vkCreateBufferView = load_func("vkCreateBufferView");
+	let vkDestroyBufferView: PFN_vkDestroyBufferView = load_func("vkDestroyBufferView");
+	let vkCreateImage: PFN_vkCreateImage = load_func("vkCreateImage");
+	let vkDestroyImage: PFN_vkDestroyImage = load_func("vkDestroyImage");
+	let vkGetImageSubresourceLayout: PFN_vkGetImageSubresourceLayout = load_func("vkGetImageSubresourceLayout");
+	let vkCreateImageView: PFN_vkCreateImageView = load_func("vkCreateImageView");
+	let vkDestroyImageView: PFN_vkDestroyImageView = load_func("vkDestroyImageView");
+	let vkCreateShaderModule: PFN_vkCreateShaderModule = load_func("vkCreateShaderModule");
+	let vkDestroyShaderModule: PFN_vkDestroyShaderModule = load_func("vkDestroyShaderModule");
+	let vkCreatePipelineCache: PFN_vkCreatePipelineCache = load_func("vkCreatePipelineCache");
+	let vkDestroyPipelineCache: PFN_vkDestroyPipelineCache = load_func("vkDestroyPipelineCache");
+	let vkGetPipelineCacheData: PFN_vkGetPipelineCacheData = load_func("vkGetPipelineCacheData");
+	let vkMergePipelineCaches: PFN_vkMergePipelineCaches = load_func("vkMergePipelineCaches");
+	let vkCreateGraphicsPipelines: PFN_vkCreateGraphicsPipelines = load_func("vkCreateGraphicsPipelines");
+	let vkCreateComputePipelines: PFN_vkCreateComputePipelines = load_func("vkCreateComputePipelines");
+	let vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI: PFN_vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI = load_func("vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI");
+	let vkDestroyPipeline: PFN_vkDestroyPipeline = load_func("vkDestroyPipeline");
+	let vkCreatePipelineLayout: PFN_vkCreatePipelineLayout = load_func("vkCreatePipelineLayout");
+	let vkDestroyPipelineLayout: PFN_vkDestroyPipelineLayout = load_func("vkDestroyPipelineLayout");
+	let vkCreateSampler: PFN_vkCreateSampler = load_func("vkCreateSampler");
+	let vkDestroySampler: PFN_vkDestroySampler = load_func("vkDestroySampler");
+	let vkCreateDescriptorSetLayout: PFN_vkCreateDescriptorSetLayout = load_func("vkCreateDescriptorSetLayout");
+	let vkDestroyDescriptorSetLayout: PFN_vkDestroyDescriptorSetLayout = load_func("vkDestroyDescriptorSetLayout");
+	let vkCreateDescriptorPool: PFN_vkCreateDescriptorPool = load_func("vkCreateDescriptorPool");
+	let vkDestroyDescriptorPool: PFN_vkDestroyDescriptorPool = load_func("vkDestroyDescriptorPool");
+	let vkResetDescriptorPool: PFN_vkResetDescriptorPool = load_func("vkResetDescriptorPool");
+	let vkAllocateDescriptorSets: PFN_vkAllocateDescriptorSets = load_func("vkAllocateDescriptorSets");
+	let vkFreeDescriptorSets: PFN_vkFreeDescriptorSets = load_func("vkFreeDescriptorSets");
+	let vkUpdateDescriptorSets: PFN_vkUpdateDescriptorSets = load_func("vkUpdateDescriptorSets");
+	let vkCreateFramebuffer: PFN_vkCreateFramebuffer = load_func("vkCreateFramebuffer");
+	let vkDestroyFramebuffer: PFN_vkDestroyFramebuffer = load_func("vkDestroyFramebuffer");
+	let vkCreateRenderPass: PFN_vkCreateRenderPass = load_func("vkCreateRenderPass");
+	let vkDestroyRenderPass: PFN_vkDestroyRenderPass = load_func("vkDestroyRenderPass");
+	let vkGetRenderAreaGranularity: PFN_vkGetRenderAreaGranularity = load_func("vkGetRenderAreaGranularity");
+	let vkCreateCommandPool: PFN_vkCreateCommandPool = load_func("vkCreateCommandPool");
+	let vkDestroyCommandPool: PFN_vkDestroyCommandPool = load_func("vkDestroyCommandPool");
+	let vkResetCommandPool: PFN_vkResetCommandPool = load_func("vkResetCommandPool");
+	let vkAllocateCommandBuffers: PFN_vkAllocateCommandBuffers = load_func("vkAllocateCommandBuffers");
+	let vkFreeCommandBuffers: PFN_vkFreeCommandBuffers = load_func("vkFreeCommandBuffers");
+	let vkBeginCommandBuffer: PFN_vkBeginCommandBuffer = load_func("vkBeginCommandBuffer");
+	let vkEndCommandBuffer: PFN_vkEndCommandBuffer = load_func("vkEndCommandBuffer");
+	let vkResetCommandBuffer: PFN_vkResetCommandBuffer = load_func("vkResetCommandBuffer");
+	let vkCmdBindPipeline: PFN_vkCmdBindPipeline = load_func("vkCmdBindPipeline");
+	let vkCmdSetViewport: PFN_vkCmdSetViewport = load_func("vkCmdSetViewport");
+	let vkCmdSetScissor: PFN_vkCmdSetScissor = load_func("vkCmdSetScissor");
+	let vkCmdSetLineWidth: PFN_vkCmdSetLineWidth = load_func("vkCmdSetLineWidth");
+	let vkCmdSetDepthBias: PFN_vkCmdSetDepthBias = load_func("vkCmdSetDepthBias");
+	let vkCmdSetBlendConstants: PFN_vkCmdSetBlendConstants = load_func("vkCmdSetBlendConstants");
+	let vkCmdSetDepthBounds: PFN_vkCmdSetDepthBounds = load_func("vkCmdSetDepthBounds");
+	let vkCmdSetStencilCompareMask: PFN_vkCmdSetStencilCompareMask = load_func("vkCmdSetStencilCompareMask");
+	let vkCmdSetStencilWriteMask: PFN_vkCmdSetStencilWriteMask = load_func("vkCmdSetStencilWriteMask");
+	let vkCmdSetStencilReference: PFN_vkCmdSetStencilReference = load_func("vkCmdSetStencilReference");
+	let vkCmdBindDescriptorSets: PFN_vkCmdBindDescriptorSets = load_func("vkCmdBindDescriptorSets");
+	let vkCmdBindIndexBuffer: PFN_vkCmdBindIndexBuffer = load_func("vkCmdBindIndexBuffer");
+	let vkCmdBindVertexBuffers: PFN_vkCmdBindVertexBuffers = load_func("vkCmdBindVertexBuffers");
+	let vkCmdDraw: PFN_vkCmdDraw = load_func("vkCmdDraw");
+	let vkCmdDrawIndexed: PFN_vkCmdDrawIndexed = load_func("vkCmdDrawIndexed");
+	let vkCmdDrawMultiEXT: PFN_vkCmdDrawMultiEXT = load_func("vkCmdDrawMultiEXT");
+	let vkCmdDrawMultiIndexedEXT: PFN_vkCmdDrawMultiIndexedEXT = load_func("vkCmdDrawMultiIndexedEXT");
+	let vkCmdDrawIndirect: PFN_vkCmdDrawIndirect = load_func("vkCmdDrawIndirect");
+	let vkCmdDrawIndexedIndirect: PFN_vkCmdDrawIndexedIndirect = load_func("vkCmdDrawIndexedIndirect");
+	let vkCmdDispatch: PFN_vkCmdDispatch = load_func("vkCmdDispatch");
+	let vkCmdDispatchIndirect: PFN_vkCmdDispatchIndirect = load_func("vkCmdDispatchIndirect");
+	let vkCmdSubpassShadingHUAWEI: PFN_vkCmdSubpassShadingHUAWEI = load_func("vkCmdSubpassShadingHUAWEI");
+	let vkCmdCopyBuffer: PFN_vkCmdCopyBuffer = load_func("vkCmdCopyBuffer");
+	let vkCmdCopyImage: PFN_vkCmdCopyImage = load_func("vkCmdCopyImage");
+	let vkCmdBlitImage: PFN_vkCmdBlitImage = load_func("vkCmdBlitImage");
+	let vkCmdCopyBufferToImage: PFN_vkCmdCopyBufferToImage = load_func("vkCmdCopyBufferToImage");
+	let vkCmdCopyImageToBuffer: PFN_vkCmdCopyImageToBuffer = load_func("vkCmdCopyImageToBuffer");
+	let vkCmdCopyMemoryIndirectNV: PFN_vkCmdCopyMemoryIndirectNV = load_func("vkCmdCopyMemoryIndirectNV");
+	let vkCmdCopyMemoryToImageIndirectNV: PFN_vkCmdCopyMemoryToImageIndirectNV = load_func("vkCmdCopyMemoryToImageIndirectNV");
+	let vkCmdUpdateBuffer: PFN_vkCmdUpdateBuffer = load_func("vkCmdUpdateBuffer");
+	let vkCmdFillBuffer: PFN_vkCmdFillBuffer = load_func("vkCmdFillBuffer");
+	let vkCmdClearColorImage: PFN_vkCmdClearColorImage = load_func("vkCmdClearColorImage");
+	let vkCmdClearDepthStencilImage: PFN_vkCmdClearDepthStencilImage = load_func("vkCmdClearDepthStencilImage");
+	let vkCmdClearAttachments: PFN_vkCmdClearAttachments = load_func("vkCmdClearAttachments");
+	let vkCmdResolveImage: PFN_vkCmdResolveImage = load_func("vkCmdResolveImage");
+	let vkCmdSetEvent: PFN_vkCmdSetEvent = load_func("vkCmdSetEvent");
+	let vkCmdResetEvent: PFN_vkCmdResetEvent = load_func("vkCmdResetEvent");
+	let vkCmdWaitEvents: PFN_vkCmdWaitEvents = load_func("vkCmdWaitEvents");
+	let vkCmdPipelineBarrier: PFN_vkCmdPipelineBarrier = load_func("vkCmdPipelineBarrier");
+	let vkCmdBeginQuery: PFN_vkCmdBeginQuery = load_func("vkCmdBeginQuery");
+	let vkCmdEndQuery: PFN_vkCmdEndQuery = load_func("vkCmdEndQuery");
+	let vkCmdBeginConditionalRenderingEXT: PFN_vkCmdBeginConditionalRenderingEXT = load_func("vkCmdBeginConditionalRenderingEXT");
+	let vkCmdEndConditionalRenderingEXT: PFN_vkCmdEndConditionalRenderingEXT = load_func("vkCmdEndConditionalRenderingEXT");
+	let vkCmdResetQueryPool: PFN_vkCmdResetQueryPool = load_func("vkCmdResetQueryPool");
+	let vkCmdWriteTimestamp: PFN_vkCmdWriteTimestamp = load_func("vkCmdWriteTimestamp");
+	let vkCmdCopyQueryPoolResults: PFN_vkCmdCopyQueryPoolResults = load_func("vkCmdCopyQueryPoolResults");
+	let vkCmdPushConstants: PFN_vkCmdPushConstants = load_func("vkCmdPushConstants");
+	let vkCmdBeginRenderPass: PFN_vkCmdBeginRenderPass = load_func("vkCmdBeginRenderPass");
+	let vkCmdNextSubpass: PFN_vkCmdNextSubpass = load_func("vkCmdNextSubpass");
+	let vkCmdEndRenderPass: PFN_vkCmdEndRenderPass = load_func("vkCmdEndRenderPass");
+	let vkCmdExecuteCommands: PFN_vkCmdExecuteCommands = load_func("vkCmdExecuteCommands");
+	let vkCreateAndroidSurfaceKHR: PFN_vkCreateAndroidSurfaceKHR = load_func("vkCreateAndroidSurfaceKHR");
+	let vkGetPhysicalDeviceDisplayPropertiesKHR: PFN_vkGetPhysicalDeviceDisplayPropertiesKHR = load_func("vkGetPhysicalDeviceDisplayPropertiesKHR");
+	let vkGetPhysicalDeviceDisplayPlanePropertiesKHR: PFN_vkGetPhysicalDeviceDisplayPlanePropertiesKHR = load_func("vkGetPhysicalDeviceDisplayPlanePropertiesKHR");
+	let vkGetDisplayPlaneSupportedDisplaysKHR: PFN_vkGetDisplayPlaneSupportedDisplaysKHR = load_func("vkGetDisplayPlaneSupportedDisplaysKHR");
+	let vkGetDisplayModePropertiesKHR: PFN_vkGetDisplayModePropertiesKHR = load_func("vkGetDisplayModePropertiesKHR");
+	let vkCreateDisplayModeKHR: PFN_vkCreateDisplayModeKHR = load_func("vkCreateDisplayModeKHR");
+	let vkGetDisplayPlaneCapabilitiesKHR: PFN_vkGetDisplayPlaneCapabilitiesKHR = load_func("vkGetDisplayPlaneCapabilitiesKHR");
+	let vkCreateDisplayPlaneSurfaceKHR: PFN_vkCreateDisplayPlaneSurfaceKHR = load_func("vkCreateDisplayPlaneSurfaceKHR");
+	let vkCreateSharedSwapchainsKHR: PFN_vkCreateSharedSwapchainsKHR = load_func("vkCreateSharedSwapchainsKHR");
+	let vkDestroySurfaceKHR: PFN_vkDestroySurfaceKHR = load_func("vkDestroySurfaceKHR");
+	let vkGetPhysicalDeviceSurfaceSupportKHR: PFN_vkGetPhysicalDeviceSurfaceSupportKHR = load_func("vkGetPhysicalDeviceSurfaceSupportKHR");
+	let vkGetPhysicalDeviceSurfaceCapabilitiesKHR: PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR = load_func("vkGetPhysicalDeviceSurfaceCapabilitiesKHR");
+	let vkGetPhysicalDeviceSurfaceFormatsKHR: PFN_vkGetPhysicalDeviceSurfaceFormatsKHR = load_func("vkGetPhysicalDeviceSurfaceFormatsKHR");
+	let vkGetPhysicalDeviceSurfacePresentModesKHR: PFN_vkGetPhysicalDeviceSurfacePresentModesKHR = load_func("vkGetPhysicalDeviceSurfacePresentModesKHR");
+	let vkCreateSwapchainKHR: PFN_vkCreateSwapchainKHR = load_func("vkCreateSwapchainKHR");
+	let vkDestroySwapchainKHR: PFN_vkDestroySwapchainKHR = load_func("vkDestroySwapchainKHR");
+	let vkGetSwapchainImagesKHR: PFN_vkGetSwapchainImagesKHR = load_func("vkGetSwapchainImagesKHR");
+	let vkAcquireNextImageKHR: PFN_vkAcquireNextImageKHR = load_func("vkAcquireNextImageKHR");
+	let vkQueuePresentKHR: PFN_vkQueuePresentKHR = load_func("vkQueuePresentKHR");
+	let vkCreateViSurfaceNN: PFN_vkCreateViSurfaceNN = load_func("vkCreateViSurfaceNN");
+	let vkCreateWaylandSurfaceKHR: PFN_vkCreateWaylandSurfaceKHR = load_func("vkCreateWaylandSurfaceKHR");
+	let vkGetPhysicalDeviceWaylandPresentationSupportKHR: PFN_vkGetPhysicalDeviceWaylandPresentationSupportKHR = load_func("vkGetPhysicalDeviceWaylandPresentationSupportKHR");
+	let vkCreateWin32SurfaceKHR: PFN_vkCreateWin32SurfaceKHR = load_func("vkCreateWin32SurfaceKHR");
+	let vkGetPhysicalDeviceWin32PresentationSupportKHR: PFN_vkGetPhysicalDeviceWin32PresentationSupportKHR = load_func("vkGetPhysicalDeviceWin32PresentationSupportKHR");
+	let vkCreateXlibSurfaceKHR: PFN_vkCreateXlibSurfaceKHR = load_func("vkCreateXlibSurfaceKHR");
+	let vkGetPhysicalDeviceXlibPresentationSupportKHR: PFN_vkGetPhysicalDeviceXlibPresentationSupportKHR = load_func("vkGetPhysicalDeviceXlibPresentationSupportKHR");
+	let vkCreateXcbSurfaceKHR: PFN_vkCreateXcbSurfaceKHR = load_func("vkCreateXcbSurfaceKHR");
+	let vkGetPhysicalDeviceXcbPresentationSupportKHR: PFN_vkGetPhysicalDeviceXcbPresentationSupportKHR = load_func("vkGetPhysicalDeviceXcbPresentationSupportKHR");
+	let vkCreateDirectFBSurfaceEXT: PFN_vkCreateDirectFBSurfaceEXT = load_func("vkCreateDirectFBSurfaceEXT");
+	let vkGetPhysicalDeviceDirectFBPresentationSupportEXT: PFN_vkGetPhysicalDeviceDirectFBPresentationSupportEXT = load_func("vkGetPhysicalDeviceDirectFBPresentationSupportEXT");
+	let vkCreateImagePipeSurfaceFUCHSIA: PFN_vkCreateImagePipeSurfaceFUCHSIA = load_func("vkCreateImagePipeSurfaceFUCHSIA");
+	let vkCreateStreamDescriptorSurfaceGGP: PFN_vkCreateStreamDescriptorSurfaceGGP = load_func("vkCreateStreamDescriptorSurfaceGGP");
+	let vkCreateScreenSurfaceQNX: PFN_vkCreateScreenSurfaceQNX = load_func("vkCreateScreenSurfaceQNX");
+	let vkGetPhysicalDeviceScreenPresentationSupportQNX: PFN_vkGetPhysicalDeviceScreenPresentationSupportQNX = load_func("vkGetPhysicalDeviceScreenPresentationSupportQNX");
+	let vkCreateDebugReportCallbackEXT: PFN_vkCreateDebugReportCallbackEXT = load_func("vkCreateDebugReportCallbackEXT");
+	let vkDestroyDebugReportCallbackEXT: PFN_vkDestroyDebugReportCallbackEXT = load_func("vkDestroyDebugReportCallbackEXT");
+	let vkDebugReportMessageEXT: PFN_vkDebugReportMessageEXT = load_func("vkDebugReportMessageEXT");
+	let vkDebugMarkerSetObjectNameEXT: PFN_vkDebugMarkerSetObjectNameEXT = load_func("vkDebugMarkerSetObjectNameEXT");
+	let vkDebugMarkerSetObjectTagEXT: PFN_vkDebugMarkerSetObjectTagEXT = load_func("vkDebugMarkerSetObjectTagEXT");
+	let vkCmdDebugMarkerBeginEXT: PFN_vkCmdDebugMarkerBeginEXT = load_func("vkCmdDebugMarkerBeginEXT");
+	let vkCmdDebugMarkerEndEXT: PFN_vkCmdDebugMarkerEndEXT = load_func("vkCmdDebugMarkerEndEXT");
+	let vkCmdDebugMarkerInsertEXT: PFN_vkCmdDebugMarkerInsertEXT = load_func("vkCmdDebugMarkerInsertEXT");
+	let vkGetPhysicalDeviceExternalImageFormatPropertiesNV: PFN_vkGetPhysicalDeviceExternalImageFormatPropertiesNV = load_func("vkGetPhysicalDeviceExternalImageFormatPropertiesNV");
+	let vkGetMemoryWin32HandleNV: PFN_vkGetMemoryWin32HandleNV = load_func("vkGetMemoryWin32HandleNV");
+	let vkCmdExecuteGeneratedCommandsNV: PFN_vkCmdExecuteGeneratedCommandsNV = load_func("vkCmdExecuteGeneratedCommandsNV");
+	let vkCmdPreprocessGeneratedCommandsNV: PFN_vkCmdPreprocessGeneratedCommandsNV = load_func("vkCmdPreprocessGeneratedCommandsNV");
+	let vkCmdBindPipelineShaderGroupNV: PFN_vkCmdBindPipelineShaderGroupNV = load_func("vkCmdBindPipelineShaderGroupNV");
+	let vkGetGeneratedCommandsMemoryRequirementsNV: PFN_vkGetGeneratedCommandsMemoryRequirementsNV = load_func("vkGetGeneratedCommandsMemoryRequirementsNV");
+	let vkCreateIndirectCommandsLayoutNV: PFN_vkCreateIndirectCommandsLayoutNV = load_func("vkCreateIndirectCommandsLayoutNV");
+	let vkDestroyIndirectCommandsLayoutNV: PFN_vkDestroyIndirectCommandsLayoutNV = load_func("vkDestroyIndirectCommandsLayoutNV");
+	let vkGetPhysicalDeviceFeatures2: PFN_vkGetPhysicalDeviceFeatures2 = load_func("vkGetPhysicalDeviceFeatures2");
+	let vkGetPhysicalDeviceProperties2: PFN_vkGetPhysicalDeviceProperties2 = load_func("vkGetPhysicalDeviceProperties2");
+	let vkGetPhysicalDeviceFormatProperties2: PFN_vkGetPhysicalDeviceFormatProperties2 = load_func("vkGetPhysicalDeviceFormatProperties2");
+	let vkGetPhysicalDeviceImageFormatProperties2: PFN_vkGetPhysicalDeviceImageFormatProperties2 = load_func("vkGetPhysicalDeviceImageFormatProperties2");
+	let vkGetPhysicalDeviceQueueFamilyProperties2: PFN_vkGetPhysicalDeviceQueueFamilyProperties2 = load_func("vkGetPhysicalDeviceQueueFamilyProperties2");
+	let vkGetPhysicalDeviceMemoryProperties2: PFN_vkGetPhysicalDeviceMemoryProperties2 = load_func("vkGetPhysicalDeviceMemoryProperties2");
+	let vkGetPhysicalDeviceSparseImageFormatProperties2: PFN_vkGetPhysicalDeviceSparseImageFormatProperties2 = load_func("vkGetPhysicalDeviceSparseImageFormatProperties2");
+	let vkCmdPushDescriptorSetKHR: PFN_vkCmdPushDescriptorSetKHR = load_func("vkCmdPushDescriptorSetKHR");
+	let vkTrimCommandPool: PFN_vkTrimCommandPool = load_func("vkTrimCommandPool");
+	let vkGetPhysicalDeviceExternalBufferProperties: PFN_vkGetPhysicalDeviceExternalBufferProperties = load_func("vkGetPhysicalDeviceExternalBufferProperties");
+	let vkGetMemoryWin32HandleKHR: PFN_vkGetMemoryWin32HandleKHR = load_func("vkGetMemoryWin32HandleKHR");
+	let vkGetMemoryWin32HandlePropertiesKHR: PFN_vkGetMemoryWin32HandlePropertiesKHR = load_func("vkGetMemoryWin32HandlePropertiesKHR");
+	let vkGetMemoryFdKHR: PFN_vkGetMemoryFdKHR = load_func("vkGetMemoryFdKHR");
+	let vkGetMemoryFdPropertiesKHR: PFN_vkGetMemoryFdPropertiesKHR = load_func("vkGetMemoryFdPropertiesKHR");
+	let vkGetMemoryZirconHandleFUCHSIA: PFN_vkGetMemoryZirconHandleFUCHSIA = load_func("vkGetMemoryZirconHandleFUCHSIA");
+	let vkGetMemoryZirconHandlePropertiesFUCHSIA: PFN_vkGetMemoryZirconHandlePropertiesFUCHSIA = load_func("vkGetMemoryZirconHandlePropertiesFUCHSIA");
+	let vkGetMemoryRemoteAddressNV: PFN_vkGetMemoryRemoteAddressNV = load_func("vkGetMemoryRemoteAddressNV");
+	let vkGetPhysicalDeviceExternalSemaphoreProperties: PFN_vkGetPhysicalDeviceExternalSemaphoreProperties = load_func("vkGetPhysicalDeviceExternalSemaphoreProperties");
+	let vkGetSemaphoreWin32HandleKHR: PFN_vkGetSemaphoreWin32HandleKHR = load_func("vkGetSemaphoreWin32HandleKHR");
+	let vkImportSemaphoreWin32HandleKHR: PFN_vkImportSemaphoreWin32HandleKHR = load_func("vkImportSemaphoreWin32HandleKHR");
+	let vkGetSemaphoreFdKHR: PFN_vkGetSemaphoreFdKHR = load_func("vkGetSemaphoreFdKHR");
+	let vkImportSemaphoreFdKHR: PFN_vkImportSemaphoreFdKHR = load_func("vkImportSemaphoreFdKHR");
+	let vkGetSemaphoreZirconHandleFUCHSIA: PFN_vkGetSemaphoreZirconHandleFUCHSIA = load_func("vkGetSemaphoreZirconHandleFUCHSIA");
+	let vkImportSemaphoreZirconHandleFUCHSIA: PFN_vkImportSemaphoreZirconHandleFUCHSIA = load_func("vkImportSemaphoreZirconHandleFUCHSIA");
+	let vkGetPhysicalDeviceExternalFenceProperties: PFN_vkGetPhysicalDeviceExternalFenceProperties = load_func("vkGetPhysicalDeviceExternalFenceProperties");
+	let vkGetFenceWin32HandleKHR: PFN_vkGetFenceWin32HandleKHR = load_func("vkGetFenceWin32HandleKHR");
+	let vkImportFenceWin32HandleKHR: PFN_vkImportFenceWin32HandleKHR = load_func("vkImportFenceWin32HandleKHR");
+	let vkGetFenceFdKHR: PFN_vkGetFenceFdKHR = load_func("vkGetFenceFdKHR");
+	let vkImportFenceFdKHR: PFN_vkImportFenceFdKHR = load_func("vkImportFenceFdKHR");
+	let vkReleaseDisplayEXT: PFN_vkReleaseDisplayEXT = load_func("vkReleaseDisplayEXT");
+	let vkAcquireXlibDisplayEXT: PFN_vkAcquireXlibDisplayEXT = load_func("vkAcquireXlibDisplayEXT");
+	let vkGetRandROutputDisplayEXT: PFN_vkGetRandROutputDisplayEXT = load_func("vkGetRandROutputDisplayEXT");
+	let vkAcquireWinrtDisplayNV: PFN_vkAcquireWinrtDisplayNV = load_func("vkAcquireWinrtDisplayNV");
+	let vkGetWinrtDisplayNV: PFN_vkGetWinrtDisplayNV = load_func("vkGetWinrtDisplayNV");
+	let vkDisplayPowerControlEXT: PFN_vkDisplayPowerControlEXT = load_func("vkDisplayPowerControlEXT");
+	let vkRegisterDeviceEventEXT: PFN_vkRegisterDeviceEventEXT = load_func("vkRegisterDeviceEventEXT");
+	let vkRegisterDisplayEventEXT: PFN_vkRegisterDisplayEventEXT = load_func("vkRegisterDisplayEventEXT");
+	let vkGetSwapchainCounterEXT: PFN_vkGetSwapchainCounterEXT = load_func("vkGetSwapchainCounterEXT");
+	let vkGetPhysicalDeviceSurfaceCapabilities2EXT: PFN_vkGetPhysicalDeviceSurfaceCapabilities2EXT = load_func("vkGetPhysicalDeviceSurfaceCapabilities2EXT");
+	let vkEnumeratePhysicalDeviceGroups: PFN_vkEnumeratePhysicalDeviceGroups = load_func("vkEnumeratePhysicalDeviceGroups");
+	let vkGetDeviceGroupPeerMemoryFeatures: PFN_vkGetDeviceGroupPeerMemoryFeatures = load_func("vkGetDeviceGroupPeerMemoryFeatures");
+	let vkBindBufferMemory2: PFN_vkBindBufferMemory2 = load_func("vkBindBufferMemory2");
+	let vkBindImageMemory2: PFN_vkBindImageMemory2 = load_func("vkBindImageMemory2");
+	let vkCmdSetDeviceMask: PFN_vkCmdSetDeviceMask = load_func("vkCmdSetDeviceMask");
+	let vkGetDeviceGroupPresentCapabilitiesKHR: PFN_vkGetDeviceGroupPresentCapabilitiesKHR = load_func("vkGetDeviceGroupPresentCapabilitiesKHR");
+	let vkGetDeviceGroupSurfacePresentModesKHR: PFN_vkGetDeviceGroupSurfacePresentModesKHR = load_func("vkGetDeviceGroupSurfacePresentModesKHR");
+	let vkAcquireNextImage2KHR: PFN_vkAcquireNextImage2KHR = load_func("vkAcquireNextImage2KHR");
+	let vkCmdDispatchBase: PFN_vkCmdDispatchBase = load_func("vkCmdDispatchBase");
+	let vkGetPhysicalDevicePresentRectanglesKHR: PFN_vkGetPhysicalDevicePresentRectanglesKHR = load_func("vkGetPhysicalDevicePresentRectanglesKHR");
+	let vkCreateDescriptorUpdateTemplate: PFN_vkCreateDescriptorUpdateTemplate = load_func("vkCreateDescriptorUpdateTemplate");
+	let vkDestroyDescriptorUpdateTemplate: PFN_vkDestroyDescriptorUpdateTemplate = load_func("vkDestroyDescriptorUpdateTemplate");
+	let vkUpdateDescriptorSetWithTemplate: PFN_vkUpdateDescriptorSetWithTemplate = load_func("vkUpdateDescriptorSetWithTemplate");
+	let vkCmdPushDescriptorSetWithTemplateKHR: PFN_vkCmdPushDescriptorSetWithTemplateKHR = load_func("vkCmdPushDescriptorSetWithTemplateKHR");
+	let vkSetHdrMetadataEXT: PFN_vkSetHdrMetadataEXT = load_func("vkSetHdrMetadataEXT");
+	let vkGetSwapchainStatusKHR: PFN_vkGetSwapchainStatusKHR = load_func("vkGetSwapchainStatusKHR");
+	let vkGetRefreshCycleDurationGOOGLE: PFN_vkGetRefreshCycleDurationGOOGLE = load_func("vkGetRefreshCycleDurationGOOGLE");
+	let vkGetPastPresentationTimingGOOGLE: PFN_vkGetPastPresentationTimingGOOGLE = load_func("vkGetPastPresentationTimingGOOGLE");
+	let vkCreateIOSSurfaceMVK: PFN_vkCreateIOSSurfaceMVK = load_func("vkCreateIOSSurfaceMVK");
+	let vkCreateMacOSSurfaceMVK: PFN_vkCreateMacOSSurfaceMVK = load_func("vkCreateMacOSSurfaceMVK");
+	let vkCreateMetalSurfaceEXT: PFN_vkCreateMetalSurfaceEXT = load_func("vkCreateMetalSurfaceEXT");
+	let vkCmdSetViewportWScalingNV: PFN_vkCmdSetViewportWScalingNV = load_func("vkCmdSetViewportWScalingNV");
+	let vkCmdSetDiscardRectangleEXT: PFN_vkCmdSetDiscardRectangleEXT = load_func("vkCmdSetDiscardRectangleEXT");
+	let vkCmdSetSampleLocationsEXT: PFN_vkCmdSetSampleLocationsEXT = load_func("vkCmdSetSampleLocationsEXT");
+	let vkGetPhysicalDeviceMultisamplePropertiesEXT: PFN_vkGetPhysicalDeviceMultisamplePropertiesEXT = load_func("vkGetPhysicalDeviceMultisamplePropertiesEXT");
+	let vkGetPhysicalDeviceSurfaceCapabilities2KHR: PFN_vkGetPhysicalDeviceSurfaceCapabilities2KHR = load_func("vkGetPhysicalDeviceSurfaceCapabilities2KHR");
+	let vkGetPhysicalDeviceSurfaceFormats2KHR: PFN_vkGetPhysicalDeviceSurfaceFormats2KHR = load_func("vkGetPhysicalDeviceSurfaceFormats2KHR");
+	let vkGetPhysicalDeviceDisplayProperties2KHR: PFN_vkGetPhysicalDeviceDisplayProperties2KHR = load_func("vkGetPhysicalDeviceDisplayProperties2KHR");
+	let vkGetPhysicalDeviceDisplayPlaneProperties2KHR: PFN_vkGetPhysicalDeviceDisplayPlaneProperties2KHR = load_func("vkGetPhysicalDeviceDisplayPlaneProperties2KHR");
+	let vkGetDisplayModeProperties2KHR: PFN_vkGetDisplayModeProperties2KHR = load_func("vkGetDisplayModeProperties2KHR");
+	let vkGetDisplayPlaneCapabilities2KHR: PFN_vkGetDisplayPlaneCapabilities2KHR = load_func("vkGetDisplayPlaneCapabilities2KHR");
+	let vkGetBufferMemoryRequirements2: PFN_vkGetBufferMemoryRequirements2 = load_func("vkGetBufferMemoryRequirements2");
+	let vkGetImageMemoryRequirements2: PFN_vkGetImageMemoryRequirements2 = load_func("vkGetImageMemoryRequirements2");
+	let vkGetImageSparseMemoryRequirements2: PFN_vkGetImageSparseMemoryRequirements2 = load_func("vkGetImageSparseMemoryRequirements2");
+	let vkGetDeviceBufferMemoryRequirements: PFN_vkGetDeviceBufferMemoryRequirements = load_func("vkGetDeviceBufferMemoryRequirements");
+	let vkGetDeviceImageMemoryRequirements: PFN_vkGetDeviceImageMemoryRequirements = load_func("vkGetDeviceImageMemoryRequirements");
+	let vkGetDeviceImageSparseMemoryRequirements: PFN_vkGetDeviceImageSparseMemoryRequirements = load_func("vkGetDeviceImageSparseMemoryRequirements");
+	let vkCreateSamplerYcbcrConversion: PFN_vkCreateSamplerYcbcrConversion = load_func("vkCreateSamplerYcbcrConversion");
+	let vkDestroySamplerYcbcrConversion: PFN_vkDestroySamplerYcbcrConversion = load_func("vkDestroySamplerYcbcrConversion");
+	let vkGetDeviceQueue2: PFN_vkGetDeviceQueue2 = load_func("vkGetDeviceQueue2");
+	let vkCreateValidationCacheEXT: PFN_vkCreateValidationCacheEXT = load_func("vkCreateValidationCacheEXT");
+	let vkDestroyValidationCacheEXT: PFN_vkDestroyValidationCacheEXT = load_func("vkDestroyValidationCacheEXT");
+	let vkGetValidationCacheDataEXT: PFN_vkGetValidationCacheDataEXT = load_func("vkGetValidationCacheDataEXT");
+	let vkMergeValidationCachesEXT: PFN_vkMergeValidationCachesEXT = load_func("vkMergeValidationCachesEXT");
+	let vkGetDescriptorSetLayoutSupport: PFN_vkGetDescriptorSetLayoutSupport = load_func("vkGetDescriptorSetLayoutSupport");
+	let vkGetSwapchainGrallocUsageANDROID: PFN_vkGetSwapchainGrallocUsageANDROID = load_func("vkGetSwapchainGrallocUsageANDROID");
+	let vkGetSwapchainGrallocUsage2ANDROID: PFN_vkGetSwapchainGrallocUsage2ANDROID = load_func("vkGetSwapchainGrallocUsage2ANDROID");
+	let vkAcquireImageANDROID: PFN_vkAcquireImageANDROID = load_func("vkAcquireImageANDROID");
+	let vkQueueSignalReleaseImageANDROID: PFN_vkQueueSignalReleaseImageANDROID = load_func("vkQueueSignalReleaseImageANDROID");
+	let vkGetShaderInfoAMD: PFN_vkGetShaderInfoAMD = load_func("vkGetShaderInfoAMD");
+	let vkSetLocalDimmingAMD: PFN_vkSetLocalDimmingAMD = load_func("vkSetLocalDimmingAMD");
+	let vkGetPhysicalDeviceCalibrateableTimeDomainsEXT: PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = load_func("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT");
+	let vkGetCalibratedTimestampsEXT: PFN_vkGetCalibratedTimestampsEXT = load_func("vkGetCalibratedTimestampsEXT");
+	let vkSetDebugUtilsObjectNameEXT: PFN_vkSetDebugUtilsObjectNameEXT = load_func("vkSetDebugUtilsObjectNameEXT");
+	let vkSetDebugUtilsObjectTagEXT: PFN_vkSetDebugUtilsObjectTagEXT = load_func("vkSetDebugUtilsObjectTagEXT");
+	let vkQueueBeginDebugUtilsLabelEXT: PFN_vkQueueBeginDebugUtilsLabelEXT = load_func("vkQueueBeginDebugUtilsLabelEXT");
+	let vkQueueEndDebugUtilsLabelEXT: PFN_vkQueueEndDebugUtilsLabelEXT = load_func("vkQueueEndDebugUtilsLabelEXT");
+	let vkQueueInsertDebugUtilsLabelEXT: PFN_vkQueueInsertDebugUtilsLabelEXT = load_func("vkQueueInsertDebugUtilsLabelEXT");
+	let vkCmdBeginDebugUtilsLabelEXT: PFN_vkCmdBeginDebugUtilsLabelEXT = load_func("vkCmdBeginDebugUtilsLabelEXT");
+	let vkCmdEndDebugUtilsLabelEXT: PFN_vkCmdEndDebugUtilsLabelEXT = load_func("vkCmdEndDebugUtilsLabelEXT");
+	let vkCmdInsertDebugUtilsLabelEXT: PFN_vkCmdInsertDebugUtilsLabelEXT = load_func("vkCmdInsertDebugUtilsLabelEXT");
+	let vkCreateDebugUtilsMessengerEXT: PFN_vkCreateDebugUtilsMessengerEXT = load_func("vkCreateDebugUtilsMessengerEXT");
+	let vkDestroyDebugUtilsMessengerEXT: PFN_vkDestroyDebugUtilsMessengerEXT = load_func("vkDestroyDebugUtilsMessengerEXT");
+	let vkSubmitDebugUtilsMessageEXT: PFN_vkSubmitDebugUtilsMessageEXT = load_func("vkSubmitDebugUtilsMessageEXT");
+	let vkGetMemoryHostPointerPropertiesEXT: PFN_vkGetMemoryHostPointerPropertiesEXT = load_func("vkGetMemoryHostPointerPropertiesEXT");
+	let vkCmdWriteBufferMarkerAMD: PFN_vkCmdWriteBufferMarkerAMD = load_func("vkCmdWriteBufferMarkerAMD");
+	let vkCreateRenderPass2: PFN_vkCreateRenderPass2 = load_func("vkCreateRenderPass2");
+	let vkCmdBeginRenderPass2: PFN_vkCmdBeginRenderPass2 = load_func("vkCmdBeginRenderPass2");
+	let vkCmdNextSubpass2: PFN_vkCmdNextSubpass2 = load_func("vkCmdNextSubpass2");
+	let vkCmdEndRenderPass2: PFN_vkCmdEndRenderPass2 = load_func("vkCmdEndRenderPass2");
+	let vkGetSemaphoreCounterValue: PFN_vkGetSemaphoreCounterValue = load_func("vkGetSemaphoreCounterValue");
+	let vkWaitSemaphores: PFN_vkWaitSemaphores = load_func("vkWaitSemaphores");
+	let vkSignalSemaphore: PFN_vkSignalSemaphore = load_func("vkSignalSemaphore");
+	let vkGetAndroidHardwareBufferPropertiesANDROID: PFN_vkGetAndroidHardwareBufferPropertiesANDROID = load_func("vkGetAndroidHardwareBufferPropertiesANDROID");
+	let vkGetMemoryAndroidHardwareBufferANDROID: PFN_vkGetMemoryAndroidHardwareBufferANDROID = load_func("vkGetMemoryAndroidHardwareBufferANDROID");
+	let vkCmdDrawIndirectCount: PFN_vkCmdDrawIndirectCount = load_func("vkCmdDrawIndirectCount");
+	let vkCmdDrawIndexedIndirectCount: PFN_vkCmdDrawIndexedIndirectCount = load_func("vkCmdDrawIndexedIndirectCount");
+	let vkCmdSetCheckpointNV: PFN_vkCmdSetCheckpointNV = load_func("vkCmdSetCheckpointNV");
+	let vkGetQueueCheckpointDataNV: PFN_vkGetQueueCheckpointDataNV = load_func("vkGetQueueCheckpointDataNV");
+	let vkCmdBindTransformFeedbackBuffersEXT: PFN_vkCmdBindTransformFeedbackBuffersEXT = load_func("vkCmdBindTransformFeedbackBuffersEXT");
+	let vkCmdBeginTransformFeedbackEXT: PFN_vkCmdBeginTransformFeedbackEXT = load_func("vkCmdBeginTransformFeedbackEXT");
+	let vkCmdEndTransformFeedbackEXT: PFN_vkCmdEndTransformFeedbackEXT = load_func("vkCmdEndTransformFeedbackEXT");
+	let vkCmdBeginQueryIndexedEXT: PFN_vkCmdBeginQueryIndexedEXT = load_func("vkCmdBeginQueryIndexedEXT");
+	let vkCmdEndQueryIndexedEXT: PFN_vkCmdEndQueryIndexedEXT = load_func("vkCmdEndQueryIndexedEXT");
+	let vkCmdDrawIndirectByteCountEXT: PFN_vkCmdDrawIndirectByteCountEXT = load_func("vkCmdDrawIndirectByteCountEXT");
+	let vkCmdSetExclusiveScissorNV: PFN_vkCmdSetExclusiveScissorNV = load_func("vkCmdSetExclusiveScissorNV");
+	let vkCmdBindShadingRateImageNV: PFN_vkCmdBindShadingRateImageNV = load_func("vkCmdBindShadingRateImageNV");
+	let vkCmdSetViewportShadingRatePaletteNV: PFN_vkCmdSetViewportShadingRatePaletteNV = load_func("vkCmdSetViewportShadingRatePaletteNV");
+	let vkCmdSetCoarseSampleOrderNV: PFN_vkCmdSetCoarseSampleOrderNV = load_func("vkCmdSetCoarseSampleOrderNV");
+	let vkCmdDrawMeshTasksNV: PFN_vkCmdDrawMeshTasksNV = load_func("vkCmdDrawMeshTasksNV");
+	let vkCmdDrawMeshTasksIndirectNV: PFN_vkCmdDrawMeshTasksIndirectNV = load_func("vkCmdDrawMeshTasksIndirectNV");
+	let vkCmdDrawMeshTasksIndirectCountNV: PFN_vkCmdDrawMeshTasksIndirectCountNV = load_func("vkCmdDrawMeshTasksIndirectCountNV");
+	let vkCmdDrawMeshTasksEXT: PFN_vkCmdDrawMeshTasksEXT = load_func("vkCmdDrawMeshTasksEXT");
+	let vkCmdDrawMeshTasksIndirectEXT: PFN_vkCmdDrawMeshTasksIndirectEXT = load_func("vkCmdDrawMeshTasksIndirectEXT");
+	let vkCmdDrawMeshTasksIndirectCountEXT: PFN_vkCmdDrawMeshTasksIndirectCountEXT = load_func("vkCmdDrawMeshTasksIndirectCountEXT");
+	let vkCompileDeferredNV: PFN_vkCompileDeferredNV = load_func("vkCompileDeferredNV");
+	let vkCreateAccelerationStructureNV: PFN_vkCreateAccelerationStructureNV = load_func("vkCreateAccelerationStructureNV");
+	let vkCmdBindInvocationMaskHUAWEI: PFN_vkCmdBindInvocationMaskHUAWEI = load_func("vkCmdBindInvocationMaskHUAWEI");
+	let vkDestroyAccelerationStructureKHR: PFN_vkDestroyAccelerationStructureKHR = load_func("vkDestroyAccelerationStructureKHR");
+	let vkDestroyAccelerationStructureNV: PFN_vkDestroyAccelerationStructureNV = load_func("vkDestroyAccelerationStructureNV");
+	let vkGetAccelerationStructureMemoryRequirementsNV: PFN_vkGetAccelerationStructureMemoryRequirementsNV = load_func("vkGetAccelerationStructureMemoryRequirementsNV");
+	let vkBindAccelerationStructureMemoryNV: PFN_vkBindAccelerationStructureMemoryNV = load_func("vkBindAccelerationStructureMemoryNV");
+	let vkCmdCopyAccelerationStructureNV: PFN_vkCmdCopyAccelerationStructureNV = load_func("vkCmdCopyAccelerationStructureNV");
+	let vkCmdCopyAccelerationStructureKHR: PFN_vkCmdCopyAccelerationStructureKHR = load_func("vkCmdCopyAccelerationStructureKHR");
+	let vkCopyAccelerationStructureKHR: PFN_vkCopyAccelerationStructureKHR = load_func("vkCopyAccelerationStructureKHR");
+	let vkCmdCopyAccelerationStructureToMemoryKHR: PFN_vkCmdCopyAccelerationStructureToMemoryKHR = load_func("vkCmdCopyAccelerationStructureToMemoryKHR");
+	let vkCopyAccelerationStructureToMemoryKHR: PFN_vkCopyAccelerationStructureToMemoryKHR = load_func("vkCopyAccelerationStructureToMemoryKHR");
+	let vkCmdCopyMemoryToAccelerationStructureKHR: PFN_vkCmdCopyMemoryToAccelerationStructureKHR = load_func("vkCmdCopyMemoryToAccelerationStructureKHR");
+	let vkCopyMemoryToAccelerationStructureKHR: PFN_vkCopyMemoryToAccelerationStructureKHR = load_func("vkCopyMemoryToAccelerationStructureKHR");
+	let vkCmdWriteAccelerationStructuresPropertiesKHR: PFN_vkCmdWriteAccelerationStructuresPropertiesKHR = load_func("vkCmdWriteAccelerationStructuresPropertiesKHR");
+	let vkCmdWriteAccelerationStructuresPropertiesNV: PFN_vkCmdWriteAccelerationStructuresPropertiesNV = load_func("vkCmdWriteAccelerationStructuresPropertiesNV");
+	let vkCmdBuildAccelerationStructureNV: PFN_vkCmdBuildAccelerationStructureNV = load_func("vkCmdBuildAccelerationStructureNV");
+	let vkWriteAccelerationStructuresPropertiesKHR: PFN_vkWriteAccelerationStructuresPropertiesKHR = load_func("vkWriteAccelerationStructuresPropertiesKHR");
+	let vkCmdTraceRaysKHR: PFN_vkCmdTraceRaysKHR = load_func("vkCmdTraceRaysKHR");
+	let vkCmdTraceRaysNV: PFN_vkCmdTraceRaysNV = load_func("vkCmdTraceRaysNV");
+	let vkGetRayTracingShaderGroupHandlesKHR: PFN_vkGetRayTracingShaderGroupHandlesKHR = load_func("vkGetRayTracingShaderGroupHandlesKHR");
+	let vkGetRayTracingCaptureReplayShaderGroupHandlesKHR: PFN_vkGetRayTracingCaptureReplayShaderGroupHandlesKHR = load_func("vkGetRayTracingCaptureReplayShaderGroupHandlesKHR");
+	let vkGetAccelerationStructureHandleNV: PFN_vkGetAccelerationStructureHandleNV = load_func("vkGetAccelerationStructureHandleNV");
+	let vkCreateRayTracingPipelinesNV: PFN_vkCreateRayTracingPipelinesNV = load_func("vkCreateRayTracingPipelinesNV");
+	let vkCreateRayTracingPipelinesKHR: PFN_vkCreateRayTracingPipelinesKHR = load_func("vkCreateRayTracingPipelinesKHR");
+	let vkGetPhysicalDeviceCooperativeMatrixPropertiesNV: PFN_vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = load_func("vkGetPhysicalDeviceCooperativeMatrixPropertiesNV");
+	let vkCmdTraceRaysIndirectKHR: PFN_vkCmdTraceRaysIndirectKHR = load_func("vkCmdTraceRaysIndirectKHR");
+	let vkCmdTraceRaysIndirect2KHR: PFN_vkCmdTraceRaysIndirect2KHR = load_func("vkCmdTraceRaysIndirect2KHR");
+	let vkGetDeviceAccelerationStructureCompatibilityKHR: PFN_vkGetDeviceAccelerationStructureCompatibilityKHR = load_func("vkGetDeviceAccelerationStructureCompatibilityKHR");
+	let vkGetRayTracingShaderGroupStackSizeKHR: PFN_vkGetRayTracingShaderGroupStackSizeKHR = load_func("vkGetRayTracingShaderGroupStackSizeKHR");
+	let vkCmdSetRayTracingPipelineStackSizeKHR: PFN_vkCmdSetRayTracingPipelineStackSizeKHR = load_func("vkCmdSetRayTracingPipelineStackSizeKHR");
+	let vkGetImageViewHandleNVX: PFN_vkGetImageViewHandleNVX = load_func("vkGetImageViewHandleNVX");
+	let vkGetImageViewAddressNVX: PFN_vkGetImageViewAddressNVX = load_func("vkGetImageViewAddressNVX");
+	let vkGetPhysicalDeviceSurfacePresentModes2EXT: PFN_vkGetPhysicalDeviceSurfacePresentModes2EXT = load_func("vkGetPhysicalDeviceSurfacePresentModes2EXT");
+	let vkGetDeviceGroupSurfacePresentModes2EXT: PFN_vkGetDeviceGroupSurfacePresentModes2EXT = load_func("vkGetDeviceGroupSurfacePresentModes2EXT");
+	let vkAcquireFullScreenExclusiveModeEXT: PFN_vkAcquireFullScreenExclusiveModeEXT = load_func("vkAcquireFullScreenExclusiveModeEXT");
+	let vkReleaseFullScreenExclusiveModeEXT: PFN_vkReleaseFullScreenExclusiveModeEXT = load_func("vkReleaseFullScreenExclusiveModeEXT");
+	let vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR: PFN_vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = load_func("vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR");
+	let vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR: PFN_vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = load_func("vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR");
+	let vkAcquireProfilingLockKHR: PFN_vkAcquireProfilingLockKHR = load_func("vkAcquireProfilingLockKHR");
+	let vkReleaseProfilingLockKHR: PFN_vkReleaseProfilingLockKHR = load_func("vkReleaseProfilingLockKHR");
+	let vkGetImageDrmFormatModifierPropertiesEXT: PFN_vkGetImageDrmFormatModifierPropertiesEXT = load_func("vkGetImageDrmFormatModifierPropertiesEXT");
+	let vkGetBufferOpaqueCaptureAddress: PFN_vkGetBufferOpaqueCaptureAddress = load_func("vkGetBufferOpaqueCaptureAddress");
+	let vkGetBufferDeviceAddress: PFN_vkGetBufferDeviceAddress = load_func("vkGetBufferDeviceAddress");
+	let vkCreateHeadlessSurfaceEXT: PFN_vkCreateHeadlessSurfaceEXT = load_func("vkCreateHeadlessSurfaceEXT");
+	let vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV: PFN_vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = load_func("vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV");
+	let vkInitializePerformanceApiINTEL: PFN_vkInitializePerformanceApiINTEL = load_func("vkInitializePerformanceApiINTEL");
+	let vkUninitializePerformanceApiINTEL: PFN_vkUninitializePerformanceApiINTEL = load_func("vkUninitializePerformanceApiINTEL");
+	let vkCmdSetPerformanceMarkerINTEL: PFN_vkCmdSetPerformanceMarkerINTEL = load_func("vkCmdSetPerformanceMarkerINTEL");
+	let vkCmdSetPerformanceStreamMarkerINTEL: PFN_vkCmdSetPerformanceStreamMarkerINTEL = load_func("vkCmdSetPerformanceStreamMarkerINTEL");
+	let vkCmdSetPerformanceOverrideINTEL: PFN_vkCmdSetPerformanceOverrideINTEL = load_func("vkCmdSetPerformanceOverrideINTEL");
+	let vkAcquirePerformanceConfigurationINTEL: PFN_vkAcquirePerformanceConfigurationINTEL = load_func("vkAcquirePerformanceConfigurationINTEL");
+	let vkReleasePerformanceConfigurationINTEL: PFN_vkReleasePerformanceConfigurationINTEL = load_func("vkReleasePerformanceConfigurationINTEL");
+	let vkQueueSetPerformanceConfigurationINTEL: PFN_vkQueueSetPerformanceConfigurationINTEL = load_func("vkQueueSetPerformanceConfigurationINTEL");
+	let vkGetPerformanceParameterINTEL: PFN_vkGetPerformanceParameterINTEL = load_func("vkGetPerformanceParameterINTEL");
+	let vkGetDeviceMemoryOpaqueCaptureAddress: PFN_vkGetDeviceMemoryOpaqueCaptureAddress = load_func("vkGetDeviceMemoryOpaqueCaptureAddress");
+	let vkGetPipelineExecutablePropertiesKHR: PFN_vkGetPipelineExecutablePropertiesKHR = load_func("vkGetPipelineExecutablePropertiesKHR");
+	let vkGetPipelineExecutableStatisticsKHR: PFN_vkGetPipelineExecutableStatisticsKHR = load_func("vkGetPipelineExecutableStatisticsKHR");
+	let vkGetPipelineExecutableInternalRepresentationsKHR: PFN_vkGetPipelineExecutableInternalRepresentationsKHR = load_func("vkGetPipelineExecutableInternalRepresentationsKHR");
+	let vkCmdSetLineStippleEXT: PFN_vkCmdSetLineStippleEXT = load_func("vkCmdSetLineStippleEXT");
+	let vkGetPhysicalDeviceToolProperties: PFN_vkGetPhysicalDeviceToolProperties = load_func("vkGetPhysicalDeviceToolProperties");
+	let vkCreateAccelerationStructureKHR: PFN_vkCreateAccelerationStructureKHR = load_func("vkCreateAccelerationStructureKHR");
+	let vkCmdBuildAccelerationStructuresKHR: PFN_vkCmdBuildAccelerationStructuresKHR = load_func("vkCmdBuildAccelerationStructuresKHR");
+	let vkCmdBuildAccelerationStructuresIndirectKHR: PFN_vkCmdBuildAccelerationStructuresIndirectKHR = load_func("vkCmdBuildAccelerationStructuresIndirectKHR");
+	let vkBuildAccelerationStructuresKHR: PFN_vkBuildAccelerationStructuresKHR = load_func("vkBuildAccelerationStructuresKHR");
+	let vkGetAccelerationStructureDeviceAddressKHR: PFN_vkGetAccelerationStructureDeviceAddressKHR = load_func("vkGetAccelerationStructureDeviceAddressKHR");
+	let vkCreateDeferredOperationKHR: PFN_vkCreateDeferredOperationKHR = load_func("vkCreateDeferredOperationKHR");
+	let vkDestroyDeferredOperationKHR: PFN_vkDestroyDeferredOperationKHR = load_func("vkDestroyDeferredOperationKHR");
+	let vkGetDeferredOperationMaxConcurrencyKHR: PFN_vkGetDeferredOperationMaxConcurrencyKHR = load_func("vkGetDeferredOperationMaxConcurrencyKHR");
+	let vkGetDeferredOperationResultKHR: PFN_vkGetDeferredOperationResultKHR = load_func("vkGetDeferredOperationResultKHR");
+	let vkDeferredOperationJoinKHR: PFN_vkDeferredOperationJoinKHR = load_func("vkDeferredOperationJoinKHR");
+	let vkCmdSetCullMode: PFN_vkCmdSetCullMode = load_func("vkCmdSetCullMode");
+	let vkCmdSetFrontFace: PFN_vkCmdSetFrontFace = load_func("vkCmdSetFrontFace");
+	let vkCmdSetPrimitiveTopology: PFN_vkCmdSetPrimitiveTopology = load_func("vkCmdSetPrimitiveTopology");
+	let vkCmdSetViewportWithCount: PFN_vkCmdSetViewportWithCount = load_func("vkCmdSetViewportWithCount");
+	let vkCmdSetScissorWithCount: PFN_vkCmdSetScissorWithCount = load_func("vkCmdSetScissorWithCount");
+	let vkCmdBindVertexBuffers2: PFN_vkCmdBindVertexBuffers2 = load_func("vkCmdBindVertexBuffers2");
+	let vkCmdSetDepthTestEnable: PFN_vkCmdSetDepthTestEnable = load_func("vkCmdSetDepthTestEnable");
+	let vkCmdSetDepthWriteEnable: PFN_vkCmdSetDepthWriteEnable = load_func("vkCmdSetDepthWriteEnable");
+	let vkCmdSetDepthCompareOp: PFN_vkCmdSetDepthCompareOp = load_func("vkCmdSetDepthCompareOp");
+	let vkCmdSetDepthBoundsTestEnable: PFN_vkCmdSetDepthBoundsTestEnable = load_func("vkCmdSetDepthBoundsTestEnable");
+	let vkCmdSetStencilTestEnable: PFN_vkCmdSetStencilTestEnable = load_func("vkCmdSetStencilTestEnable");
+	let vkCmdSetStencilOp: PFN_vkCmdSetStencilOp = load_func("vkCmdSetStencilOp");
+	let vkCmdSetPatchControlPointsEXT: PFN_vkCmdSetPatchControlPointsEXT = load_func("vkCmdSetPatchControlPointsEXT");
+	let vkCmdSetRasterizerDiscardEnable: PFN_vkCmdSetRasterizerDiscardEnable = load_func("vkCmdSetRasterizerDiscardEnable");
+	let vkCmdSetDepthBiasEnable: PFN_vkCmdSetDepthBiasEnable = load_func("vkCmdSetDepthBiasEnable");
+	let vkCmdSetLogicOpEXT: PFN_vkCmdSetLogicOpEXT = load_func("vkCmdSetLogicOpEXT");
+	let vkCmdSetPrimitiveRestartEnable: PFN_vkCmdSetPrimitiveRestartEnable = load_func("vkCmdSetPrimitiveRestartEnable");
+	let vkCmdSetTessellationDomainOriginEXT: PFN_vkCmdSetTessellationDomainOriginEXT = load_func("vkCmdSetTessellationDomainOriginEXT");
+	let vkCmdSetDepthClampEnableEXT: PFN_vkCmdSetDepthClampEnableEXT = load_func("vkCmdSetDepthClampEnableEXT");
+	let vkCmdSetPolygonModeEXT: PFN_vkCmdSetPolygonModeEXT = load_func("vkCmdSetPolygonModeEXT");
+	let vkCmdSetRasterizationSamplesEXT: PFN_vkCmdSetRasterizationSamplesEXT = load_func("vkCmdSetRasterizationSamplesEXT");
+	let vkCmdSetSampleMaskEXT: PFN_vkCmdSetSampleMaskEXT = load_func("vkCmdSetSampleMaskEXT");
+	let vkCmdSetAlphaToCoverageEnableEXT: PFN_vkCmdSetAlphaToCoverageEnableEXT = load_func("vkCmdSetAlphaToCoverageEnableEXT");
+	let vkCmdSetAlphaToOneEnableEXT: PFN_vkCmdSetAlphaToOneEnableEXT = load_func("vkCmdSetAlphaToOneEnableEXT");
+	let vkCmdSetLogicOpEnableEXT: PFN_vkCmdSetLogicOpEnableEXT = load_func("vkCmdSetLogicOpEnableEXT");
+	let vkCmdSetColorBlendEnableEXT: PFN_vkCmdSetColorBlendEnableEXT = load_func("vkCmdSetColorBlendEnableEXT");
+	let vkCmdSetColorBlendEquationEXT: PFN_vkCmdSetColorBlendEquationEXT = load_func("vkCmdSetColorBlendEquationEXT");
+	let vkCmdSetColorWriteMaskEXT: PFN_vkCmdSetColorWriteMaskEXT = load_func("vkCmdSetColorWriteMaskEXT");
+	let vkCmdSetRasterizationStreamEXT: PFN_vkCmdSetRasterizationStreamEXT = load_func("vkCmdSetRasterizationStreamEXT");
+	let vkCmdSetConservativeRasterizationModeEXT: PFN_vkCmdSetConservativeRasterizationModeEXT = load_func("vkCmdSetConservativeRasterizationModeEXT");
+	let vkCmdSetExtraPrimitiveOverestimationSizeEXT: PFN_vkCmdSetExtraPrimitiveOverestimationSizeEXT = load_func("vkCmdSetExtraPrimitiveOverestimationSizeEXT");
+	let vkCmdSetDepthClipEnableEXT: PFN_vkCmdSetDepthClipEnableEXT = load_func("vkCmdSetDepthClipEnableEXT");
+	let vkCmdSetSampleLocationsEnableEXT: PFN_vkCmdSetSampleLocationsEnableEXT = load_func("vkCmdSetSampleLocationsEnableEXT");
+	let vkCmdSetColorBlendAdvancedEXT: PFN_vkCmdSetColorBlendAdvancedEXT = load_func("vkCmdSetColorBlendAdvancedEXT");
+	let vkCmdSetProvokingVertexModeEXT: PFN_vkCmdSetProvokingVertexModeEXT = load_func("vkCmdSetProvokingVertexModeEXT");
+	let vkCmdSetLineRasterizationModeEXT: PFN_vkCmdSetLineRasterizationModeEXT = load_func("vkCmdSetLineRasterizationModeEXT");
+	let vkCmdSetLineStippleEnableEXT: PFN_vkCmdSetLineStippleEnableEXT = load_func("vkCmdSetLineStippleEnableEXT");
+	let vkCmdSetDepthClipNegativeOneToOneEXT: PFN_vkCmdSetDepthClipNegativeOneToOneEXT = load_func("vkCmdSetDepthClipNegativeOneToOneEXT");
+	let vkCmdSetViewportWScalingEnableNV: PFN_vkCmdSetViewportWScalingEnableNV = load_func("vkCmdSetViewportWScalingEnableNV");
+	let vkCmdSetViewportSwizzleNV: PFN_vkCmdSetViewportSwizzleNV = load_func("vkCmdSetViewportSwizzleNV");
+	let vkCmdSetCoverageToColorEnableNV: PFN_vkCmdSetCoverageToColorEnableNV = load_func("vkCmdSetCoverageToColorEnableNV");
+	let vkCmdSetCoverageToColorLocationNV: PFN_vkCmdSetCoverageToColorLocationNV = load_func("vkCmdSetCoverageToColorLocationNV");
+	let vkCmdSetCoverageModulationModeNV: PFN_vkCmdSetCoverageModulationModeNV = load_func("vkCmdSetCoverageModulationModeNV");
+	let vkCmdSetCoverageModulationTableEnableNV: PFN_vkCmdSetCoverageModulationTableEnableNV = load_func("vkCmdSetCoverageModulationTableEnableNV");
+	let vkCmdSetCoverageModulationTableNV: PFN_vkCmdSetCoverageModulationTableNV = load_func("vkCmdSetCoverageModulationTableNV");
+	let vkCmdSetShadingRateImageEnableNV: PFN_vkCmdSetShadingRateImageEnableNV = load_func("vkCmdSetShadingRateImageEnableNV");
+	let vkCmdSetCoverageReductionModeNV: PFN_vkCmdSetCoverageReductionModeNV = load_func("vkCmdSetCoverageReductionModeNV");
+	let vkCmdSetRepresentativeFragmentTestEnableNV: PFN_vkCmdSetRepresentativeFragmentTestEnableNV = load_func("vkCmdSetRepresentativeFragmentTestEnableNV");
+	let vkCreatePrivateDataSlot: PFN_vkCreatePrivateDataSlot = load_func("vkCreatePrivateDataSlot");
+	let vkDestroyPrivateDataSlot: PFN_vkDestroyPrivateDataSlot = load_func("vkDestroyPrivateDataSlot");
+	let vkSetPrivateData: PFN_vkSetPrivateData = load_func("vkSetPrivateData");
+	let vkGetPrivateData: PFN_vkGetPrivateData = load_func("vkGetPrivateData");
+	let vkCmdCopyBuffer2: PFN_vkCmdCopyBuffer2 = load_func("vkCmdCopyBuffer2");
+	let vkCmdCopyImage2: PFN_vkCmdCopyImage2 = load_func("vkCmdCopyImage2");
+	let vkCmdBlitImage2: PFN_vkCmdBlitImage2 = load_func("vkCmdBlitImage2");
+	let vkCmdCopyBufferToImage2: PFN_vkCmdCopyBufferToImage2 = load_func("vkCmdCopyBufferToImage2");
+	let vkCmdCopyImageToBuffer2: PFN_vkCmdCopyImageToBuffer2 = load_func("vkCmdCopyImageToBuffer2");
+	let vkCmdResolveImage2: PFN_vkCmdResolveImage2 = load_func("vkCmdResolveImage2");
+	let vkCmdSetFragmentShadingRateKHR: PFN_vkCmdSetFragmentShadingRateKHR = load_func("vkCmdSetFragmentShadingRateKHR");
+	let vkGetPhysicalDeviceFragmentShadingRatesKHR: PFN_vkGetPhysicalDeviceFragmentShadingRatesKHR = load_func("vkGetPhysicalDeviceFragmentShadingRatesKHR");
+	let vkCmdSetFragmentShadingRateEnumNV: PFN_vkCmdSetFragmentShadingRateEnumNV = load_func("vkCmdSetFragmentShadingRateEnumNV");
+	let vkGetAccelerationStructureBuildSizesKHR: PFN_vkGetAccelerationStructureBuildSizesKHR = load_func("vkGetAccelerationStructureBuildSizesKHR");
+	let vkCmdSetVertexInputEXT: PFN_vkCmdSetVertexInputEXT = load_func("vkCmdSetVertexInputEXT");
+	let vkCmdSetColorWriteEnableEXT: PFN_vkCmdSetColorWriteEnableEXT = load_func("vkCmdSetColorWriteEnableEXT");
+	let vkCmdSetEvent2: PFN_vkCmdSetEvent2 = load_func("vkCmdSetEvent2");
+	let vkCmdResetEvent2: PFN_vkCmdResetEvent2 = load_func("vkCmdResetEvent2");
+	let vkCmdWaitEvents2: PFN_vkCmdWaitEvents2 = load_func("vkCmdWaitEvents2");
+	let vkCmdPipelineBarrier2: PFN_vkCmdPipelineBarrier2 = load_func("vkCmdPipelineBarrier2");
+	let vkQueueSubmit2: PFN_vkQueueSubmit2 = load_func("vkQueueSubmit2");
+	let vkCmdWriteTimestamp2: PFN_vkCmdWriteTimestamp2 = load_func("vkCmdWriteTimestamp2");
+	let vkCmdWriteBufferMarker2AMD: PFN_vkCmdWriteBufferMarker2AMD = load_func("vkCmdWriteBufferMarker2AMD");
+	let vkGetQueueCheckpointData2NV: PFN_vkGetQueueCheckpointData2NV = load_func("vkGetQueueCheckpointData2NV");
+	let vkGetPhysicalDeviceVideoCapabilitiesKHR: PFN_vkGetPhysicalDeviceVideoCapabilitiesKHR = load_func("vkGetPhysicalDeviceVideoCapabilitiesKHR");
+	let vkGetPhysicalDeviceVideoFormatPropertiesKHR: PFN_vkGetPhysicalDeviceVideoFormatPropertiesKHR = load_func("vkGetPhysicalDeviceVideoFormatPropertiesKHR");
+	let vkCreateVideoSessionKHR: PFN_vkCreateVideoSessionKHR = load_func("vkCreateVideoSessionKHR");
+	let vkDestroyVideoSessionKHR: PFN_vkDestroyVideoSessionKHR = load_func("vkDestroyVideoSessionKHR");
+	let vkCreateVideoSessionParametersKHR: PFN_vkCreateVideoSessionParametersKHR = load_func("vkCreateVideoSessionParametersKHR");
+	let vkUpdateVideoSessionParametersKHR: PFN_vkUpdateVideoSessionParametersKHR = load_func("vkUpdateVideoSessionParametersKHR");
+	let vkDestroyVideoSessionParametersKHR: PFN_vkDestroyVideoSessionParametersKHR = load_func("vkDestroyVideoSessionParametersKHR");
+	let vkGetVideoSessionMemoryRequirementsKHR: PFN_vkGetVideoSessionMemoryRequirementsKHR = load_func("vkGetVideoSessionMemoryRequirementsKHR");
+	let vkBindVideoSessionMemoryKHR: PFN_vkBindVideoSessionMemoryKHR = load_func("vkBindVideoSessionMemoryKHR");
+	let vkCmdDecodeVideoKHR: PFN_vkCmdDecodeVideoKHR = load_func("vkCmdDecodeVideoKHR");
+	let vkCmdBeginVideoCodingKHR: PFN_vkCmdBeginVideoCodingKHR = load_func("vkCmdBeginVideoCodingKHR");
+	let vkCmdControlVideoCodingKHR: PFN_vkCmdControlVideoCodingKHR = load_func("vkCmdControlVideoCodingKHR");
+	let vkCmdEndVideoCodingKHR: PFN_vkCmdEndVideoCodingKHR = load_func("vkCmdEndVideoCodingKHR");
+	let vkCmdEncodeVideoKHR: PFN_vkCmdEncodeVideoKHR = load_func("vkCmdEncodeVideoKHR");
+	let vkCmdDecompressMemoryNV: PFN_vkCmdDecompressMemoryNV = load_func("vkCmdDecompressMemoryNV");
+	let vkCmdDecompressMemoryIndirectCountNV: PFN_vkCmdDecompressMemoryIndirectCountNV = load_func("vkCmdDecompressMemoryIndirectCountNV");
+	let vkCreateCuModuleNVX: PFN_vkCreateCuModuleNVX = load_func("vkCreateCuModuleNVX");
+	let vkCreateCuFunctionNVX: PFN_vkCreateCuFunctionNVX = load_func("vkCreateCuFunctionNVX");
+	let vkDestroyCuModuleNVX: PFN_vkDestroyCuModuleNVX = load_func("vkDestroyCuModuleNVX");
+	let vkDestroyCuFunctionNVX: PFN_vkDestroyCuFunctionNVX = load_func("vkDestroyCuFunctionNVX");
+	let vkCmdCuLaunchKernelNVX: PFN_vkCmdCuLaunchKernelNVX = load_func("vkCmdCuLaunchKernelNVX");
+	let vkSetDeviceMemoryPriorityEXT: PFN_vkSetDeviceMemoryPriorityEXT = load_func("vkSetDeviceMemoryPriorityEXT");
+	let vkAcquireDrmDisplayEXT: PFN_vkAcquireDrmDisplayEXT = load_func("vkAcquireDrmDisplayEXT");
+	let vkGetDrmDisplayEXT: PFN_vkGetDrmDisplayEXT = load_func("vkGetDrmDisplayEXT");
+	let vkWaitForPresentKHR: PFN_vkWaitForPresentKHR = load_func("vkWaitForPresentKHR");
+	let vkCreateBufferCollectionFUCHSIA: PFN_vkCreateBufferCollectionFUCHSIA = load_func("vkCreateBufferCollectionFUCHSIA");
+	let vkSetBufferCollectionBufferConstraintsFUCHSIA: PFN_vkSetBufferCollectionBufferConstraintsFUCHSIA = load_func("vkSetBufferCollectionBufferConstraintsFUCHSIA");
+	let vkSetBufferCollectionImageConstraintsFUCHSIA: PFN_vkSetBufferCollectionImageConstraintsFUCHSIA = load_func("vkSetBufferCollectionImageConstraintsFUCHSIA");
+	let vkDestroyBufferCollectionFUCHSIA: PFN_vkDestroyBufferCollectionFUCHSIA = load_func("vkDestroyBufferCollectionFUCHSIA");
+	let vkGetBufferCollectionPropertiesFUCHSIA: PFN_vkGetBufferCollectionPropertiesFUCHSIA = load_func("vkGetBufferCollectionPropertiesFUCHSIA");
+	let vkCmdBeginRendering: PFN_vkCmdBeginRendering = load_func("vkCmdBeginRendering");
+	let vkCmdEndRendering: PFN_vkCmdEndRendering = load_func("vkCmdEndRendering");
+	let vkGetDescriptorSetLayoutHostMappingInfoVALVE: PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE = load_func("vkGetDescriptorSetLayoutHostMappingInfoVALVE");
+	let vkGetDescriptorSetHostMappingVALVE: PFN_vkGetDescriptorSetHostMappingVALVE = load_func("vkGetDescriptorSetHostMappingVALVE");
+	let vkCreateMicromapEXT: PFN_vkCreateMicromapEXT = load_func("vkCreateMicromapEXT");
+	let vkCmdBuildMicromapsEXT: PFN_vkCmdBuildMicromapsEXT = load_func("vkCmdBuildMicromapsEXT");
+	let vkBuildMicromapsEXT: PFN_vkBuildMicromapsEXT = load_func("vkBuildMicromapsEXT");
+	let vkDestroyMicromapEXT: PFN_vkDestroyMicromapEXT = load_func("vkDestroyMicromapEXT");
+	let vkCmdCopyMicromapEXT: PFN_vkCmdCopyMicromapEXT = load_func("vkCmdCopyMicromapEXT");
+	let vkCopyMicromapEXT: PFN_vkCopyMicromapEXT = load_func("vkCopyMicromapEXT");
+	let vkCmdCopyMicromapToMemoryEXT: PFN_vkCmdCopyMicromapToMemoryEXT = load_func("vkCmdCopyMicromapToMemoryEXT");
+	let vkCopyMicromapToMemoryEXT: PFN_vkCopyMicromapToMemoryEXT = load_func("vkCopyMicromapToMemoryEXT");
+	let vkCmdCopyMemoryToMicromapEXT: PFN_vkCmdCopyMemoryToMicromapEXT = load_func("vkCmdCopyMemoryToMicromapEXT");
+	let vkCopyMemoryToMicromapEXT: PFN_vkCopyMemoryToMicromapEXT = load_func("vkCopyMemoryToMicromapEXT");
+	let vkCmdWriteMicromapsPropertiesEXT: PFN_vkCmdWriteMicromapsPropertiesEXT = load_func("vkCmdWriteMicromapsPropertiesEXT");
+	let vkWriteMicromapsPropertiesEXT: PFN_vkWriteMicromapsPropertiesEXT = load_func("vkWriteMicromapsPropertiesEXT");
+	let vkGetDeviceMicromapCompatibilityEXT: PFN_vkGetDeviceMicromapCompatibilityEXT = load_func("vkGetDeviceMicromapCompatibilityEXT");
+	let vkGetMicromapBuildSizesEXT: PFN_vkGetMicromapBuildSizesEXT = load_func("vkGetMicromapBuildSizesEXT");
+	let vkGetShaderModuleIdentifierEXT: PFN_vkGetShaderModuleIdentifierEXT = load_func("vkGetShaderModuleIdentifierEXT");
+	let vkGetShaderModuleCreateInfoIdentifierEXT: PFN_vkGetShaderModuleCreateInfoIdentifierEXT = load_func("vkGetShaderModuleCreateInfoIdentifierEXT");
+	let vkGetImageSubresourceLayout2EXT: PFN_vkGetImageSubresourceLayout2EXT = load_func("vkGetImageSubresourceLayout2EXT");
+	let vkGetPipelinePropertiesEXT: PFN_vkGetPipelinePropertiesEXT = load_func("vkGetPipelinePropertiesEXT");
+	let vkExportMetalObjectsEXT: PFN_vkExportMetalObjectsEXT = load_func("vkExportMetalObjectsEXT");
+	let vkGetFramebufferTilePropertiesQCOM: PFN_vkGetFramebufferTilePropertiesQCOM = load_func("vkGetFramebufferTilePropertiesQCOM");
+	let vkGetDynamicRenderingTilePropertiesQCOM: PFN_vkGetDynamicRenderingTilePropertiesQCOM = load_func("vkGetDynamicRenderingTilePropertiesQCOM");
+	let vkGetPhysicalDeviceOpticalFlowImageFormatsNV: PFN_vkGetPhysicalDeviceOpticalFlowImageFormatsNV = load_func("vkGetPhysicalDeviceOpticalFlowImageFormatsNV");
+	let vkCreateOpticalFlowSessionNV: PFN_vkCreateOpticalFlowSessionNV = load_func("vkCreateOpticalFlowSessionNV");
+	let vkDestroyOpticalFlowSessionNV: PFN_vkDestroyOpticalFlowSessionNV = load_func("vkDestroyOpticalFlowSessionNV");
+	let vkBindOpticalFlowSessionImageNV: PFN_vkBindOpticalFlowSessionImageNV = load_func("vkBindOpticalFlowSessionImageNV");
+	let vkCmdOpticalFlowExecuteNV: PFN_vkCmdOpticalFlowExecuteNV = load_func("vkCmdOpticalFlowExecuteNV");
+
+	unsafe { VULKAN_COMMANDS = VulkanCommands
+	{
+		vkCreateInstance,
+		vkDestroyInstance,
+		vkEnumeratePhysicalDevices,
+		vkGetDeviceProcAddr,
+		vkGetInstanceProcAddr,
+		vkGetPhysicalDeviceProperties,
+		vkGetPhysicalDeviceQueueFamilyProperties,
+		vkGetPhysicalDeviceMemoryProperties,
+		vkGetPhysicalDeviceFeatures,
+		vkGetPhysicalDeviceFormatProperties,
+		vkGetPhysicalDeviceImageFormatProperties,
+		vkCreateDevice,
+		vkDestroyDevice,
+		vkEnumerateInstanceVersion,
+		vkEnumerateInstanceLayerProperties,
+		vkEnumerateInstanceExtensionProperties,
+		vkEnumerateDeviceLayerProperties,
+		vkEnumerateDeviceExtensionProperties,
+		vkGetDeviceQueue,
+		vkQueueSubmit,
+		vkQueueWaitIdle,
+		vkDeviceWaitIdle,
+		vkAllocateMemory,
+		vkFreeMemory,
+		vkMapMemory,
+		vkUnmapMemory,
+		vkFlushMappedMemoryRanges,
+		vkInvalidateMappedMemoryRanges,
+		vkGetDeviceMemoryCommitment,
+		vkGetBufferMemoryRequirements,
+		vkBindBufferMemory,
+		vkGetImageMemoryRequirements,
+		vkBindImageMemory,
+		vkGetImageSparseMemoryRequirements,
+		vkGetPhysicalDeviceSparseImageFormatProperties,
+		vkQueueBindSparse,
+		vkCreateFence,
+		vkDestroyFence,
+		vkResetFences,
+		vkGetFenceStatus,
+		vkWaitForFences,
+		vkCreateSemaphore,
+		vkDestroySemaphore,
+		vkCreateEvent,
+		vkDestroyEvent,
+		vkGetEventStatus,
+		vkSetEvent,
+		vkResetEvent,
+		vkCreateQueryPool,
+		vkDestroyQueryPool,
+		vkGetQueryPoolResults,
+		vkResetQueryPool,
+		vkCreateBuffer,
+		vkDestroyBuffer,
+		vkCreateBufferView,
+		vkDestroyBufferView,
+		vkCreateImage,
+		vkDestroyImage,
+		vkGetImageSubresourceLayout,
+		vkCreateImageView,
+		vkDestroyImageView,
+		vkCreateShaderModule,
+		vkDestroyShaderModule,
+		vkCreatePipelineCache,
+		vkDestroyPipelineCache,
+		vkGetPipelineCacheData,
+		vkMergePipelineCaches,
+		vkCreateGraphicsPipelines,
+		vkCreateComputePipelines,
+		vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI,
+		vkDestroyPipeline,
+		vkCreatePipelineLayout,
+		vkDestroyPipelineLayout,
+		vkCreateSampler,
+		vkDestroySampler,
+		vkCreateDescriptorSetLayout,
+		vkDestroyDescriptorSetLayout,
+		vkCreateDescriptorPool,
+		vkDestroyDescriptorPool,
+		vkResetDescriptorPool,
+		vkAllocateDescriptorSets,
+		vkFreeDescriptorSets,
+		vkUpdateDescriptorSets,
+		vkCreateFramebuffer,
+		vkDestroyFramebuffer,
+		vkCreateRenderPass,
+		vkDestroyRenderPass,
+		vkGetRenderAreaGranularity,
+		vkCreateCommandPool,
+		vkDestroyCommandPool,
+		vkResetCommandPool,
+		vkAllocateCommandBuffers,
+		vkFreeCommandBuffers,
+		vkBeginCommandBuffer,
+		vkEndCommandBuffer,
+		vkResetCommandBuffer,
+		vkCmdBindPipeline,
+		vkCmdSetViewport,
+		vkCmdSetScissor,
+		vkCmdSetLineWidth,
+		vkCmdSetDepthBias,
+		vkCmdSetBlendConstants,
+		vkCmdSetDepthBounds,
+		vkCmdSetStencilCompareMask,
+		vkCmdSetStencilWriteMask,
+		vkCmdSetStencilReference,
+		vkCmdBindDescriptorSets,
+		vkCmdBindIndexBuffer,
+		vkCmdBindVertexBuffers,
+		vkCmdDraw,
+		vkCmdDrawIndexed,
+		vkCmdDrawMultiEXT,
+		vkCmdDrawMultiIndexedEXT,
+		vkCmdDrawIndirect,
+		vkCmdDrawIndexedIndirect,
+		vkCmdDispatch,
+		vkCmdDispatchIndirect,
+		vkCmdSubpassShadingHUAWEI,
+		vkCmdCopyBuffer,
+		vkCmdCopyImage,
+		vkCmdBlitImage,
+		vkCmdCopyBufferToImage,
+		vkCmdCopyImageToBuffer,
+		vkCmdCopyMemoryIndirectNV,
+		vkCmdCopyMemoryToImageIndirectNV,
+		vkCmdUpdateBuffer,
+		vkCmdFillBuffer,
+		vkCmdClearColorImage,
+		vkCmdClearDepthStencilImage,
+		vkCmdClearAttachments,
+		vkCmdResolveImage,
+		vkCmdSetEvent,
+		vkCmdResetEvent,
+		vkCmdWaitEvents,
+		vkCmdPipelineBarrier,
+		vkCmdBeginQuery,
+		vkCmdEndQuery,
+		vkCmdBeginConditionalRenderingEXT,
+		vkCmdEndConditionalRenderingEXT,
+		vkCmdResetQueryPool,
+		vkCmdWriteTimestamp,
+		vkCmdCopyQueryPoolResults,
+		vkCmdPushConstants,
+		vkCmdBeginRenderPass,
+		vkCmdNextSubpass,
+		vkCmdEndRenderPass,
+		vkCmdExecuteCommands,
+		vkCreateAndroidSurfaceKHR,
+		vkGetPhysicalDeviceDisplayPropertiesKHR,
+		vkGetPhysicalDeviceDisplayPlanePropertiesKHR,
+		vkGetDisplayPlaneSupportedDisplaysKHR,
+		vkGetDisplayModePropertiesKHR,
+		vkCreateDisplayModeKHR,
+		vkGetDisplayPlaneCapabilitiesKHR,
+		vkCreateDisplayPlaneSurfaceKHR,
+		vkCreateSharedSwapchainsKHR,
+		vkDestroySurfaceKHR,
+		vkGetPhysicalDeviceSurfaceSupportKHR,
+		vkGetPhysicalDeviceSurfaceCapabilitiesKHR,
+		vkGetPhysicalDeviceSurfaceFormatsKHR,
+		vkGetPhysicalDeviceSurfacePresentModesKHR,
+		vkCreateSwapchainKHR,
+		vkDestroySwapchainKHR,
+		vkGetSwapchainImagesKHR,
+		vkAcquireNextImageKHR,
+		vkQueuePresentKHR,
+		vkCreateViSurfaceNN,
+		vkCreateWaylandSurfaceKHR,
+		vkGetPhysicalDeviceWaylandPresentationSupportKHR,
+		vkCreateWin32SurfaceKHR,
+		vkGetPhysicalDeviceWin32PresentationSupportKHR,
+		vkCreateXlibSurfaceKHR,
+		vkGetPhysicalDeviceXlibPresentationSupportKHR,
+		vkCreateXcbSurfaceKHR,
+		vkGetPhysicalDeviceXcbPresentationSupportKHR,
+		vkCreateDirectFBSurfaceEXT,
+		vkGetPhysicalDeviceDirectFBPresentationSupportEXT,
+		vkCreateImagePipeSurfaceFUCHSIA,
+		vkCreateStreamDescriptorSurfaceGGP,
+		vkCreateScreenSurfaceQNX,
+		vkGetPhysicalDeviceScreenPresentationSupportQNX,
+		vkCreateDebugReportCallbackEXT,
+		vkDestroyDebugReportCallbackEXT,
+		vkDebugReportMessageEXT,
+		vkDebugMarkerSetObjectNameEXT,
+		vkDebugMarkerSetObjectTagEXT,
+		vkCmdDebugMarkerBeginEXT,
+		vkCmdDebugMarkerEndEXT,
+		vkCmdDebugMarkerInsertEXT,
+		vkGetPhysicalDeviceExternalImageFormatPropertiesNV,
+		vkGetMemoryWin32HandleNV,
+		vkCmdExecuteGeneratedCommandsNV,
+		vkCmdPreprocessGeneratedCommandsNV,
+		vkCmdBindPipelineShaderGroupNV,
+		vkGetGeneratedCommandsMemoryRequirementsNV,
+		vkCreateIndirectCommandsLayoutNV,
+		vkDestroyIndirectCommandsLayoutNV,
+		vkGetPhysicalDeviceFeatures2,
+		vkGetPhysicalDeviceProperties2,
+		vkGetPhysicalDeviceFormatProperties2,
+		vkGetPhysicalDeviceImageFormatProperties2,
+		vkGetPhysicalDeviceQueueFamilyProperties2,
+		vkGetPhysicalDeviceMemoryProperties2,
+		vkGetPhysicalDeviceSparseImageFormatProperties2,
+		vkCmdPushDescriptorSetKHR,
+		vkTrimCommandPool,
+		vkGetPhysicalDeviceExternalBufferProperties,
+		vkGetMemoryWin32HandleKHR,
+		vkGetMemoryWin32HandlePropertiesKHR,
+		vkGetMemoryFdKHR,
+		vkGetMemoryFdPropertiesKHR,
+		vkGetMemoryZirconHandleFUCHSIA,
+		vkGetMemoryZirconHandlePropertiesFUCHSIA,
+		vkGetMemoryRemoteAddressNV,
+		vkGetPhysicalDeviceExternalSemaphoreProperties,
+		vkGetSemaphoreWin32HandleKHR,
+		vkImportSemaphoreWin32HandleKHR,
+		vkGetSemaphoreFdKHR,
+		vkImportSemaphoreFdKHR,
+		vkGetSemaphoreZirconHandleFUCHSIA,
+		vkImportSemaphoreZirconHandleFUCHSIA,
+		vkGetPhysicalDeviceExternalFenceProperties,
+		vkGetFenceWin32HandleKHR,
+		vkImportFenceWin32HandleKHR,
+		vkGetFenceFdKHR,
+		vkImportFenceFdKHR,
+		vkReleaseDisplayEXT,
+		vkAcquireXlibDisplayEXT,
+		vkGetRandROutputDisplayEXT,
+		vkAcquireWinrtDisplayNV,
+		vkGetWinrtDisplayNV,
+		vkDisplayPowerControlEXT,
+		vkRegisterDeviceEventEXT,
+		vkRegisterDisplayEventEXT,
+		vkGetSwapchainCounterEXT,
+		vkGetPhysicalDeviceSurfaceCapabilities2EXT,
+		vkEnumeratePhysicalDeviceGroups,
+		vkGetDeviceGroupPeerMemoryFeatures,
+		vkBindBufferMemory2,
+		vkBindImageMemory2,
+		vkCmdSetDeviceMask,
+		vkGetDeviceGroupPresentCapabilitiesKHR,
+		vkGetDeviceGroupSurfacePresentModesKHR,
+		vkAcquireNextImage2KHR,
+		vkCmdDispatchBase,
+		vkGetPhysicalDevicePresentRectanglesKHR,
+		vkCreateDescriptorUpdateTemplate,
+		vkDestroyDescriptorUpdateTemplate,
+		vkUpdateDescriptorSetWithTemplate,
+		vkCmdPushDescriptorSetWithTemplateKHR,
+		vkSetHdrMetadataEXT,
+		vkGetSwapchainStatusKHR,
+		vkGetRefreshCycleDurationGOOGLE,
+		vkGetPastPresentationTimingGOOGLE,
+		vkCreateIOSSurfaceMVK,
+		vkCreateMacOSSurfaceMVK,
+		vkCreateMetalSurfaceEXT,
+		vkCmdSetViewportWScalingNV,
+		vkCmdSetDiscardRectangleEXT,
+		vkCmdSetSampleLocationsEXT,
+		vkGetPhysicalDeviceMultisamplePropertiesEXT,
+		vkGetPhysicalDeviceSurfaceCapabilities2KHR,
+		vkGetPhysicalDeviceSurfaceFormats2KHR,
+		vkGetPhysicalDeviceDisplayProperties2KHR,
+		vkGetPhysicalDeviceDisplayPlaneProperties2KHR,
+		vkGetDisplayModeProperties2KHR,
+		vkGetDisplayPlaneCapabilities2KHR,
+		vkGetBufferMemoryRequirements2,
+		vkGetImageMemoryRequirements2,
+		vkGetImageSparseMemoryRequirements2,
+		vkGetDeviceBufferMemoryRequirements,
+		vkGetDeviceImageMemoryRequirements,
+		vkGetDeviceImageSparseMemoryRequirements,
+		vkCreateSamplerYcbcrConversion,
+		vkDestroySamplerYcbcrConversion,
+		vkGetDeviceQueue2,
+		vkCreateValidationCacheEXT,
+		vkDestroyValidationCacheEXT,
+		vkGetValidationCacheDataEXT,
+		vkMergeValidationCachesEXT,
+		vkGetDescriptorSetLayoutSupport,
+		vkGetSwapchainGrallocUsageANDROID,
+		vkGetSwapchainGrallocUsage2ANDROID,
+		vkAcquireImageANDROID,
+		vkQueueSignalReleaseImageANDROID,
+		vkGetShaderInfoAMD,
+		vkSetLocalDimmingAMD,
+		vkGetPhysicalDeviceCalibrateableTimeDomainsEXT,
+		vkGetCalibratedTimestampsEXT,
+		vkSetDebugUtilsObjectNameEXT,
+		vkSetDebugUtilsObjectTagEXT,
+		vkQueueBeginDebugUtilsLabelEXT,
+		vkQueueEndDebugUtilsLabelEXT,
+		vkQueueInsertDebugUtilsLabelEXT,
+		vkCmdBeginDebugUtilsLabelEXT,
+		vkCmdEndDebugUtilsLabelEXT,
+		vkCmdInsertDebugUtilsLabelEXT,
+		vkCreateDebugUtilsMessengerEXT,
+		vkDestroyDebugUtilsMessengerEXT,
+		vkSubmitDebugUtilsMessageEXT,
+		vkGetMemoryHostPointerPropertiesEXT,
+		vkCmdWriteBufferMarkerAMD,
+		vkCreateRenderPass2,
+		vkCmdBeginRenderPass2,
+		vkCmdNextSubpass2,
+		vkCmdEndRenderPass2,
+		vkGetSemaphoreCounterValue,
+		vkWaitSemaphores,
+		vkSignalSemaphore,
+		vkGetAndroidHardwareBufferPropertiesANDROID,
+		vkGetMemoryAndroidHardwareBufferANDROID,
+		vkCmdDrawIndirectCount,
+		vkCmdDrawIndexedIndirectCount,
+		vkCmdSetCheckpointNV,
+		vkGetQueueCheckpointDataNV,
+		vkCmdBindTransformFeedbackBuffersEXT,
+		vkCmdBeginTransformFeedbackEXT,
+		vkCmdEndTransformFeedbackEXT,
+		vkCmdBeginQueryIndexedEXT,
+		vkCmdEndQueryIndexedEXT,
+		vkCmdDrawIndirectByteCountEXT,
+		vkCmdSetExclusiveScissorNV,
+		vkCmdBindShadingRateImageNV,
+		vkCmdSetViewportShadingRatePaletteNV,
+		vkCmdSetCoarseSampleOrderNV,
+		vkCmdDrawMeshTasksNV,
+		vkCmdDrawMeshTasksIndirectNV,
+		vkCmdDrawMeshTasksIndirectCountNV,
+		vkCmdDrawMeshTasksEXT,
+		vkCmdDrawMeshTasksIndirectEXT,
+		vkCmdDrawMeshTasksIndirectCountEXT,
+		vkCompileDeferredNV,
+		vkCreateAccelerationStructureNV,
+		vkCmdBindInvocationMaskHUAWEI,
+		vkDestroyAccelerationStructureKHR,
+		vkDestroyAccelerationStructureNV,
+		vkGetAccelerationStructureMemoryRequirementsNV,
+		vkBindAccelerationStructureMemoryNV,
+		vkCmdCopyAccelerationStructureNV,
+		vkCmdCopyAccelerationStructureKHR,
+		vkCopyAccelerationStructureKHR,
+		vkCmdCopyAccelerationStructureToMemoryKHR,
+		vkCopyAccelerationStructureToMemoryKHR,
+		vkCmdCopyMemoryToAccelerationStructureKHR,
+		vkCopyMemoryToAccelerationStructureKHR,
+		vkCmdWriteAccelerationStructuresPropertiesKHR,
+		vkCmdWriteAccelerationStructuresPropertiesNV,
+		vkCmdBuildAccelerationStructureNV,
+		vkWriteAccelerationStructuresPropertiesKHR,
+		vkCmdTraceRaysKHR,
+		vkCmdTraceRaysNV,
+		vkGetRayTracingShaderGroupHandlesKHR,
+		vkGetRayTracingCaptureReplayShaderGroupHandlesKHR,
+		vkGetAccelerationStructureHandleNV,
+		vkCreateRayTracingPipelinesNV,
+		vkCreateRayTracingPipelinesKHR,
+		vkGetPhysicalDeviceCooperativeMatrixPropertiesNV,
+		vkCmdTraceRaysIndirectKHR,
+		vkCmdTraceRaysIndirect2KHR,
+		vkGetDeviceAccelerationStructureCompatibilityKHR,
+		vkGetRayTracingShaderGroupStackSizeKHR,
+		vkCmdSetRayTracingPipelineStackSizeKHR,
+		vkGetImageViewHandleNVX,
+		vkGetImageViewAddressNVX,
+		vkGetPhysicalDeviceSurfacePresentModes2EXT,
+		vkGetDeviceGroupSurfacePresentModes2EXT,
+		vkAcquireFullScreenExclusiveModeEXT,
+		vkReleaseFullScreenExclusiveModeEXT,
+		vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR,
+		vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR,
+		vkAcquireProfilingLockKHR,
+		vkReleaseProfilingLockKHR,
+		vkGetImageDrmFormatModifierPropertiesEXT,
+		vkGetBufferOpaqueCaptureAddress,
+		vkGetBufferDeviceAddress,
+		vkCreateHeadlessSurfaceEXT,
+		vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV,
+		vkInitializePerformanceApiINTEL,
+		vkUninitializePerformanceApiINTEL,
+		vkCmdSetPerformanceMarkerINTEL,
+		vkCmdSetPerformanceStreamMarkerINTEL,
+		vkCmdSetPerformanceOverrideINTEL,
+		vkAcquirePerformanceConfigurationINTEL,
+		vkReleasePerformanceConfigurationINTEL,
+		vkQueueSetPerformanceConfigurationINTEL,
+		vkGetPerformanceParameterINTEL,
+		vkGetDeviceMemoryOpaqueCaptureAddress,
+		vkGetPipelineExecutablePropertiesKHR,
+		vkGetPipelineExecutableStatisticsKHR,
+		vkGetPipelineExecutableInternalRepresentationsKHR,
+		vkCmdSetLineStippleEXT,
+		vkGetPhysicalDeviceToolProperties,
+		vkCreateAccelerationStructureKHR,
+		vkCmdBuildAccelerationStructuresKHR,
+		vkCmdBuildAccelerationStructuresIndirectKHR,
+		vkBuildAccelerationStructuresKHR,
+		vkGetAccelerationStructureDeviceAddressKHR,
+		vkCreateDeferredOperationKHR,
+		vkDestroyDeferredOperationKHR,
+		vkGetDeferredOperationMaxConcurrencyKHR,
+		vkGetDeferredOperationResultKHR,
+		vkDeferredOperationJoinKHR,
+		vkCmdSetCullMode,
+		vkCmdSetFrontFace,
+		vkCmdSetPrimitiveTopology,
+		vkCmdSetViewportWithCount,
+		vkCmdSetScissorWithCount,
+		vkCmdBindVertexBuffers2,
+		vkCmdSetDepthTestEnable,
+		vkCmdSetDepthWriteEnable,
+		vkCmdSetDepthCompareOp,
+		vkCmdSetDepthBoundsTestEnable,
+		vkCmdSetStencilTestEnable,
+		vkCmdSetStencilOp,
+		vkCmdSetPatchControlPointsEXT,
+		vkCmdSetRasterizerDiscardEnable,
+		vkCmdSetDepthBiasEnable,
+		vkCmdSetLogicOpEXT,
+		vkCmdSetPrimitiveRestartEnable,
+		vkCmdSetTessellationDomainOriginEXT,
+		vkCmdSetDepthClampEnableEXT,
+		vkCmdSetPolygonModeEXT,
+		vkCmdSetRasterizationSamplesEXT,
+		vkCmdSetSampleMaskEXT,
+		vkCmdSetAlphaToCoverageEnableEXT,
+		vkCmdSetAlphaToOneEnableEXT,
+		vkCmdSetLogicOpEnableEXT,
+		vkCmdSetColorBlendEnableEXT,
+		vkCmdSetColorBlendEquationEXT,
+		vkCmdSetColorWriteMaskEXT,
+		vkCmdSetRasterizationStreamEXT,
+		vkCmdSetConservativeRasterizationModeEXT,
+		vkCmdSetExtraPrimitiveOverestimationSizeEXT,
+		vkCmdSetDepthClipEnableEXT,
+		vkCmdSetSampleLocationsEnableEXT,
+		vkCmdSetColorBlendAdvancedEXT,
+		vkCmdSetProvokingVertexModeEXT,
+		vkCmdSetLineRasterizationModeEXT,
+		vkCmdSetLineStippleEnableEXT,
+		vkCmdSetDepthClipNegativeOneToOneEXT,
+		vkCmdSetViewportWScalingEnableNV,
+		vkCmdSetViewportSwizzleNV,
+		vkCmdSetCoverageToColorEnableNV,
+		vkCmdSetCoverageToColorLocationNV,
+		vkCmdSetCoverageModulationModeNV,
+		vkCmdSetCoverageModulationTableEnableNV,
+		vkCmdSetCoverageModulationTableNV,
+		vkCmdSetShadingRateImageEnableNV,
+		vkCmdSetCoverageReductionModeNV,
+		vkCmdSetRepresentativeFragmentTestEnableNV,
+		vkCreatePrivateDataSlot,
+		vkDestroyPrivateDataSlot,
+		vkSetPrivateData,
+		vkGetPrivateData,
+		vkCmdCopyBuffer2,
+		vkCmdCopyImage2,
+		vkCmdBlitImage2,
+		vkCmdCopyBufferToImage2,
+		vkCmdCopyImageToBuffer2,
+		vkCmdResolveImage2,
+		vkCmdSetFragmentShadingRateKHR,
+		vkGetPhysicalDeviceFragmentShadingRatesKHR,
+		vkCmdSetFragmentShadingRateEnumNV,
+		vkGetAccelerationStructureBuildSizesKHR,
+		vkCmdSetVertexInputEXT,
+		vkCmdSetColorWriteEnableEXT,
+		vkCmdSetEvent2,
+		vkCmdResetEvent2,
+		vkCmdWaitEvents2,
+		vkCmdPipelineBarrier2,
+		vkQueueSubmit2,
+		vkCmdWriteTimestamp2,
+		vkCmdWriteBufferMarker2AMD,
+		vkGetQueueCheckpointData2NV,
+		vkGetPhysicalDeviceVideoCapabilitiesKHR,
+		vkGetPhysicalDeviceVideoFormatPropertiesKHR,
+		vkCreateVideoSessionKHR,
+		vkDestroyVideoSessionKHR,
+		vkCreateVideoSessionParametersKHR,
+		vkUpdateVideoSessionParametersKHR,
+		vkDestroyVideoSessionParametersKHR,
+		vkGetVideoSessionMemoryRequirementsKHR,
+		vkBindVideoSessionMemoryKHR,
+		vkCmdDecodeVideoKHR,
+		vkCmdBeginVideoCodingKHR,
+		vkCmdControlVideoCodingKHR,
+		vkCmdEndVideoCodingKHR,
+		vkCmdEncodeVideoKHR,
+		vkCmdDecompressMemoryNV,
+		vkCmdDecompressMemoryIndirectCountNV,
+		vkCreateCuModuleNVX,
+		vkCreateCuFunctionNVX,
+		vkDestroyCuModuleNVX,
+		vkDestroyCuFunctionNVX,
+		vkCmdCuLaunchKernelNVX,
+		vkSetDeviceMemoryPriorityEXT,
+		vkAcquireDrmDisplayEXT,
+		vkGetDrmDisplayEXT,
+		vkWaitForPresentKHR,
+		vkCreateBufferCollectionFUCHSIA,
+		vkSetBufferCollectionBufferConstraintsFUCHSIA,
+		vkSetBufferCollectionImageConstraintsFUCHSIA,
+		vkDestroyBufferCollectionFUCHSIA,
+		vkGetBufferCollectionPropertiesFUCHSIA,
+		vkCmdBeginRendering,
+		vkCmdEndRendering,
+		vkGetDescriptorSetLayoutHostMappingInfoVALVE,
+		vkGetDescriptorSetHostMappingVALVE,
+		vkCreateMicromapEXT,
+		vkCmdBuildMicromapsEXT,
+		vkBuildMicromapsEXT,
+		vkDestroyMicromapEXT,
+		vkCmdCopyMicromapEXT,
+		vkCopyMicromapEXT,
+		vkCmdCopyMicromapToMemoryEXT,
+		vkCopyMicromapToMemoryEXT,
+		vkCmdCopyMemoryToMicromapEXT,
+		vkCopyMemoryToMicromapEXT,
+		vkCmdWriteMicromapsPropertiesEXT,
+		vkWriteMicromapsPropertiesEXT,
+		vkGetDeviceMicromapCompatibilityEXT,
+		vkGetMicromapBuildSizesEXT,
+		vkGetShaderModuleIdentifierEXT,
+		vkGetShaderModuleCreateInfoIdentifierEXT,
+		vkGetImageSubresourceLayout2EXT,
+		vkGetPipelinePropertiesEXT,
+		vkExportMetalObjectsEXT,
+		vkGetFramebufferTilePropertiesQCOM,
+		vkGetDynamicRenderingTilePropertiesQCOM,
+		vkGetPhysicalDeviceOpticalFlowImageFormatsNV,
+		vkCreateOpticalFlowSessionNV,
+		vkDestroyOpticalFlowSessionNV,
+		vkBindOpticalFlowSessionImageNV,
+		vkCmdOpticalFlowExecuteNV
+	} }
+	true
+}
+

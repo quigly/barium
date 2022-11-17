@@ -16,6 +16,15 @@ macro_rules! dispatchable_handle
 	}
 }
 
+pub const VK_MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
+pub const VK_UUID_SIZE: u32 = 16;
+pub const VK_LUID_SIZE: u32 = 8;
+pub const VK_MAX_EXTENSION_NAME_SIZE: u32 = 256;
+pub const VK_MAX_DESCRIPTION_SIZE: u32 = 256;
+pub const VK_MAX_MEMORY_TYPES: u32 = 32;
+pub const VK_MAX_MEMORY_HEAPS: u32 = 16;
+
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkImageLayout
 {
 	/* Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation) */
@@ -38,6 +47,7 @@ pub enum VkImageLayout
 	VK_IMAGE_LAYOUT_PREINITIALIZED = 8
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAttachmentLoadOp
 {
 	VK_ATTACHMENT_LOAD_OP_LOAD = 0,
@@ -45,12 +55,14 @@ pub enum VkAttachmentLoadOp
 	VK_ATTACHMENT_LOAD_OP_DONT_CARE = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAttachmentStoreOp
 {
 	VK_ATTACHMENT_STORE_OP_STORE = 0,
 	VK_ATTACHMENT_STORE_OP_DONT_CARE = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkImageType
 {
 	VK_IMAGE_TYPE_1D = 0,
@@ -58,12 +70,14 @@ pub enum VkImageType
 	VK_IMAGE_TYPE_3D = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkImageTiling
 {
 	VK_IMAGE_TILING_OPTIMAL = 0,
 	VK_IMAGE_TILING_LINEAR = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkImageViewType
 {
 	VK_IMAGE_VIEW_TYPE_1D = 0,
@@ -75,12 +89,14 @@ pub enum VkImageViewType
 	VK_IMAGE_VIEW_TYPE_CUBE_ARRAY = 6
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCommandBufferLevel
 {
 	VK_COMMAND_BUFFER_LEVEL_PRIMARY = 0,
 	VK_COMMAND_BUFFER_LEVEL_SECONDARY = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkComponentSwizzle
 {
 	VK_COMPONENT_SWIZZLE_IDENTITY = 0,
@@ -92,6 +108,7 @@ pub enum VkComponentSwizzle
 	VK_COMPONENT_SWIZZLE_A = 6
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDescriptorType
 {
 	VK_DESCRIPTOR_TYPE_SAMPLER = 0,
@@ -107,6 +124,7 @@ pub enum VkDescriptorType
 	VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT = 10
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkQueryType
 {
 	VK_QUERY_TYPE_OCCLUSION = 0,
@@ -115,6 +133,7 @@ pub enum VkQueryType
 	VK_QUERY_TYPE_TIMESTAMP = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkBorderColor
 {
 	VK_BORDER_COLOR_FLOAT_TRANSPARENT_BLACK = 0,
@@ -125,12 +144,14 @@ pub enum VkBorderColor
 	VK_BORDER_COLOR_INT_OPAQUE_WHITE = 5
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPipelineBindPoint
 {
 	VK_PIPELINE_BIND_POINT_GRAPHICS = 0,
 	VK_PIPELINE_BIND_POINT_COMPUTE = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPipelineCacheHeaderVersion
 {
 	VK_PIPELINE_CACHE_HEADER_VERSION_ONE = 1
@@ -138,6 +159,7 @@ pub enum VkPipelineCacheHeaderVersion
 
 pub type VkPipelineCacheCreateFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPrimitiveTopology
 {
 	VK_PRIMITIVE_TOPOLOGY_POINT_LIST = 0,
@@ -153,24 +175,28 @@ pub enum VkPrimitiveTopology
 	VK_PRIMITIVE_TOPOLOGY_PATCH_LIST = 10
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSharingMode
 {
 	VK_SHARING_MODE_EXCLUSIVE = 0,
 	VK_SHARING_MODE_CONCURRENT = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkIndexType
 {
 	VK_INDEX_TYPE_UINT16 = 0,
 	VK_INDEX_TYPE_UINT32 = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFilter
 {
 	VK_FILTER_NEAREST = 0,
 	VK_FILTER_LINEAR = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSamplerMipmapMode
 {
 	/* Choose nearest mip level */
@@ -179,6 +205,7 @@ pub enum VkSamplerMipmapMode
 	VK_SAMPLER_MIPMAP_MODE_LINEAR = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSamplerAddressMode
 {
 	VK_SAMPLER_ADDRESS_MODE_REPEAT = 0,
@@ -187,6 +214,7 @@ pub enum VkSamplerAddressMode
 	VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCompareOp
 {
 	VK_COMPARE_OP_NEVER = 0,
@@ -199,6 +227,7 @@ pub enum VkCompareOp
 	VK_COMPARE_OP_ALWAYS = 7
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPolygonMode
 {
 	VK_POLYGON_MODE_FILL = 0,
@@ -206,12 +235,14 @@ pub enum VkPolygonMode
 	VK_POLYGON_MODE_POINT = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFrontFace
 {
 	VK_FRONT_FACE_COUNTER_CLOCKWISE = 0,
 	VK_FRONT_FACE_CLOCKWISE = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkBlendFactor
 {
 	VK_BLEND_FACTOR_ZERO = 0,
@@ -235,6 +266,7 @@ pub enum VkBlendFactor
 	VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA = 18
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkBlendOp
 {
 	VK_BLEND_OP_ADD = 0,
@@ -244,6 +276,7 @@ pub enum VkBlendOp
 	VK_BLEND_OP_MAX = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkStencilOp
 {
 	VK_STENCIL_OP_KEEP = 0,
@@ -256,6 +289,7 @@ pub enum VkStencilOp
 	VK_STENCIL_OP_DECREMENT_AND_WRAP = 7
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkLogicOp
 {
 	VK_LOGIC_OP_CLEAR = 0,
@@ -276,11 +310,13 @@ pub enum VkLogicOp
 	VK_LOGIC_OP_SET = 15
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkInternalAllocationType
 {
 	VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE = 0
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSystemAllocationScope
 {
 	VK_SYSTEM_ALLOCATION_SCOPE_COMMAND = 0,
@@ -290,6 +326,7 @@ pub enum VkSystemAllocationScope
 	VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPhysicalDeviceType
 {
 	VK_PHYSICAL_DEVICE_TYPE_OTHER = 0,
@@ -299,12 +336,14 @@ pub enum VkPhysicalDeviceType
 	VK_PHYSICAL_DEVICE_TYPE_CPU = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkVertexInputRate
 {
 	VK_VERTEX_INPUT_RATE_VERTEX = 0,
 	VK_VERTEX_INPUT_RATE_INSTANCE = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFormat
 {
 	VK_FORMAT_UNDEFINED = 0,
@@ -494,6 +533,7 @@ pub enum VkFormat
 	VK_FORMAT_ASTC_12x12_SRGB_BLOCK = 184
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkStructureType
 {
 	VK_STRUCTURE_TYPE_APPLICATION_INFO = 0,
@@ -549,12 +589,14 @@ pub enum VkStructureType
 	VK_STRUCTURE_TYPE_LOADER_DEVICE_CREATE_INFO = 48
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSubpassContents
 {
 	VK_SUBPASS_CONTENTS_INLINE = 0,
 	VK_SUBPASS_CONTENTS_SECONDARY_COMMAND_BUFFERS = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkResult
 {
 	/* Command completed successfully */
@@ -597,6 +639,7 @@ pub enum VkResult
 	VK_ERROR_UNKNOWN = -13
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDynamicState
 {
 	VK_DYNAMIC_STATE_VIEWPORT = 0,
@@ -610,12 +653,14 @@ pub enum VkDynamicState
 	VK_DYNAMIC_STATE_STENCIL_REFERENCE = 8
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDescriptorUpdateTemplateType
 {
 	/* Create descriptor update template for descriptor set updates */
 	VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET = 0
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkObjectType
 {
 	VK_OBJECT_TYPE_UNKNOWN = 0,
@@ -646,6 +691,7 @@ pub enum VkObjectType
 	VK_OBJECT_TYPE_COMMAND_POOL = 25
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkRayTracingInvocationReorderModeNV
 {
 	VK_RAY_TRACING_INVOCATION_REORDER_MODE_NONE_NV = 0,
@@ -724,6 +770,7 @@ pub type VkDescriptorPoolCreateFlagBits = u32;
 
 pub type VkDependencyFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSemaphoreType
 {
 	VK_SEMAPHORE_TYPE_BINARY = 0,
@@ -732,6 +779,7 @@ pub enum VkSemaphoreType
 
 pub type VkSemaphoreWaitFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPresentModeKHR
 {
 	VK_PRESENT_MODE_IMMEDIATE_KHR = 0,
@@ -740,6 +788,7 @@ pub enum VkPresentModeKHR
 	VK_PRESENT_MODE_FIFO_RELAXED_KHR = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkColorSpaceKHR
 {
 	VK_COLOR_SPACE_SRGB_NONLINEAR_KHR = 0,
@@ -755,6 +804,7 @@ pub type VkSurfaceTransformFlagBitsKHR = u32;
 
 pub type VkSwapchainImageUsageFlagBitsANDROID = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkTimeDomainEXT
 {
 	VK_TIME_DOMAIN_DEVICE_EXT = 0,
@@ -765,6 +815,7 @@ pub enum VkTimeDomainEXT
 
 pub type VkDebugReportFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDebugReportObjectTypeEXT
 {
 	VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT = 0,
@@ -805,6 +856,7 @@ pub enum VkDebugReportObjectTypeEXT
 	VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDeviceMemoryReportEventTypeEXT
 {
 	VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATE_EXT = 0,
@@ -814,6 +866,7 @@ pub enum VkDeviceMemoryReportEventTypeEXT
 	VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkRasterizationOrderAMD
 {
 	VK_RASTERIZATION_ORDER_STRICT_AMD = 0,
@@ -824,12 +877,14 @@ pub type VkExternalMemoryHandleTypeFlagBitsNV = u32;
 
 pub type VkExternalMemoryFeatureFlagBitsNV = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkValidationCheckEXT
 {
 	VK_VALIDATION_CHECK_ALL_EXT = 0,
 	VK_VALIDATION_CHECK_SHADERS_EXT = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkValidationFeatureEnableEXT
 {
 	VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT = 0,
@@ -839,6 +894,7 @@ pub enum VkValidationFeatureEnableEXT
 	VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkValidationFeatureDisableEXT
 {
 	VK_VALIDATION_FEATURE_DISABLE_ALL_EXT = 0,
@@ -857,6 +913,7 @@ pub type VkIndirectCommandsLayoutUsageFlagBitsNV = u32;
 
 pub type VkIndirectStateFlagBitsNV = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkIndirectCommandsTokenTypeNV
 {
 	VK_INDIRECT_COMMANDS_TOKEN_TYPE_SHADER_GROUP_NV = 0,
@@ -891,6 +948,7 @@ pub type VkFenceImportFlagBits = u32;
 
 pub type VkSurfaceCounterFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDisplayPowerStateEXT
 {
 	VK_DISPLAY_POWER_STATE_OFF_EXT = 0,
@@ -898,11 +956,13 @@ pub enum VkDisplayPowerStateEXT
 	VK_DISPLAY_POWER_STATE_ON_EXT = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDeviceEventTypeEXT
 {
 	VK_DEVICE_EVENT_TYPE_DISPLAY_HOTPLUG_EXT = 0
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDisplayEventTypeEXT
 {
 	VK_DISPLAY_EVENT_TYPE_FIRST_PIXEL_OUT_EXT = 0
@@ -916,6 +976,7 @@ pub type VkDeviceGroupPresentModeFlagBitsKHR = u32;
 
 pub type VkSwapchainCreateFlagBitsKHR = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkViewportCoordinateSwizzleNV
 {
 	VK_VIEWPORT_COORDINATE_SWIZZLE_POSITIVE_X_NV = 0,
@@ -928,6 +989,7 @@ pub enum VkViewportCoordinateSwizzleNV
 	VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV = 7
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDiscardRectangleModeEXT
 {
 	VK_DISCARD_RECTANGLE_MODE_INCLUSIVE_EXT = 0,
@@ -936,12 +998,14 @@ pub enum VkDiscardRectangleModeEXT
 
 pub type VkSubpassDescriptionFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPointClippingBehavior
 {
 	VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES = 0,
 	VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSamplerReductionMode
 {
 	VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE = 0,
@@ -949,12 +1013,14 @@ pub enum VkSamplerReductionMode
 	VK_SAMPLER_REDUCTION_MODE_MAX = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkTessellationDomainOrigin
 {
 	VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT = 0,
 	VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSamplerYcbcrModelConversion
 {
 	VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY = 0,
@@ -968,6 +1034,7 @@ pub enum VkSamplerYcbcrModelConversion
 	VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020 = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSamplerYcbcrRange
 {
 	/* Luma 0..1 maps to 0..255, chroma -0.5..0.5 to 1..255 (clamped) */
@@ -976,12 +1043,14 @@ pub enum VkSamplerYcbcrRange
 	VK_SAMPLER_YCBCR_RANGE_ITU_NARROW = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkChromaLocation
 {
 	VK_CHROMA_LOCATION_COSITED_EVEN = 0,
 	VK_CHROMA_LOCATION_MIDPOINT = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkBlendOverlapEXT
 {
 	VK_BLEND_OVERLAP_UNCORRELATED_EXT = 0,
@@ -989,6 +1058,7 @@ pub enum VkBlendOverlapEXT
 	VK_BLEND_OVERLAP_CONJOINT_EXT = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCoverageModulationModeNV
 {
 	VK_COVERAGE_MODULATION_MODE_NONE_NV = 0,
@@ -997,17 +1067,20 @@ pub enum VkCoverageModulationModeNV
 	VK_COVERAGE_MODULATION_MODE_RGBA_NV = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCoverageReductionModeNV
 {
 	VK_COVERAGE_REDUCTION_MODE_MERGE_NV = 0,
 	VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkValidationCacheHeaderVersionEXT
 {
 	VK_VALIDATION_CACHE_HEADER_VERSION_ONE_EXT = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkShaderInfoTypeAMD
 {
 	VK_SHADER_INFO_TYPE_STATISTICS_AMD = 0,
@@ -1015,6 +1088,7 @@ pub enum VkShaderInfoTypeAMD
 	VK_SHADER_INFO_TYPE_DISASSEMBLY_AMD = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkQueueGlobalPriorityKHR
 {
 	VK_QUEUE_GLOBAL_PRIORITY_LOW_KHR = 128,
@@ -1031,6 +1105,7 @@ pub type VkDebugUtilsMessageSeverityFlagBitsEXT = u32;
 
 pub type VkDebugUtilsMessageTypeFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkConservativeRasterizationModeEXT
 {
 	VK_CONSERVATIVE_RASTERIZATION_MODE_DISABLED_EXT = 0,
@@ -1040,6 +1115,7 @@ pub enum VkConservativeRasterizationModeEXT
 
 pub type VkDescriptorBindingFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkVendorId
 {
 	/* Vivante vendor ID */
@@ -1056,6 +1132,7 @@ pub enum VkVendorId
 	VK_VENDOR_ID_POCL = 0x10006
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDriverId
 {
 	/* Advanced Micro Devices, Inc. */
@@ -1110,6 +1187,7 @@ pub type VkConditionalRenderingFlagBitsEXT = u32;
 
 pub type VkResolveModeFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkShadingRatePaletteEntryNV
 {
 	VK_SHADING_RATE_PALETTE_ENTRY_NO_INVOCATIONS_NV = 0,
@@ -1126,6 +1204,7 @@ pub enum VkShadingRatePaletteEntryNV
 	VK_SHADING_RATE_PALETTE_ENTRY_1_INVOCATION_PER_4X4_PIXELS_NV = 11
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCoarseSampleOrderTypeNV
 {
 	VK_COARSE_SAMPLE_ORDER_TYPE_DEFAULT_NV = 0,
@@ -1142,6 +1221,7 @@ pub type VkBuildAccelerationStructureFlagBitsKHR = u32;
 
 pub type VkAccelerationStructureCreateFlagBitsKHR = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCopyAccelerationStructureModeKHR
 {
 	VK_COPY_ACCELERATION_STRUCTURE_MODE_CLONE_KHR = 0,
@@ -1150,12 +1230,14 @@ pub enum VkCopyAccelerationStructureModeKHR
 	VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkBuildAccelerationStructureModeKHR
 {
 	VK_BUILD_ACCELERATION_STRUCTURE_MODE_BUILD_KHR = 0,
 	VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAccelerationStructureTypeKHR
 {
 	VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_KHR = 0,
@@ -1163,6 +1245,7 @@ pub enum VkAccelerationStructureTypeKHR
 	VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkGeometryTypeKHR
 {
 	VK_GEOMETRY_TYPE_TRIANGLES_KHR = 0,
@@ -1170,6 +1253,7 @@ pub enum VkGeometryTypeKHR
 	VK_GEOMETRY_TYPE_INSTANCES_KHR = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAccelerationStructureMemoryRequirementsTypeNV
 {
 	VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV = 0,
@@ -1177,6 +1261,7 @@ pub enum VkAccelerationStructureMemoryRequirementsTypeNV
 	VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAccelerationStructureBuildTypeKHR
 {
 	VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_KHR = 0,
@@ -1184,6 +1269,7 @@ pub enum VkAccelerationStructureBuildTypeKHR
 	VK_ACCELERATION_STRUCTURE_BUILD_TYPE_HOST_OR_DEVICE_KHR = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkRayTracingShaderGroupTypeKHR
 {
 	VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR = 0,
@@ -1191,12 +1277,14 @@ pub enum VkRayTracingShaderGroupTypeKHR
 	VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAccelerationStructureCompatibilityKHR
 {
 	VK_ACCELERATION_STRUCTURE_COMPATIBILITY_COMPATIBLE_KHR = 0,
 	VK_ACCELERATION_STRUCTURE_COMPATIBILITY_INCOMPATIBLE_KHR = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkShaderGroupShaderKHR
 {
 	VK_SHADER_GROUP_SHADER_GENERAL_KHR = 0,
@@ -1205,6 +1293,7 @@ pub enum VkShaderGroupShaderKHR
 	VK_SHADER_GROUP_SHADER_INTERSECTION_KHR = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkMemoryOverallocationBehaviorAMD
 {
 	VK_MEMORY_OVERALLOCATION_BEHAVIOR_DEFAULT_AMD = 0,
@@ -1214,6 +1303,7 @@ pub enum VkMemoryOverallocationBehaviorAMD
 
 pub type VkFramebufferCreateFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkScopeNV
 {
 	VK_SCOPE_DEVICE_NV = 1,
@@ -1222,6 +1312,7 @@ pub enum VkScopeNV
 	VK_SCOPE_QUEUE_FAMILY_NV = 5
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkComponentTypeNV
 {
 	VK_COMPONENT_TYPE_FLOAT16_NV = 0,
@@ -1241,6 +1332,7 @@ pub type VkDeviceDiagnosticsConfigFlagBitsNV = u32;
 
 pub type VkPipelineCreationFeedbackFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFullScreenExclusiveEXT
 {
 	VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT = 0,
@@ -1249,6 +1341,7 @@ pub enum VkFullScreenExclusiveEXT
 	VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceCounterScopeKHR
 {
 	VK_PERFORMANCE_COUNTER_SCOPE_COMMAND_BUFFER_KHR = 0,
@@ -1264,6 +1357,7 @@ pub enum VkPerformanceCounterScopeKHR
 
 pub type VkMemoryDecompressionMethodFlagBitsNV = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceCounterUnitKHR
 {
 	VK_PERFORMANCE_COUNTER_UNIT_GENERIC_KHR = 0,
@@ -1279,6 +1373,7 @@ pub enum VkPerformanceCounterUnitKHR
 	VK_PERFORMANCE_COUNTER_UNIT_CYCLES_KHR = 10
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceCounterStorageKHR
 {
 	VK_PERFORMANCE_COUNTER_STORAGE_INT32_KHR = 0,
@@ -1295,28 +1390,33 @@ pub type VkAcquireProfilingLockFlagBitsKHR = u32;
 
 pub type VkShaderCorePropertiesFlagBitsAMD = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceConfigurationTypeINTEL
 {
 	VK_PERFORMANCE_CONFIGURATION_TYPE_COMMAND_QUEUE_METRICS_DISCOVERY_ACTIVATED_INTEL = 0
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkQueryPoolSamplingModeINTEL
 {
 	VK_QUERY_POOL_SAMPLING_MODE_MANUAL_INTEL = 0
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceOverrideTypeINTEL
 {
 	VK_PERFORMANCE_OVERRIDE_TYPE_NULL_HARDWARE_INTEL = 0,
 	VK_PERFORMANCE_OVERRIDE_TYPE_FLUSH_GPU_CACHES_INTEL = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceParameterTypeINTEL
 {
 	VK_PERFORMANCE_PARAMETER_TYPE_HW_COUNTERS_SUPPORTED_INTEL = 0,
 	VK_PERFORMANCE_PARAMETER_TYPE_STREAM_MARKER_VALID_BITS_INTEL = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPerformanceValueTypeINTEL
 {
 	VK_PERFORMANCE_VALUE_TYPE_UINT32_INTEL = 0,
@@ -1326,6 +1426,7 @@ pub enum VkPerformanceValueTypeINTEL
 	VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkShaderFloatControlsIndependence
 {
 	VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY = 0,
@@ -1333,6 +1434,7 @@ pub enum VkShaderFloatControlsIndependence
 	VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPipelineExecutableStatisticFormatKHR
 {
 	VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_BOOL32_KHR = 0,
@@ -1341,6 +1443,7 @@ pub enum VkPipelineExecutableStatisticFormatKHR
 	VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_FLOAT64_KHR = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkLineRasterizationModeEXT
 {
 	VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT = 0,
@@ -1355,6 +1458,7 @@ pub type VkPipelineCompilerControlFlagBitsAMD = u32;
 
 pub type VkToolPurposeFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFragmentShadingRateCombinerOpKHR
 {
 	VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR = 0,
@@ -1364,6 +1468,7 @@ pub enum VkFragmentShadingRateCombinerOpKHR
 	VK_FRAGMENT_SHADING_RATE_COMBINER_OP_MUL_KHR = 4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFragmentShadingRateNV
 {
 	VK_FRAGMENT_SHADING_RATE_1_INVOCATION_PER_PIXEL_NV = 0,
@@ -1380,12 +1485,14 @@ pub enum VkFragmentShadingRateNV
 	VK_FRAGMENT_SHADING_RATE_NO_INVOCATIONS_NV = 15
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkFragmentShadingRateTypeNV
 {
 	VK_FRAGMENT_SHADING_RATE_TYPE_FRAGMENT_SIZE_NV = 0,
 	VK_FRAGMENT_SHADING_RATE_TYPE_ENUMS_NV = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkSubpassMergeStatusEXT
 {
 	VK_SUBPASS_MERGE_STATUS_MERGED_EXT = 0,
@@ -1414,12 +1521,14 @@ pub type VkEventCreateFlagBits = u32;
 
 pub type VkPipelineLayoutCreateFlagBits = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkProvokingVertexModeEXT
 {
 	VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT = 0,
 	VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT = 1
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkAccelerationStructureMotionInstanceTypeNV
 {
 	VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_STATIC_NV = 0,
@@ -1435,6 +1544,7 @@ pub type VkGraphicsPipelineLibraryFlagBitsEXT = u32;
 
 pub type VkDeviceAddressBindingFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDeviceAddressBindingTypeEXT
 {
 	VK_DEVICE_ADDRESS_BINDING_TYPE_BIND_EXT = 0,
@@ -1455,6 +1565,7 @@ pub type VkVideoDecodeH264PictureLayoutFlagBitsEXT = u32;
 
 pub type VkVideoCodingControlFlagBitsKHR = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkQueryResultStatusKHR
 {
 	VK_QUERY_RESULT_STATUS_ERROR_KHR = -1,
@@ -1470,6 +1581,7 @@ pub type VkVideoEncodeUsageFlagBitsKHR = u32;
 
 pub type VkVideoEncodeContentFlagBitsKHR = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkVideoEncodeTuningModeKHR
 {
 	VK_VIDEO_ENCODE_TUNING_MODE_DEFAULT_KHR = 0,
@@ -1489,6 +1601,7 @@ pub type VkVideoEncodeH264InputModeFlagBitsEXT = u32;
 
 pub type VkVideoEncodeH264OutputModeFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkVideoEncodeH264RateControlStructureEXT
 {
 	VK_VIDEO_ENCODE_H264_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT = 0,
@@ -1510,6 +1623,7 @@ pub type VkVideoEncodeH265InputModeFlagBitsEXT = u32;
 
 pub type VkVideoEncodeH265OutputModeFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkVideoEncodeH265RateControlStructureEXT
 {
 	VK_VIDEO_ENCODE_H265_RATE_CONTROL_STRUCTURE_UNKNOWN_EXT = 0,
@@ -1529,6 +1643,7 @@ pub type VkImageCompressionFlagBitsEXT = u32;
 
 pub type VkImageCompressionFixedRateFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPipelineRobustnessBufferBehaviorEXT
 {
 	VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_DEVICE_DEFAULT_EXT = 0,
@@ -1537,6 +1652,7 @@ pub enum VkPipelineRobustnessBufferBehaviorEXT
 	VK_PIPELINE_ROBUSTNESS_BUFFER_BEHAVIOR_ROBUST_BUFFER_ACCESS_2_EXT = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkPipelineRobustnessImageBehaviorEXT
 {
 	VK_PIPELINE_ROBUSTNESS_IMAGE_BEHAVIOR_DEVICE_DEFAULT_EXT = 0,
@@ -1549,6 +1665,7 @@ pub type VkOpticalFlowGridSizeFlagBitsNV = u32;
 
 pub type VkOpticalFlowUsageFlagBitsNV = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkOpticalFlowPerformanceLevelNV
 {
 	VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_UNKNOWN_NV = 0,
@@ -1557,6 +1674,7 @@ pub enum VkOpticalFlowPerformanceLevelNV
 	VK_OPTICAL_FLOW_PERFORMANCE_LEVEL_FAST_NV = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkOpticalFlowSessionBindingPointNV
 {
 	VK_OPTICAL_FLOW_SESSION_BINDING_POINT_UNKNOWN_NV = 0,
@@ -1574,6 +1692,7 @@ pub type VkOpticalFlowSessionCreateFlagBitsNV = u32;
 
 pub type VkOpticalFlowExecuteFlagBitsNV = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkMicromapTypeEXT
 {
 	VK_MICROMAP_TYPE_OPACITY_MICROMAP_EXT = 0
@@ -1583,6 +1702,7 @@ pub type VkBuildMicromapFlagBitsEXT = u32;
 
 pub type VkMicromapCreateFlagBitsEXT = u32;
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkCopyMicromapModeEXT
 {
 	VK_COPY_MICROMAP_MODE_CLONE_EXT = 0,
@@ -1591,17 +1711,20 @@ pub enum VkCopyMicromapModeEXT
 	VK_COPY_MICROMAP_MODE_COMPACT_EXT = 3
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkBuildMicromapModeEXT
 {
 	VK_BUILD_MICROMAP_MODE_BUILD_EXT = 0
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkOpacityMicromapFormatEXT
 {
 	VK_OPACITY_MICROMAP_FORMAT_2_STATE_EXT = 1,
 	VK_OPACITY_MICROMAP_FORMAT_4_STATE_EXT = 2
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkOpacityMicromapSpecialIndexEXT
 {
 	VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_TRANSPARENT_EXT = -1,
@@ -1610,6 +1733,7 @@ pub enum VkOpacityMicromapSpecialIndexEXT
 	VK_OPACITY_MICROMAP_SPECIAL_INDEX_FULLY_UNKNOWN_OPAQUE_EXT = -4
 }
 
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub enum VkDeviceFaultAddressTypeEXT
 {
 	/* Currently unused */
